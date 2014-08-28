@@ -1,4 +1,5 @@
 from Compilador.ply import yacc
+import time
 
 class AnalisadorSintatico():
 
@@ -39,7 +40,15 @@ class AnalisadorSintatico():
         def p_error(p):
             print p
 
-        linha = codigo.upper()
+        for linha in codigo:
+            linha = linha.upper()
 
-        yacc.yacc()
-        yacc.parse(linha)
+            yacc.yacc()
+            yacc.parse(linha)
+
+            thread.clock.tick(150)
+            thread.screen.blit(thread.background, thread.robo)
+            thread.playersprites.update()
+            thread.playersprites.draw(thread.screen)
+
+            time.sleep(1)

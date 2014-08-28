@@ -3,13 +3,11 @@ Created by PLY version 3.3 (http://www.dabeaz.com/ply)
 Unused terminals:
 
     IMPRIMA
-    VALORMOV
     ENQUANTO
     SENAO
     FACA
     COLUNA
-    SENSORFRENTE
-    SE
+    VALOR
 
 Grammar
 
@@ -18,20 +16,29 @@ Rule 1     assign -> FRENTE
 Rule 2     assign -> DIREITA
 Rule 3     assign -> ESQUERDA
 Rule 4     assign -> VOLTA
+Rule 5     assign -> SE COLUNAESQUERDA NUMERO COLUNADIREITA
+Rule 6     assign -> SE COLUNAESQUERDA VERDADEIRO COLUNADIREITA
+Rule 7     assign -> SE COLUNAESQUERDA FALSO COLUNADIREITA
+Rule 8     assign -> SE COLUNAESQUERDA SENSORFRENTE COLUNADIREITA
 
 Terminals, with rules where they appear
 
 COLUNA               : 
+COLUNADIREITA        : 5 6 7 8
+COLUNAESQUERDA       : 5 6 7 8
 DIREITA              : 2
 ENQUANTO             : 
 ESQUERDA             : 3
 FACA                 : 
+FALSO                : 7
 FRENTE               : 1
 IMPRIMA              : 
-SE                   : 
+NUMERO               : 5
+SE                   : 5 6 7 8
 SENAO                : 
-SENSORFRENTE         : 
-VALORMOV             : 
+SENSORFRENTE         : 8
+VALOR                : 
+VERDADEIRO           : 6
 VOLTA                : 4
 error                : 
 
@@ -48,44 +55,128 @@ state 0
     (2) assign -> . DIREITA
     (3) assign -> . ESQUERDA
     (4) assign -> . VOLTA
+    (5) assign -> . SE COLUNAESQUERDA NUMERO COLUNADIREITA
+    (6) assign -> . SE COLUNAESQUERDA VERDADEIRO COLUNADIREITA
+    (7) assign -> . SE COLUNAESQUERDA FALSO COLUNADIREITA
+    (8) assign -> . SE COLUNAESQUERDA SENSORFRENTE COLUNADIREITA
 
-    FRENTE          shift and go to state 4
-    DIREITA         shift and go to state 5
-    ESQUERDA        shift and go to state 1
-    VOLTA           shift and go to state 2
+    FRENTE          shift and go to state 1
+    DIREITA         shift and go to state 2
+    ESQUERDA        shift and go to state 6
+    VOLTA           shift and go to state 4
+    SE              shift and go to state 3
 
-    assign                         shift and go to state 3
+    assign                         shift and go to state 5
 
 state 1
-
-    (3) assign -> ESQUERDA .
-
-    $end            reduce using rule 3 (assign -> ESQUERDA .)
-
-
-state 2
-
-    (4) assign -> VOLTA .
-
-    $end            reduce using rule 4 (assign -> VOLTA .)
-
-
-state 3
-
-    (0) S' -> assign .
-
-
-
-state 4
 
     (1) assign -> FRENTE .
 
     $end            reduce using rule 1 (assign -> FRENTE .)
 
 
-state 5
+state 2
 
     (2) assign -> DIREITA .
 
     $end            reduce using rule 2 (assign -> DIREITA .)
+
+
+state 3
+
+    (5) assign -> SE . COLUNAESQUERDA NUMERO COLUNADIREITA
+    (6) assign -> SE . COLUNAESQUERDA VERDADEIRO COLUNADIREITA
+    (7) assign -> SE . COLUNAESQUERDA FALSO COLUNADIREITA
+    (8) assign -> SE . COLUNAESQUERDA SENSORFRENTE COLUNADIREITA
+
+    COLUNAESQUERDA  shift and go to state 7
+
+
+state 4
+
+    (4) assign -> VOLTA .
+
+    $end            reduce using rule 4 (assign -> VOLTA .)
+
+
+state 5
+
+    (0) S' -> assign .
+
+
+
+state 6
+
+    (3) assign -> ESQUERDA .
+
+    $end            reduce using rule 3 (assign -> ESQUERDA .)
+
+
+state 7
+
+    (5) assign -> SE COLUNAESQUERDA . NUMERO COLUNADIREITA
+    (6) assign -> SE COLUNAESQUERDA . VERDADEIRO COLUNADIREITA
+    (7) assign -> SE COLUNAESQUERDA . FALSO COLUNADIREITA
+    (8) assign -> SE COLUNAESQUERDA . SENSORFRENTE COLUNADIREITA
+
+    NUMERO          shift and go to state 11
+    VERDADEIRO      shift and go to state 8
+    FALSO           shift and go to state 9
+    SENSORFRENTE    shift and go to state 10
+
+
+state 8
+
+    (6) assign -> SE COLUNAESQUERDA VERDADEIRO . COLUNADIREITA
+
+    COLUNADIREITA   shift and go to state 12
+
+
+state 9
+
+    (7) assign -> SE COLUNAESQUERDA FALSO . COLUNADIREITA
+
+    COLUNADIREITA   shift and go to state 13
+
+
+state 10
+
+    (8) assign -> SE COLUNAESQUERDA SENSORFRENTE . COLUNADIREITA
+
+    COLUNADIREITA   shift and go to state 14
+
+
+state 11
+
+    (5) assign -> SE COLUNAESQUERDA NUMERO . COLUNADIREITA
+
+    COLUNADIREITA   shift and go to state 15
+
+
+state 12
+
+    (6) assign -> SE COLUNAESQUERDA VERDADEIRO COLUNADIREITA .
+
+    $end            reduce using rule 6 (assign -> SE COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
+
+
+state 13
+
+    (7) assign -> SE COLUNAESQUERDA FALSO COLUNADIREITA .
+
+    $end            reduce using rule 7 (assign -> SE COLUNAESQUERDA FALSO COLUNADIREITA .)
+
+
+state 14
+
+    (8) assign -> SE COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .
+
+    $end            reduce using rule 8 (assign -> SE COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .)
+
+
+state 15
+
+    (5) assign -> SE COLUNAESQUERDA NUMERO COLUNADIREITA .
+
+    $end            reduce using rule 5 (assign -> SE COLUNAESQUERDA NUMERO COLUNADIREITA .)
 

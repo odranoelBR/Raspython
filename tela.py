@@ -1,5 +1,4 @@
 import string
-import time
 import wx
 import pygame
 
@@ -41,25 +40,16 @@ class FrameWithForms(wx.Frame):
             control.Bind(event, handler)
 
     def onClick(self, event):
-        texto = string.split(self.programa.GetValue(), '\n')
+        codigoExplodido = string.split(self.programa.GetValue(), '\n')
 
-        for linha in texto:
-            ## Fazemdo a analise lexica
-            lexico = AnalisadorLexico()
-            lexico.scan(linha)
-            ## Fazendo a analise sintatica
-            sintatico = AnalisadorSintatico(lexico.getTokenList(), self.jogo.thread)
-            sintatico.scan(linha)
+        ## Fazemdo a analise lexica
+        lexico = AnalisadorLexico()
+        lexico.scan(codigoExplodido)
+        ## Fazendo a analise sintatica
+        sintatico = AnalisadorSintatico(lexico.getTokenList(), self.jogo.thread)
+        sintatico.scan(codigoExplodido)
 
-
-        self.jogo.thread.clock.tick(150)
-        self.jogo.thread.screen.blit(self.jogo.thread.background, self.jogo.thread.robo)
-        self.jogo.thread.playersprites.update()
-        self.jogo.thread.playersprites.draw(self.jogo.thread.screen)
         pygame.display.flip()
-
-        time.sleep(1)
-
 
 app = wx.App(False)
 frame = FrameWithForms(None, title='Raspython', size=(1024, 768))
