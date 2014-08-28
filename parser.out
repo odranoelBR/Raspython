@@ -6,8 +6,11 @@ Unused terminals:
     ENQUANTO
     SENAO
     FACA
+    NUMERO
+    CHAVESDIREITA
     COLUNA
     VALOR
+    CHAVESESQUERDA
 
 Grammar
 
@@ -16,35 +19,43 @@ Rule 1     assign -> FRENTE
 Rule 2     assign -> DIREITA
 Rule 3     assign -> ESQUERDA
 Rule 4     assign -> VOLTA
-Rule 5     assign -> SE COLUNAESQUERDA NUMERO COLUNADIREITA
-Rule 6     assign -> SE COLUNAESQUERDA VERDADEIRO COLUNADIREITA
-Rule 7     assign -> SE COLUNAESQUERDA FALSO COLUNADIREITA
-Rule 8     assign -> SE COLUNAESQUERDA SENSORFRENTE COLUNADIREITA
+Rule 5     assign -> SE expressao blocoExecutar
+Rule 6     expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA
+Rule 7     expressao -> COLUNAESQUERDA FALSO COLUNADIREITA
+Rule 8     expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA
+Rule 9     blocoExecutar -> DIREITA
+Rule 10    blocoExecutar -> FRENTE
+Rule 11    blocoExecutar -> ESQUERDA
+Rule 12    blocoExecutar -> VOLTA
 
 Terminals, with rules where they appear
 
+CHAVESDIREITA        : 
+CHAVESESQUERDA       : 
 COLUNA               : 
-COLUNADIREITA        : 5 6 7 8
-COLUNAESQUERDA       : 5 6 7 8
-DIREITA              : 2
+COLUNADIREITA        : 6 7 8
+COLUNAESQUERDA       : 6 7 8
+DIREITA              : 2 9
 ENQUANTO             : 
-ESQUERDA             : 3
+ESQUERDA             : 3 11
 FACA                 : 
 FALSO                : 7
-FRENTE               : 1
+FRENTE               : 1 10
 IMPRIMA              : 
-NUMERO               : 5
-SE                   : 5 6 7 8
+NUMERO               : 
+SE                   : 5
 SENAO                : 
 SENSORFRENTE         : 8
 VALOR                : 
 VERDADEIRO           : 6
-VOLTA                : 4
+VOLTA                : 4 12
 error                : 
 
 Nonterminals, with rules where they appear
 
 assign               : 0
+blocoExecutar        : 5
+expressao            : 5
 
 Parsing method: LALR
 
@@ -55,10 +66,7 @@ state 0
     (2) assign -> . DIREITA
     (3) assign -> . ESQUERDA
     (4) assign -> . VOLTA
-    (5) assign -> . SE COLUNAESQUERDA NUMERO COLUNADIREITA
-    (6) assign -> . SE COLUNAESQUERDA VERDADEIRO COLUNADIREITA
-    (7) assign -> . SE COLUNAESQUERDA FALSO COLUNADIREITA
-    (8) assign -> . SE COLUNAESQUERDA SENSORFRENTE COLUNADIREITA
+    (5) assign -> . SE expressao blocoExecutar
 
     FRENTE          shift and go to state 1
     DIREITA         shift and go to state 2
@@ -84,13 +92,14 @@ state 2
 
 state 3
 
-    (5) assign -> SE . COLUNAESQUERDA NUMERO COLUNADIREITA
-    (6) assign -> SE . COLUNAESQUERDA VERDADEIRO COLUNADIREITA
-    (7) assign -> SE . COLUNAESQUERDA FALSO COLUNADIREITA
-    (8) assign -> SE . COLUNAESQUERDA SENSORFRENTE COLUNADIREITA
+    (5) assign -> SE . expressao blocoExecutar
+    (6) expressao -> . COLUNAESQUERDA VERDADEIRO COLUNADIREITA
+    (7) expressao -> . COLUNAESQUERDA FALSO COLUNADIREITA
+    (8) expressao -> . COLUNAESQUERDA SENSORFRENTE COLUNADIREITA
 
-    COLUNAESQUERDA  shift and go to state 7
+    COLUNAESQUERDA  shift and go to state 8
 
+    expressao                      shift and go to state 7
 
 state 4
 
@@ -114,69 +123,112 @@ state 6
 
 state 7
 
-    (5) assign -> SE COLUNAESQUERDA . NUMERO COLUNADIREITA
-    (6) assign -> SE COLUNAESQUERDA . VERDADEIRO COLUNADIREITA
-    (7) assign -> SE COLUNAESQUERDA . FALSO COLUNADIREITA
-    (8) assign -> SE COLUNAESQUERDA . SENSORFRENTE COLUNADIREITA
+    (5) assign -> SE expressao . blocoExecutar
+    (9) blocoExecutar -> . DIREITA
+    (10) blocoExecutar -> . FRENTE
+    (11) blocoExecutar -> . ESQUERDA
+    (12) blocoExecutar -> . VOLTA
 
-    NUMERO          shift and go to state 11
-    VERDADEIRO      shift and go to state 8
-    FALSO           shift and go to state 9
-    SENSORFRENTE    shift and go to state 10
+    DIREITA         shift and go to state 12
+    FRENTE          shift and go to state 9
+    ESQUERDA        shift and go to state 13
+    VOLTA           shift and go to state 11
 
+    blocoExecutar                  shift and go to state 10
 
 state 8
 
-    (6) assign -> SE COLUNAESQUERDA VERDADEIRO . COLUNADIREITA
+    (6) expressao -> COLUNAESQUERDA . VERDADEIRO COLUNADIREITA
+    (7) expressao -> COLUNAESQUERDA . FALSO COLUNADIREITA
+    (8) expressao -> COLUNAESQUERDA . SENSORFRENTE COLUNADIREITA
 
-    COLUNADIREITA   shift and go to state 12
+    VERDADEIRO      shift and go to state 15
+    FALSO           shift and go to state 16
+    SENSORFRENTE    shift and go to state 14
 
 
 state 9
 
-    (7) assign -> SE COLUNAESQUERDA FALSO . COLUNADIREITA
+    (10) blocoExecutar -> FRENTE .
 
-    COLUNADIREITA   shift and go to state 13
+    $end            reduce using rule 10 (blocoExecutar -> FRENTE .)
 
 
 state 10
 
-    (8) assign -> SE COLUNAESQUERDA SENSORFRENTE . COLUNADIREITA
+    (5) assign -> SE expressao blocoExecutar .
 
-    COLUNADIREITA   shift and go to state 14
+    $end            reduce using rule 5 (assign -> SE expressao blocoExecutar .)
 
 
 state 11
 
-    (5) assign -> SE COLUNAESQUERDA NUMERO . COLUNADIREITA
+    (12) blocoExecutar -> VOLTA .
 
-    COLUNADIREITA   shift and go to state 15
+    $end            reduce using rule 12 (blocoExecutar -> VOLTA .)
 
 
 state 12
 
-    (6) assign -> SE COLUNAESQUERDA VERDADEIRO COLUNADIREITA .
+    (9) blocoExecutar -> DIREITA .
 
-    $end            reduce using rule 6 (assign -> SE COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
+    $end            reduce using rule 9 (blocoExecutar -> DIREITA .)
 
 
 state 13
 
-    (7) assign -> SE COLUNAESQUERDA FALSO COLUNADIREITA .
+    (11) blocoExecutar -> ESQUERDA .
 
-    $end            reduce using rule 7 (assign -> SE COLUNAESQUERDA FALSO COLUNADIREITA .)
+    $end            reduce using rule 11 (blocoExecutar -> ESQUERDA .)
 
 
 state 14
 
-    (8) assign -> SE COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .
+    (8) expressao -> COLUNAESQUERDA SENSORFRENTE . COLUNADIREITA
 
-    $end            reduce using rule 8 (assign -> SE COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .)
+    COLUNADIREITA   shift and go to state 17
 
 
 state 15
 
-    (5) assign -> SE COLUNAESQUERDA NUMERO COLUNADIREITA .
+    (6) expressao -> COLUNAESQUERDA VERDADEIRO . COLUNADIREITA
 
-    $end            reduce using rule 5 (assign -> SE COLUNAESQUERDA NUMERO COLUNADIREITA .)
+    COLUNADIREITA   shift and go to state 18
+
+
+state 16
+
+    (7) expressao -> COLUNAESQUERDA FALSO . COLUNADIREITA
+
+    COLUNADIREITA   shift and go to state 19
+
+
+state 17
+
+    (8) expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .
+
+    DIREITA         reduce using rule 8 (expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .)
+    FRENTE          reduce using rule 8 (expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .)
+    ESQUERDA        reduce using rule 8 (expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .)
+    VOLTA           reduce using rule 8 (expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .)
+
+
+state 18
+
+    (6) expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .
+
+    DIREITA         reduce using rule 6 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
+    FRENTE          reduce using rule 6 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
+    ESQUERDA        reduce using rule 6 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
+    VOLTA           reduce using rule 6 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
+
+
+state 19
+
+    (7) expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .
+
+    DIREITA         reduce using rule 7 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
+    FRENTE          reduce using rule 7 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
+    ESQUERDA        reduce using rule 7 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
+    VOLTA           reduce using rule 7 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
 

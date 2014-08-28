@@ -21,7 +21,6 @@ class AnalisadorLexico():
             ]
         return tokens
 
-
     def scan(self,codigo):
 
         tokens = self.getTokenList()
@@ -29,8 +28,8 @@ class AnalisadorLexico():
         t_COLUNA = r':'
         t_COLUNAESQUERDA = r'\('
         t_COLUNADIREITA = r'\)'
-        t_CHAVESDIREITA = r'\{'
-        t_CHAVESESQUERDA = r'\}'
+        t_CHAVESDIREITA = r'\}'
+        t_CHAVESESQUERDA = r'\{'
         t_DIREITA = 'DIREITA'
         t_VERDADEIRO = 'VERDADEIRO'
         t_FALSO = 'FALSO'
@@ -51,15 +50,12 @@ class AnalisadorLexico():
 
         lex.lex()
 
-        linhaAtual = 0
-        for linha in codigo:
-            linhaAtual += 1
-            linha = linha.upper()
-            lex.input(linha)
+        codigo = codigo.upper()
+        lex.input(codigo)
 
-            while True:
-                tok = lex.token()
-                if not tok: break
-                # Use token
+        while True:
+            tok = lex.token()
+            if not tok: break
+            # Use token
 
 

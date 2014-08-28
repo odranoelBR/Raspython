@@ -40,14 +40,16 @@ class FrameWithForms(wx.Frame):
             control.Bind(event, handler)
 
     def onClick(self, event):
-        codigoExplodido = string.split(self.programa.GetValue(), '\n')
+        ##codigoExplodido = string.split(self.programa.GetValue(), '\n')
+        codigo = self.programa.GetValue()
+        codigo = string.replace(codigo,'\n' ,' ')
 
         ## Fazemdo a analise lexica
         lexico = AnalisadorLexico()
-        lexico.scan(codigoExplodido)
+        lexico.scan(codigo)
         ## Fazendo a analise sintatica
         sintatico = AnalisadorSintatico(lexico.getTokenList(), self.jogo.thread)
-        sintatico.scan(codigoExplodido)
+        sintatico.scan(codigo)
 
         pygame.display.flip()
 

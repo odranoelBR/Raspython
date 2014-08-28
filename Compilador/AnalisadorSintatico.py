@@ -26,29 +26,40 @@ class AnalisadorSintatico():
 
         def p_assign_mover_volta(p):
             '''assign : VOLTA '''
-            thread.robo.moveup()
+            thread.robo.move()
 
         def p_se_stmt(p):
-            '''assign : SE COLUNAESQUERDA NUMERO COLUNADIREITA
-                    |   SE COLUNAESQUERDA VERDADEIRO COLUNADIREITA
-                    |   SE COLUNAESQUERDA FALSO COLUNADIREITA
-                    |   SE COLUNAESQUERDA SENSORFRENTE COLUNADIREITA'''
+            '''assign : SE expressao blocoExecutar'''
+            if (p[2]):
+                yacc.parse(p[3])
 
-            print p[3]
+        def p_expressao(p):
+            '''expressao :  COLUNAESQUERDA VERDADEIRO COLUNADIREITA
+                        |   COLUNAESQUERDA FALSO COLUNADIREITA
+                        |   COLUNAESQUERDA SENSORFRENTE COLUNADIREITA'''
+            if(p[2] == 'FALSO'):
+                p[0] = False
+            else:
+                p[0] = True
 
+        def p_blocoExecutar(p):
+            '''blocoExecutar :  DIREITA
+                            |   FRENTE
+                            |   ESQUERDA
+                            |   VOLTA'''
+            p[0] = p[1]
 
         def p_error(p):
             print p
 
-        for linha in codigo:
-            linha = linha.upper()
+        codigo = codigo.upper()
 
-            yacc.yacc()
-            yacc.parse(linha)
+        yacc.yacc()
+        yacc.parse(codigo)
 
-            thread.clock.tick(150)
-            thread.screen.blit(thread.background, thread.robo)
-            thread.playersprites.update()
-            thread.playersprites.draw(thread.screen)
+        thread.clock.tick(150)
+        thread.screen.blit(thread.background, thread.robo)
+        thread.playersprites.update()
+        thread.playersprites.draw(thread.screen)
 
-            time.sleep(1)
+        time.sleep(1)
