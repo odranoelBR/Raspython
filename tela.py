@@ -1,11 +1,14 @@
 import string
 import time
 import wx
-from Compilador import lex
+import pygame
 
+
+from Compilador.AnalisadorLexico import AnalisadorLexico
+from Compilador.AnalisadorSintatico import AnalisadorSintatico
 from sdPanel import SDLPanel
 
-import pygame
+
 class FrameWithForms(wx.Frame):
     def __init__(self, *args, **kwargs):
         super(FrameWithForms, self).__init__(*args, **kwargs)
@@ -40,16 +43,22 @@ class FrameWithForms(wx.Frame):
     def onClick(self, event):
         texto = string.split(self.programa.GetValue(), '\n')
 
-        for acoes in texto:
-            lex.scan(acoes,self.jogo.thread)
+        for linha in texto:
+            ## Fazemdo a analise lexica
+            lexico = AnalisadorLexico()
+            lexico.scan(linha)
+            ## Fazendo a analise sintatica
+            sintatico = AnalisadorSintatico(lexico.getTokenList(), self.jogo.thread)
+            sintatico.scan(linha)
 
-            self.jogo.thread.clock.tick(150)
-            self.jogo.thread.screen.blit(self.jogo.thread.background, self.jogo.thread.robo)
-            self.jogo.thread.playersprites.update()
-            self.jogo.thread.playersprites.draw(self.jogo.thread.screen)
-            pygame.display.flip()
 
-            time.sleep(1)
+        self.jogo.thread.clock.tick(150)
+        self.jogo.thread.screen.blit(self.jogo.thread.background, self.jogo.thread.robo)
+        self.jogo.thread.playersprites.update()
+        self.jogo.thread.playersprites.draw(self.jogo.thread.screen)
+        pygame.display.flip()
+
+        time.sleep(1)
 
 
 app = wx.App(False)
