@@ -16,8 +16,8 @@ class AnalisadorLexico():
             'COLUNAESQUERDA',
             'COLUNADIREITA',
             'VALOR',
-            'CHAVESESQUERDA',
-            'CHAVESDIREITA'
+            'CHAVEESQUERDA',
+            'CHAVEDIREITA'
             ]
         return tokens
 
@@ -28,8 +28,8 @@ class AnalisadorLexico():
         t_COLUNA = r':'
         t_COLUNAESQUERDA = r'\('
         t_COLUNADIREITA = r'\)'
-        t_CHAVESDIREITA = r'\}'
-        t_CHAVESESQUERDA = r'\{'
+        t_CHAVEDIREITA = r'\}'
+        t_CHAVEESQUERDA = r'\{'
         t_DIREITA = 'DIREITA'
         t_VERDADEIRO = 'VERDADEIRO'
         t_FALSO = 'FALSO'

@@ -29,9 +29,16 @@ class AnalisadorSintatico():
             thread.robo.move()
 
         def p_se_stmt(p):
-            '''assign : SE expressao blocoExecutar'''
+            '''assign : SE expressao  blocoExecutar '''
             if (p[2]):
                 yacc.parse(p[3])
+
+        def p_se_senao_stmt(p):
+            '''assign : SE expressao  blocoExecutar SENAO blocoExecutar'''
+            if (p[2]):
+                yacc.parse(p[3])
+            else:
+                yacc.parse(p[5])
 
         def p_expressao(p):
             '''expressao :  COLUNAESQUERDA VERDADEIRO COLUNADIREITA
