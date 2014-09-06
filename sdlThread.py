@@ -1,5 +1,7 @@
 import threading
 import pygame
+
+from bloco import Bloco
 from robo import Robo
 
 import time
@@ -8,8 +10,17 @@ class SDLThread:
     def __init__(self,screen):
         self.m_bKeepGoing = self.m_bRunning = False
         self.robo = Robo()
+
+
+        grupoBlocos = pygame.sprite.Group()
+        for x in range(0,5):
+            grupoBlocos.add(Bloco[10,20])
+
         self.screen = screen
-        self.playersprites = pygame.sprite.RenderPlain((self.robo))
+
+        self.playersprites = pygame.sprite.RenderPlain(self.robo,self.bloco)
+
+
         self.background = pygame.Surface(screen.get_size())
         self.time = time
         self.clock = pygame.time.Clock()
@@ -18,7 +29,7 @@ class SDLThread:
         self.proximaAcao = None
         self.init = True
 
-        self.screen.blit(self.background, self.robo)
+        self.screen.blit(self.background, self.robo,self.bloco)
         self.playersprites.update()
 
 

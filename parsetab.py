@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = 's\x00\xb5 co8Hl\xfc\xb6\xa3L|<"'
+_lr_signature = '!\xe0]\x1a\xd9\x08n\xba\xc3!o+\xc07}M'
     
-_lr_action_items = {'COLUNADIREITA':([14,15,16,],[18,19,20,]),'VERDADEIRO':([8,],[15,]),'FRENTE':([0,7,17,18,19,20,],[1,9,9,-9,-7,-8,]),'SENAO':([9,10,11,12,13,],[-11,17,-12,-13,-10,]),'FALSO':([8,],[16,]),'COLUNAESQUERDA':([3,],[8,]),'SENSORFRENTE':([8,],[14,]),'ESQUERDA':([0,7,17,18,19,20,],[6,11,11,-9,-7,-8,]),'VOLTA':([0,7,17,18,19,20,],[4,12,12,-9,-7,-8,]),'DIREITA':([0,7,17,18,19,20,],[2,13,13,-9,-7,-8,]),'SE':([0,],[3,]),'$end':([1,2,4,5,6,9,10,11,12,13,21,],[-1,-2,-4,0,-3,-11,-5,-12,-13,-10,-6,]),}
+_lr_action_items = {'COLUNADIREITA':([12,13,14,],[21,22,23,]),'VERDADEIRO':([9,],[13,]),'ENQUANTO':([0,],[1,]),'FRENTE':([0,10,11,21,22,23,24,],[2,15,15,-10,-8,-9,15,]),'SENAO':([15,16,17,18,19,],[-12,24,-13,-14,-11,]),'FACA':([8,21,22,23,],[11,-10,-8,-9,]),'FALSO':([9,],[14,]),'COLUNAESQUERDA':([1,4,],[9,9,]),'SENSORFRENTE':([9,],[12,]),'SE':([0,],[4,]),'VOLTA':([0,10,11,21,22,23,24,],[5,18,18,-10,-8,-9,18,]),'DIREITA':([0,10,11,21,22,23,24,],[3,19,19,-10,-8,-9,19,]),'ESQUERDA':([0,10,11,21,22,23,24,],[7,17,17,-10,-8,-9,17,]),'$end':([2,3,5,6,7,15,16,17,18,19,20,25,],[-1,-2,-4,0,-3,-12,-5,-13,-14,-11,-7,-6,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expressao':([3,],[7,]),'blocoExecutar':([7,17,],[10,21,]),'assign':([0,],[5,]),}
+_lr_goto_items = {'expressao':([1,4,],[8,10,]),'blocoExecutar':([10,11,24,],[16,20,25,]),'assign':([0,],[6,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -32,11 +32,12 @@ _lr_productions = [
   ('assign -> VOLTA','assign',1,'p_assign_mover_volta','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',28),
   ('assign -> SE expressao blocoExecutar','assign',3,'p_se_stmt','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',32),
   ('assign -> SE expressao blocoExecutar SENAO blocoExecutar','assign',5,'p_se_senao_stmt','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',37),
-  ('expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA','expressao',3,'p_expressao','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',42),
-  ('expressao -> COLUNAESQUERDA FALSO COLUNADIREITA','expressao',3,'p_expressao','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',43),
-  ('expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA','expressao',3,'p_expressao','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',44),
-  ('blocoExecutar -> DIREITA','blocoExecutar',1,'p_blocoExecutar','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',51),
-  ('blocoExecutar -> FRENTE','blocoExecutar',1,'p_blocoExecutar','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',52),
-  ('blocoExecutar -> ESQUERDA','blocoExecutar',1,'p_blocoExecutar','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',53),
-  ('blocoExecutar -> VOLTA','blocoExecutar',1,'p_blocoExecutar','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',54),
+  ('assign -> ENQUANTO expressao FACA blocoExecutar','assign',4,'p_enquanto_stmt','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',44),
+  ('expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA','expressao',3,'p_expressao','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',49),
+  ('expressao -> COLUNAESQUERDA FALSO COLUNADIREITA','expressao',3,'p_expressao','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',50),
+  ('expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA','expressao',3,'p_expressao','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',51),
+  ('blocoExecutar -> DIREITA','blocoExecutar',1,'p_blocoExecutar','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',58),
+  ('blocoExecutar -> FRENTE','blocoExecutar',1,'p_blocoExecutar','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',59),
+  ('blocoExecutar -> ESQUERDA','blocoExecutar',1,'p_blocoExecutar','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',60),
+  ('blocoExecutar -> VOLTA','blocoExecutar',1,'p_blocoExecutar','/home/muniz/Desenvolvimento/rasp/Raspython/Compilador/AnalisadorSintatico.py',61),
 ]

@@ -1,5 +1,6 @@
 from Compilador.ply import yacc
 import time
+import pygame
 
 class AnalisadorSintatico():
 
@@ -7,9 +8,8 @@ class AnalisadorSintatico():
         self.tokenList = tokenList
         self.thread = thread
 
-    def scan(self,codigo):
 
-        tokens = self.tokenList
+    def scan(self,codigo):
         thread = self.thread
 
         def p_assign_mover_frente(p):
@@ -31,14 +31,21 @@ class AnalisadorSintatico():
         def p_se_stmt(p):
             '''assign : SE expressao  blocoExecutar '''
             if (p[2]):
-                yacc.parse(p[3])
+                parsearCodigo(p[3])
 
         def p_se_senao_stmt(p):
             '''assign : SE expressao  blocoExecutar SENAO blocoExecutar'''
             if (p[2]):
-                yacc.parse(p[3])
+                parsearCodigo(p[3])
             else:
-                yacc.parse(p[5])
+                parsearCodigo(p[5])
+
+        def p_enquanto_stmt(p):
+            '''assign : ENQUANTO expressao FACA blocoExecutar'''
+            while (p[2]):
+                parsearCodigo(p[4])
+                atualizarJogo()
+
 
         def p_expressao(p):
             '''expressao :  COLUNAESQUERDA VERDADEIRO COLUNADIREITA
@@ -59,14 +66,23 @@ class AnalisadorSintatico():
         def p_error(p):
             print p
 
-        codigo = codigo.upper()
+        def parsearCodigo(codigo):
+            codigo = codigo.upper()
+            yacc.parse(codigo)
 
-        yacc.yacc()
-        yacc.parse(codigo)
+        def atualizarJogo():
 
-        thread.clock.tick(150)
-        thread.screen.blit(thread.background, thread.robo)
-        thread.playersprites.update()
-        thread.playersprites.draw(thread.screen)
+            thread.clock.tick(150)
+            thread.screen.blit(thread.background, thread.robo)
+            thread.playersprites.update()
+            thread.playersprites.draw(thread.screen)
+            pygame.display.flip()
 
-        time.sleep(1)
+            time.sleep(1)
+
+
+        tokens = self.tokenList
+        self.parser = yacc.yacc()
+
+        parsearCodigo(codigo)
+        atualizarJogo()
