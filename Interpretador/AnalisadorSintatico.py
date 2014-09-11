@@ -1,4 +1,4 @@
-from Compilador.ply import yacc
+from Interpretador.ply import yacc
 import time
 import pygame
 
@@ -76,6 +76,8 @@ class AnalisadorSintatico():
             thread.screen.blit(thread.background, thread.robo)
             thread.playersprites.update()
             thread.playersprites.draw(thread.screen)
+            thread.labirinto.update()
+            thread.labirinto.draw(thread.screen)
             pygame.display.flip()
 
             time.sleep(1)

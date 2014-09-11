@@ -1,4 +1,4 @@
-from Compilador.ply import lex
+from Interpretador.ply import lex
 
 class AnalisadorLexico():
 
