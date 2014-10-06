@@ -3,8 +3,8 @@ import wx
 import pygame
 
 
-from Compilador.AnalisadorLexico import AnalisadorLexico
-from Compilador.AnalisadorSintatico import AnalisadorSintatico
+from Interpretador.AnalisadorLexico import AnalisadorLexico
+from Interpretador.AnalisadorSintatico import AnalisadorSintatico
 from sdPanel import SDLPanel
 
 
@@ -20,13 +20,16 @@ class FrameWithForms(wx.Frame):
                 [(self.colorRadioBox, 5, 530, 775, 180),
                  (self.programa, 5, 5, 460, 500),
                  (self.botao, 850, 600, 80, 40),
-                 (self.jogo, 470, 5, 530, 500)]:
+                 (self.jogo, 470, 5, 550, 500)]:
             control.SetDimensions(x=x, y=y, width=width, height=height)
 
 
     def createControls(self):
-        self.jogo = SDLPanel(self, -1, (530, 500))
+        self.jogo = SDLPanel(self, -1, (550, 500))
+
         self.botao = wx.Button(self, label="Rodar")
+
+
 
         self.programa = wx.TextCtrl(self, style=wx.TE_MULTILINE)
         self.colorRadioBox = wx.RadioBox(self,
@@ -50,6 +53,7 @@ class FrameWithForms(wx.Frame):
         ## Fazendo a analise sintatica
         sintatico = AnalisadorSintatico(lexico.getTokenList(), self.jogo.thread)
         sintatico.scan(codigo)
+
 
         pygame.display.flip()
 

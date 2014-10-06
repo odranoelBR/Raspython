@@ -1,7 +1,7 @@
 import threading
 import pygame
+from Labirinto import Labirinto
 
-from bloco import Bloco
 from robo import Robo
 
 import time
@@ -9,28 +9,39 @@ import time
 class SDLThread:
     def __init__(self,screen):
         self.m_bKeepGoing = self.m_bRunning = False
-        self.robo = Robo()
-
-
-        grupoBlocos = pygame.sprite.Group()
-        for x in range(0,5):
-            grupoBlocos.add(Bloco[10,20])
 
         self.screen = screen
 
-        self.playersprites = pygame.sprite.RenderPlain(self.robo,self.bloco)
+        # Criacao do robo
+        self.robo = Robo()
 
+        self.playersprites = pygame.sprite.RenderPlain(self.robo)
 
+        # Criacao da surface
         self.background = pygame.Surface(screen.get_size())
+        self.background.convert()
+        self.background.fill((255,255,255))
         self.time = time
         self.clock = pygame.time.Clock()
-        self.playersprites.draw(screen)
+
         self.thread = None
         self.proximaAcao = None
         self.init = True
 
-        self.screen.blit(self.background, self.robo,self.bloco)
-        self.playersprites.update()
+        camadaLabirinto = pygame.Surface(screen.get_size())
+        camadaLabirinto = camadaLabirinto.convert_alpha()
+        camadaLabirinto.fill((0,0,0,0,))
+        self.labirinto = Labirinto(camadaLabirinto)
+
+        # Desenha sprites na surface
+        while 1 :
+            self.playersprites.draw(screen)
+            self.playersprites.update()
+            self.screen.blit(self.background, (0,0))
+            self.labirinto.update()
+            self.labirinto.draw(screen)
+
+            pygame.display.flip()
 
 
     def Start(self):
@@ -52,19 +63,6 @@ class SDLThread:
     def Run(self):
         while self.m_bKeepGoing:
             self.clock.tick(150)
-
-            #if event.type == KEYDOWN:
-           # if event.key == pygame.K_DOWN:
-            #    self.robo.movedown()
-            #if event.key == pygame.K_LEFT:
-             #   self.robo.moveleft()
-            #if event.key == pygame.K_RIGHT:
-                #self.robo.moveright()
-
-            #elif event.type == KEYUP:
-             #   if event.key == K_UP or event.key == K_DOWN     \
-              #          or event.key == K_LEFT or event.key == K_RIGHT:
-               #     self.robo.movepos = [0,0]
 
 
         self.m_bRunning = False;

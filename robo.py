@@ -9,11 +9,11 @@ class Robo(pygame.sprite.Sprite):
         self.image, self.rect = load_image('robot.png')
         self.screen = pygame.display.get_surface()
         self.area = self.screen.get_rect()
-        self.speed = 20
+        self.speed = 50
         self.reinit()
 
     def reinit(self):
-        self.movepos = [0,0]
+        self.movepos = [275,225]
         self.rect.midright = self.area.center
 
     def update(self):
