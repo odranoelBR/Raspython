@@ -12,8 +12,8 @@ class ThreadJogo(wx.Panel):
     def __init__(self,parent,ID,tplSize):
         wx.Panel.__init__(self, parent, ID, size=tplSize)
 
-        os.environ['SDL_WINDOWID'] = str(self.GetHandle())
-
+        #os.environ['SDL_WINDOWID'] = str(self.GetHandle())
+        self.continuar = True
         self.jogo = Jogo()
         # Criando tela no jogo
         self.jogo.screen = pygame.display.set_mode(tplSize)
@@ -23,8 +23,6 @@ class ThreadJogo(wx.Panel):
         self.jogo.playersprites = pygame.sprite.RenderPlain(self.jogo.robo)
         # Criacao da surface
         self.jogo.background = pygame.Surface(self.jogo.screen.get_size())
-        self.jogo.background.convert()
-        self.jogo.background.fill((255,255,255))
         self.jogo.time = pygame.time
         self.clock = pygame.time.Clock()
 
@@ -38,14 +36,28 @@ class ThreadJogo(wx.Panel):
         self.thread.start()
 
     def __del__(self):
-        self.thread.Stop()
+        self.Stop()
         print "Thread Parou!"
         pygame.quit()
+
+    def Stop(self):
+        self.m_bKeepGoing = False
+        #this important line make sure that the draw thread exits before
+        #pygame.quit() is called so there is no errors
+
+        self.thread.join()
+
+    def IsRunning(self):
+        return self.m_bRunning
 
     def Run(self):
         while self.m_bKeepGoing:
             self.clock.tick(150)
 
-        self.m_bRunning = False;
-        print "Loop do jogo parou de executar!"
+            self.m_bRunning = False;
+        print "Loop do jogo foi finalizado!"
+
+
+
+
 
