@@ -10,13 +10,13 @@ class AnalisadorSintatico():
         self.tokenList = tokenList
         self.thread = thread
 
-
     def scan(self,codigo):
         thread = self.thread
 
         def p_assign_mover_frente(p):
             '''assign : FRENTE '''
             thread.jogo.robo.move()
+
 
         def p_assign_mover_direita(p):
             '''assign : DIREITA '''

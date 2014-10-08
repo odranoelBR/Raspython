@@ -6,16 +6,14 @@ from model.CarregadorImagem import load_image
 class Robo(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
+
         self.angulo = 0
         self.image, self.rect = load_image('view/img/robot.png')
         self.screen = pygame.display.get_surface()
         self.area = self.screen.get_rect()
         self.speed = 50
-        self.reinit()
-
-    def reinit(self):
-        self.movepos = [275,225]
-        self.rect.midright = self.area.center
+        self.rect.midright = [550,475];
+        self.movepos = [0,0]
 
     def update(self):
         newpos = self.rect.move(self.movepos)
@@ -28,6 +26,8 @@ class Robo(pygame.sprite.Sprite):
             self.movepos[1] = self.movepos[1] - (self.speed) # para cima
         elif(self.angulo == 90  or self.angulo == -270):
             self.movepos[0] = self.movepos[1] - (self.speed) # para esquerda
+        elif(self.angulo == 180 or self.angulo == -180):
+            self.movepos[1] = self.movepos[1] + (self.speed) # para tras
         elif(self.angulo == 270 or  self.angulo == -90):
             self.movepos[0] = self.movepos[0] + (self.speed) # para direita
 

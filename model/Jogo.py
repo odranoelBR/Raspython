@@ -1,7 +1,6 @@
 import pygame
 from model.Sprites.robo import Robo
 
-
 class Jogo:
 
     def __init__(self, tplSize):
