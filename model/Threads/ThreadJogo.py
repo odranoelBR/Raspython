@@ -2,9 +2,8 @@ import os
 import threading
 import wx
 from model.Jogo import Jogo
-from model.Sprites.robo import Robo
 
-global pygame # when we import it, let's keep its proper name!
+global pygame
 import pygame
 pygame_init_flag = False
 
@@ -20,8 +19,8 @@ class ThreadJogo(wx.Panel):
 
         self.Start()
 
+
     def Start(self):
-        #I rewrote this to use the higherlevel threading module
         self.m_bKeepGoing = self.m_bRunning = True
         self.thread = threading.Thread(group=None, target=self.Run, name=None,
                                        args=(), kwargs={})
@@ -34,9 +33,6 @@ class ThreadJogo(wx.Panel):
 
     def Stop(self):
         self.m_bKeepGoing = False
-        #this important line make sure that the draw thread exits before
-        #pygame.quit() is called so there is no errors
-
         self.thread.join()
 
     def IsRunning(self):

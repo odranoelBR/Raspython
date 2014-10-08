@@ -1,4 +1,5 @@
 import pygame
+import sys
 
 from model.CarregadorImagem import load_image
 
@@ -21,11 +22,20 @@ class Robo(pygame.sprite.Sprite):
             self.rect = newpos
         self.movepos = [0,0]
 
-    def move(self):
-        if(self.angulo == 0 ):
-            self.movepos[1] = self.movepos[1] - (self.speed) # para cima
+    def move(self, grupowalls):
+        if (self.angulo == 0 ):
+            self.movepos[1] = self.movepos[1] - (self.speed)
+            for wall in grupowalls.sprites():
+                if self.rect.colliderect(wall.rect):
+                    print "asa"
+                else:
+                    pass
         elif(self.angulo == 90  or self.angulo == -270):
-            self.movepos[0] = self.movepos[1] - (self.speed) # para esquerda
+            for wall in grupowalls.sprites():
+                if(wall.rect.colliderect(self.rect)):
+                    print "a"
+                else:
+                    self.movepos[0] = self.movepos[1] - (self.speed) # para esquerda
         elif(self.angulo == 180 or self.angulo == -180):
             self.movepos[1] = self.movepos[1] + (self.speed) # para tras
         elif(self.angulo == 270 or  self.angulo == -90):

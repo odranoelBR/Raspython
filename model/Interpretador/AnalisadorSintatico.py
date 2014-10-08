@@ -15,7 +15,7 @@ class AnalisadorSintatico():
 
         def p_assign_mover_frente(p):
             '''assign : FRENTE '''
-            thread.jogo.robo.move()
+            thread.jogo.robo.move(thread.jogo.grupowalls)
 
 
         def p_assign_mover_direita(p):
