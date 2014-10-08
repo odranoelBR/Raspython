@@ -14,17 +14,10 @@ class ThreadJogo(wx.Panel):
 
         #os.environ['SDL_WINDOWID'] = str(self.GetHandle())
         self.continuar = True
-        self.jogo = Jogo()
-        # Criando tela no jogo
-        self.jogo.screen = pygame.display.set_mode(tplSize)
-        # Adicionando o sprite robo no jogo
-        self.jogo.robo = Robo()
-        # Renderizando o robo no jogo
-        self.jogo.playersprites = pygame.sprite.RenderPlain(self.jogo.robo)
-        # Criacao da surface
-        self.jogo.background = pygame.Surface(self.jogo.screen.get_size())
-        self.jogo.time = pygame.time
+        self.jogo = Jogo(tplSize)
+
         self.clock = pygame.time.Clock()
+
 
         self.Start()
 

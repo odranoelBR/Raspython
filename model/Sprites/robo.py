@@ -5,8 +5,8 @@ from model.CarregadorImagem import load_image
 #modelo
 class Robo(pygame.sprite.Sprite):
     def __init__(self):
-        self.angulo = 0
         pygame.sprite.Sprite.__init__(self)
+        self.angulo = 0
         self.image, self.rect = load_image('view/img/robot.png')
         self.screen = pygame.display.get_surface()
         self.area = self.screen.get_rect()
