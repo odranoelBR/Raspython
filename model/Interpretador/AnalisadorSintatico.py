@@ -28,7 +28,7 @@ class AnalisadorSintatico():
 
         def p_assign_mover_volta(p):
             '''assign : VOLTA '''
-            thread.jogo.robo.move()
+            thread.jogo.robo.moveback()
 
         def p_se_stmt(p):
             '''assign : SE expressao  blocoExecutar '''

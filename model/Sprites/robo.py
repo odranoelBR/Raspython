@@ -28,10 +28,20 @@ class Robo(pygame.sprite.Sprite):
             self.movepos[1] = self.movepos[1] - (self.speed) # para cima
         elif(self.angulo == 90  or self.angulo == -270):
             self.movepos[0] = self.movepos[1] - (self.speed) # para esquerda
-        elif(self.angulo == 180 or self.angulo == -180):
-            self.movepos[1] = self.movepos[1] + (self.speed) # para tras
         elif(self.angulo == 270 or  self.angulo == -90):
             self.movepos[0] = self.movepos[0] + (self.speed) # para direita
+
+    def moveback(self):
+        if(self.angulo == 0 ):
+            self.movepos[1] = self.movepos[1] + (self.speed) # para cima
+        elif(self.angulo == 90  or self.angulo == -270):
+            self.movepos[0] = self.movepos[1] + (self.speed) # para esquerda
+        elif(self.angulo == 180 or self.angulo == -180):
+            self.movepos[1] = self.movepos[1] - (self.speed) # para tras
+        elif(self.angulo == 270 or  self.angulo == -90):
+            self.movepos[0] = self.movepos[0] - (self.speed) # para direita
+
+
 
     def moveleft(self):
         self.angulo += 90
@@ -40,7 +50,6 @@ class Robo(pygame.sprite.Sprite):
     def moveright(self):
         self.angulo -= 90
         self.rotacionar(-90)
-
 
     def rotacionar(self,angulo):
 

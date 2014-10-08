@@ -18,7 +18,6 @@ class ThreadJogo(wx.Panel):
 
         self.clock = pygame.time.Clock()
 
-
         self.Start()
 
     def Start(self):
@@ -30,7 +29,7 @@ class ThreadJogo(wx.Panel):
 
     def __del__(self):
         self.Stop()
-        print "Thread Parou!"
+        print "Thread do jogo parou!"
         pygame.quit()
 
     def Stop(self):
