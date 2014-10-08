@@ -1,6 +1,6 @@
 import pygame
 
-from model.image import load_image
+from model.CarregadorImagem import load_image
 
 #modelo
 class Robo(pygame.sprite.Sprite):

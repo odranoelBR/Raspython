@@ -4,7 +4,8 @@ import pygame
 
 from model.Interpretador.AnalisadorLexico import AnalisadorLexico
 from model.Interpretador.AnalisadorSintatico import AnalisadorSintatico
-from view.sdPanel import SDLPanel
+from model.Threads.ThreadJogo import ThreadJogo
+
 
 class TelaPrincipal(wx.Frame):
     def __init__(self, *args, **kwargs):
@@ -17,11 +18,11 @@ class TelaPrincipal(wx.Frame):
         for control, x, y, width, height in \
                  [(self.caixadigitacao, 5, 480, 450, 280),
                  (self.botao, 470, 600, 80, 40),
-                 (self.jogo, 5, 5, 550, 440)]:
+                 (self.ThreadJogo, 5, 5, 550, 440)]:
             control.SetDimensions(x=x, y=y, width=width, height=height)
 
     def adicionarWidgets(self):
-        self.jogo = SDLPanel(self, -1, (550, 500))
+        self.ThreadJogo = ThreadJogo(self, -1, (550, 500))
         self.botao = wx.Button(self, label="Rodar")
         self.caixadigitacao = wx.TextCtrl(self, style=wx.TE_MULTILINE)
 
@@ -40,7 +41,7 @@ class TelaPrincipal(wx.Frame):
         lexico = AnalisadorLexico()
         lexico.scan(codigo)
         ## Fazendo a analise sintatica
-        sintatico = AnalisadorSintatico(lexico.getTokenList(), self.jogo.thread)
+        sintatico = AnalisadorSintatico(lexico.getTokenList(), self.ThreadJogo)
         sintatico.scan(codigo)
 
         pygame.display.flip()
