@@ -16,26 +16,30 @@ class Robo(pygame.sprite.Sprite):
         self.rect.midright = [550,475];
         self.movepos = [0,0]
 
-    def update(self):
+    def update(self,grupowalls):
+
         newpos = self.rect.move(self.movepos)
         if self.area.contains(newpos):
             self.rect = newpos
         self.movepos = [0,0]
 
-    def move(self, grupowalls):
+        possivelcolisao = pygame.sprite.spritecollide(self, grupowalls, False)
+        for wall in possivelcolisao:
+            if self.angulo == 0:
+                self.rect.top = wall.rect.bottom # bloqueia para cima
+            elif self.angulo == 90  or self.angulo == -270:
+                self.rect.left = wall.rect.right # bloqueia para esquerda
+            elif self.angulo == 180 or  self.angulo == -180:
+                self.rect.top = wall.rect.bottom # bloqueia para tras
+            elif self.angulo == 270 or  self.angulo == -90:
+                self.rect.right = wall.rect.left # bloqueia para direita
+
+
+    def move(self):
         if (self.angulo == 0 ):
-            self.movepos[1] = self.movepos[1] - (self.speed)
-            for wall in grupowalls.sprites():
-                if self.rect.colliderect(wall.rect):
-                    print "asa"
-                else:
-                    pass
+            self.movepos[1] = self.movepos[1] - (self.speed) # para cima
         elif(self.angulo == 90  or self.angulo == -270):
-            for wall in grupowalls.sprites():
-                if(wall.rect.colliderect(self.rect)):
-                    print "a"
-                else:
-                    self.movepos[0] = self.movepos[1] - (self.speed) # para esquerda
+            self.movepos[0] = self.movepos[1] - (self.speed) # para esquerda
         elif(self.angulo == 180 or self.angulo == -180):
             self.movepos[1] = self.movepos[1] + (self.speed) # para tras
         elif(self.angulo == 270 or  self.angulo == -90):

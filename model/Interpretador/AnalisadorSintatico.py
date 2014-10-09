@@ -15,7 +15,7 @@ class AnalisadorSintatico():
 
         def p_assign_mover_frente(p):
             '''assign : FRENTE '''
-            thread.jogo.robo.move(thread.jogo.grupowalls)
+            thread.jogo.robo.move()
 
 
         def p_assign_mover_direita(p):
@@ -75,7 +75,8 @@ class AnalisadorSintatico():
         def atualizarJogo():
             thread.clock.tick(150)
             thread.jogo.screen.blit(thread.jogo.background, thread.jogo.robo)
-            thread.jogo.playersprites.update()
+            thread.jogo.playersprites.update(thread.jogo.grupowalls)
+            thread.jogo.grupowalls.draw(thread.jogo.screen)
             thread.jogo.playersprites.draw(thread.jogo.screen)
             pygame.display.flip()
 
