@@ -6,7 +6,6 @@ from model.Interpretador.AnalisadorLexico import AnalisadorLexico
 from model.Interpretador.AnalisadorSintatico import AnalisadorSintatico
 from model.Threads.ThreadJogo import ThreadJogo
 
-
 class TelaPrincipal(wx.Frame):
     def __init__(self, *args, **kwargs):
         super(TelaPrincipal, self).__init__(*args, **kwargs)
@@ -16,9 +15,9 @@ class TelaPrincipal(wx.Frame):
         self.anexarEventos() # Anexa os eventos que pode acontecer
 
         for control, x, y, width, height in \
-                 [(self.caixadigitacao, 5, 480, 450, 280),
+                 [(self.caixadigitacao, 5, 510, 450, 240),
                  (self.botao, 470, 600, 80, 40),
-                 (self.ThreadJogo, 5, 5, 550, 440)]:
+                 (self.ThreadJogo, 5, 5, 550, 500)]:
             control.SetDimensions(x=x, y=y, width=width, height=height)
 
     def adicionarWidgets(self):
