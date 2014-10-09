@@ -5,7 +5,7 @@ class AppController():
 
     def iniciar(self):
         app = wx.App(False)
-        telaprincipal = TelaPrincipal(None, title='Raspython', size=(560, 768))
+        telaprincipal = TelaPrincipal(None, title='Raspython', size=(580, 800))
 
         telaprincipal.Show()
         app.MainLoop()
