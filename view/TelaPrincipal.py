@@ -17,20 +17,13 @@ class TelaPrincipal(wx.Frame):
         for control, x, y, width, height in \
                  [(self.caixadigitacao, 5, 510, 450, 240),
                  (self.botao, 470, 600, 80, 40),
-                 (self.ThreadJogo, 5, 5, 550, 500)
-                 ]:
-
+                 (self.ThreadJogo, 5, 5, 550, 500)]:
             control.SetDimensions(x=x, y=y, width=width, height=height)
 
     def adicionarWidgets(self):
         self.ThreadJogo = ThreadJogo(self, -1, (550, 500))
         self.botao = wx.Button(self, label="Rodar")
         self.caixadigitacao = wx.TextCtrl(self, style=wx.TE_MULTILINE)
-        self.statusbar = self.CreateStatusBar()
-        self.statusbar.SetStatusText('Bem vindo ao Raspython!')
-        self.statusbar.SetBackgroundColour('#E0E2EB')
-        self.statusbar.Refresh()
-
 
     def anexarEventos(self):
         for control, event, handler in \
@@ -41,18 +34,14 @@ class TelaPrincipal(wx.Frame):
     def onClick(self, event):
         ##codigoExplodido = string.split(self.programa.GetValue(), '\n')
         codigo = self.caixadigitacao.GetValue()
-        codigo = string.replace(codigo,'\t\n' ,' ')
-        codigoSplitado = codigo.split(" ")
-        codigoParaAnalisadorSintatico = codigo.split(";")
+        codigo = string.replace(codigo,'\n' ,' ')
 
         ## Fazemdo a analise lexica
-        lexico = AnalisadorLexico(self.statusbar)
+        lexico = AnalisadorLexico()
         lexico.scan(codigo)
         ## Fazendo a analise sintatica
         sintatico = AnalisadorSintatico(lexico.getTokenList(), self.ThreadJogo)
-
-        for instrucao in codigoParaAnalisadorSintatico:
-            sintatico.scan(instrucao)
+        sintatico.scan(codigo)
 
         pygame.display.flip()
 
