@@ -11,7 +11,7 @@ class ThreadJogo(wx.Panel):
     def __init__(self,parent,ID,tplSize):
         wx.Panel.__init__(self, parent, ID, size=tplSize)
 
-        os.environ['SDL_WINDOWID'] = str(self.GetHandle())
+        #os.environ['SDL_WINDOWID'] = str(self.GetHandle())
         self.continuar = True
         self.jogo = Jogo(tplSize)
 

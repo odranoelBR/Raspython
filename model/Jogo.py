@@ -2,8 +2,9 @@ import pygame
 from model.Sprites.Saida import Saida
 from model.Sprites.Wall import Wall
 from model.Sprites.Robo import Robo
+from kivy.uix.widget import Widget
 
-class Jogo:
+class Jogo():
 
     def __init__(self, tplSize):
 

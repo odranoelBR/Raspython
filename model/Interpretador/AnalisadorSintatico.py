@@ -17,7 +17,6 @@ class AnalisadorSintatico():
             '''assign : FRENTE '''
             thread.jogo.robo.move()
 
-
         def p_assign_mover_direita(p):
             '''assign : DIREITA '''
             thread.jogo.robo.moveright()
