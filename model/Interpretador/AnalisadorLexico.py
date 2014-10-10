@@ -17,7 +17,8 @@ class AnalisadorLexico():
             'COLUNADIREITA',
             'VALOR',
             'CHAVEESQUERDA',
-            'CHAVEDIREITA'
+            'CHAVEDIREITA',
+            'FIMINSTRUCAO'
             ]
         return tokens
 
@@ -26,6 +27,7 @@ class AnalisadorLexico():
         tokens = self.getTokenList()
 
         t_COLUNA = r':'
+        t_FIMINSTRUCAO = r';'
         t_COLUNAESQUERDA = r'\('
         t_COLUNADIREITA = r'\)'
         t_CHAVEDIREITA = r'\}'

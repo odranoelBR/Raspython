@@ -34,14 +34,20 @@ class TelaPrincipal(wx.Frame):
     def onClick(self, event):
         ##codigoExplodido = string.split(self.programa.GetValue(), '\n')
         codigo = self.caixadigitacao.GetValue()
-        codigo = string.replace(codigo,'\n' ,' ')
+        codigo = string.replace(codigo,'\t\n' ,' ')
+
+        codigoParaAnaliseLexica = codigo.split(' ')
+        codigoParaAnaliseSintantica = codigo.split(';')
 
         ## Fazemdo a analise lexica
         lexico = AnalisadorLexico()
-        lexico.scan(codigo)
+        for token in codigoParaAnaliseLexica:
+            lexico.scan(token)
+
         ## Fazendo a analise sintatica
         sintatico = AnalisadorSintatico(lexico.getTokenList(), self.ThreadJogo)
-        sintatico.scan(codigo)
+        for instrucao in codigoParaAnaliseSintantica:
+            sintatico.scan(instrucao)
 
         pygame.display.flip()
 
