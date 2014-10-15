@@ -2,6 +2,7 @@ import pygame
 from model.Sprites.Saida import Saida
 from model.Sprites.Wall import Wall
 from model.Sprites.Robo import Robo
+import time
 
 class Jogo():
 
@@ -51,3 +52,14 @@ class Jogo():
 
         for x in range(0,450,50):
             self.grupowalls.add(Wall(400,x,50,50))
+
+    def atualizar(self):
+        clock = pygame.time.Clock()
+        clock.tick(150)
+        self.screen.blit(self.background, self.robo)
+        self.playersprites.update(self.grupowalls)
+        self.grupowalls.draw(self.screen)
+        self.playersprites.draw(self.screen)
+        pygame.display.flip()
+
+        time.sleep(0.6)

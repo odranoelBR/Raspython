@@ -17,6 +17,9 @@ class Robo(pygame.sprite.Sprite):
         self.rect.midright = [550,475];
         self.movepos = [0,0]
 
+    def posicaoinicial(self):
+        self.rect.midright = [550,475];
+
     def update(self,grupowalls):
 
         newpos = self.rect.move(self.movepos)

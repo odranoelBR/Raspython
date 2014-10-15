@@ -1,17 +1,13 @@
-import time
-import pygame
-
 from model.Interpretador.ply import yacc
-
 
 class AnalisadorSintatico():
 
-    def __init__(self, tokenList, thread):
+    def __init__(self, tokenList, tela):
         self.tokenList = tokenList
-        self.thread = thread
+        self.tela = tela
 
     def scan(self,codigo):
-        thread = self.thread
+        thread = self.tela.ThreadJogo
 
         def p_assign_mover_frente(p):
             '''assign : FRENTE '''
@@ -65,21 +61,15 @@ class AnalisadorSintatico():
             p[0] = p[1]
 
         def p_error(p):
-            print p
+            self.tela.statusbar.SetBackgroundColour('#FF7373')
+            self.tela.statusbar.SetStatusText("Sua instrucao e invalida!")
 
         def parsearCodigo(codigo):
             codigo = codigo.upper()
             yacc.parse(codigo)
 
         def atualizarJogo():
-            thread.clock.tick(150)
-            thread.jogo.screen.blit(thread.jogo.background, thread.jogo.robo)
-            thread.jogo.playersprites.update(thread.jogo.grupowalls)
-            thread.jogo.grupowalls.draw(thread.jogo.screen)
-            thread.jogo.playersprites.draw(thread.jogo.screen)
-            pygame.display.flip()
-
-            time.sleep(1)
+            thread.jogo.atualizar()
 
         tokens = self.tokenList
         self.parser = yacc.yacc()

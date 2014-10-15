@@ -2,10 +2,14 @@ from model.Interpretador.ply import lex
 
 class AnalisadorLexico():
 
+    def __init__(self, tela):
+        self.tela = tela;
+
     def getTokenList(self):
         tokens = [
             'DIREITA','ESQUERDA','FRENTE','VOLTA',
             'SE','SENAO',
+            'FIMINSTRUCAO',
             'ENQUANTO', 'FACA',
             'SENSORFRENTE',
             'IMPRIMA',
@@ -26,6 +30,7 @@ class AnalisadorLexico():
         tokens = self.getTokenList()
 
         t_COLUNA = r':'
+        t_FIMINSTRUCAO = r';'
         t_COLUNAESQUERDA = r'\('
         t_COLUNADIREITA = r'\)'
         t_CHAVEDIREITA = r'\}'
@@ -45,7 +50,8 @@ class AnalisadorLexico():
         t_NUMERO = r'\d+'
         t_ignore = ' \t'
         def t_error(t):
-            print("Caracter Ilegal %s" % t.value[0])
+            self.tela.statusbar.SetBackgroundColour('#FF7373')
+            self.tela.statusbar.SetStatusText("Existe um caracter ilegal ou desconhecido!%s " % t.value)
             t.lexer.skip(1)
 
         lex.lex()
