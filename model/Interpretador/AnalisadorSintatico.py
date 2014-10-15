@@ -62,7 +62,7 @@ class AnalisadorSintatico():
 
         def p_error(p):
             self.tela.statusbar.SetBackgroundColour('#FF7373')
-            self.tela.statusbar.SetStatusText("Sua instrucao e invalida!")
+            self.tela.statusbar.SetStatusText("Sua instrucao e invalida!",1)
 
         def parsearCodigo(codigo):
             codigo = codigo.upper()

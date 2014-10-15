@@ -25,6 +25,8 @@ class TelaPrincipal(wx.Frame):
         self.botao = wx.Button(self, label="Rodar")
         self.caixadigitacao = wx.TextCtrl(self, style=wx.TE_MULTILINE)
         self.statusbar = self.CreateStatusBar()
+        self.statusbar.SetFieldsCount(2)
+        self.statusbar.SetStatusWidths([350,250])
         self.statusbar.SetStatusText('Bem vindo ao Raspython!')
         self.statusbar.SetBackgroundColour('#E0E2EB')
         self.statusbar.Refresh()
@@ -36,13 +38,12 @@ class TelaPrincipal(wx.Frame):
             control.Bind(event, handler)
 
     def onClick(self, event):
-        self.ThreadJogo.jogo.robo.posicaoinicial()
-        self.ThreadJogo.jogo.atualizar()
 
         ##codigoExplodido = string.split(self.programa.GetValue(), '\n')
         codigo = self.caixadigitacao.GetValue()
         codigoParaAnalisadorLexico = string.replace(codigo,'\t\n' ,' ')
         codigoParaAnalisadorSintatico = codigo.split(';')
+        codigoParaAnalisadorSintatico.pop()
 
         ## Fazemdo a analise lexica
         lexico = AnalisadorLexico(self)
@@ -55,5 +56,9 @@ class TelaPrincipal(wx.Frame):
             sintatico.scan(instrucao)
 
 
-        pygame.display.flip()
+
+        self.ThreadJogo.jogo.apagarrobo()
+        self.ThreadJogo.jogo.atualizar()
+        self.ThreadJogo.jogo.robo.posicaoinicial()
+
 

@@ -51,7 +51,7 @@ class AnalisadorLexico():
         t_ignore = ' \t'
         def t_error(t):
             self.tela.statusbar.SetBackgroundColour('#FF7373')
-            self.tela.statusbar.SetStatusText("Existe um caracter ilegal ou desconhecido!%s " % t.value)
+            self.tela.statusbar.SetStatusText("Existe um caracter ilegal ou desconhecido!%s " % t.value, 0)
             t.lexer.skip(1)
 
         lex.lex()

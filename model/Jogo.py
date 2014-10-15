@@ -63,3 +63,6 @@ class Jogo():
         pygame.display.flip()
 
         time.sleep(0.6)
+
+    def apagarrobo(self):
+        pygame.sprite.RenderClear(self.robo)
