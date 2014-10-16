@@ -20,6 +20,8 @@ class TelaPrincipal(wx.Frame):
                  (self.ThreadJogo, 5, 5, 550, 500)]:
             control.SetDimensions(x=x, y=y, width=width, height=height)
 
+        self.Centre()
+
     def adicionarWidgets(self):
         self.ThreadJogo = ThreadJogo(self, -1, (550, 500))
         self.botao = wx.Button(self, label="Rodar")
