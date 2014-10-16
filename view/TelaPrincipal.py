@@ -8,6 +8,8 @@ from model.Threads.ThreadJogo import ThreadJogo
 
 class TelaPrincipal(wx.Frame):
     def __init__(self, *args, **kwargs):
+
+
         super(TelaPrincipal, self).__init__(*args, **kwargs)
 
         self.Show() # Exibe a tela
