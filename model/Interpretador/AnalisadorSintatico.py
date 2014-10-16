@@ -7,7 +7,7 @@ class AnalisadorSintatico():
         self.tela = tela
 
     def scan(self,codigo):
-        thread = self.tela.ThreadJogo
+        thread = self.tela.PainelJogo
 
         def p_assign_mover_frente(p):
             '''assign : FRENTE '''

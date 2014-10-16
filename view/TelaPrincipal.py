@@ -1,68 +1,67 @@
-import string
+import os
 import wx
-import pygame
+import sys
 
-from model.Interpretador.AnalisadorLexico import AnalisadorLexico
-from model.Interpretador.AnalisadorSintatico import AnalisadorSintatico
-from model.Threads.ThreadJogo import ThreadJogo
+from model.Evento import Evento
+from view.PainelJogo import PainelJogo
+from view.ToolBar import ToolBar
 
 class TelaPrincipal(wx.Frame):
+
     def __init__(self, *args, **kwargs):
-
-
         super(TelaPrincipal, self).__init__(*args, **kwargs)
 
-        self.Show() # Exibe a tela
-        self.adicionarWidgets() # Adiciona os elementos da tela
-        self.anexarEventos() # Anexa os eventos que pode acontecer
-
-        for control, x, y, width, height in \
-                 [(self.caixadigitacao, 5, 510, 450, 240),
-                 (self.botao, 470, 600, 80, 40),
-                 (self.ThreadJogo, 5, 5, 550, 500)]:
-            control.SetDimensions(x=x, y=y, width=width, height=height)
-
+        self.BackgroundColour = '#97CD56'
+        self.SetBackgroundStyle(wx.BG_STYLE_CUSTOM)
+        # Exibe a tela
+        self.Show()
+        # Adiciona os elementos da tela
+        self.adicionarWidgets()
+        # Injeta os eventos
+        self.eventos = Evento()
+        # Anexa os eventos que podem acontecer
+        self.anexarEventos()
+        # Centraliza o frame no monitor
         self.Centre()
 
+        self.hwnd = self.GetChildren()[1].GetHandle()
+        if sys.platform == "win32":
+            os.environ['SDL_VIDEODRIVER'] = 'windib'
+        os.environ['SDL_WINDOWID'] = str(self.hwnd) #must be before init
+
+        for control, x, y, width, height in \
+                 [
+                 (self.toolbar, 15, 5, 965, 50),
+                 (self.caixadigitacao, 580, 60, 400, 300),
+                 (self.botao, 740, 380, 80, 40),
+                 (self.PainelJogo, 15, 60, 550, 500)]:
+            control.SetDimensions(x=x, y=y, width=width, height=height)
+
+
+
     def adicionarWidgets(self):
-        self.ThreadJogo = ThreadJogo(self, -1, (550, 500))
+
+        self.toolbar = ToolBar(self)
+
+        self.PainelJogo = PainelJogo(self, -1, (550, 500))
+
         self.botao = wx.Button(self, label="Rodar")
+
         self.caixadigitacao = wx.TextCtrl(self, style=wx.TE_MULTILINE)
+        self.caixadigitacao.BackgroundColour = '#FFFFFF'
+
         self.statusbar = self.CreateStatusBar()
         self.statusbar.SetFieldsCount(2)
-        self.statusbar.SetStatusWidths([350,250])
-        self.statusbar.SetStatusText('Bem vindo ao Raspython!')
-        self.statusbar.SetBackgroundColour('#E0E2EB')
+        self.statusbar.SetStatusWidths([565,435])
+        self.statusbar.SetBackgroundColour('#48372D')
         self.statusbar.Refresh()
 
     def anexarEventos(self):
         for control, event, handler in \
-                [(self.botao, wx.EVT_BUTTON, self.onClick)
+                [(self.botao, wx.EVT_BUTTON, self.onClick),
+                 (self.botao, wx.EVT_BUTTON, self.onClick)
                 ]:
             control.Bind(event, handler)
 
-    def onClick(self, event):
-
-        ##codigoExplodido = string.split(self.programa.GetValue(), '\n')
-        codigo = self.caixadigitacao.GetValue()
-        codigoParaAnalisadorLexico = string.replace(codigo,'\t\n' ,' ')
-        codigoParaAnalisadorSintatico = codigo.split(';')
-        codigoParaAnalisadorSintatico.pop()
-
-        ## Fazemdo a analise lexica
-        lexico = AnalisadorLexico(self)
-        lexico.scan(codigoParaAnalisadorLexico)
-
-        ## Fazendo a analise sintatica
-        sintatico = AnalisadorSintatico(lexico.getTokenList(), self)
-
-        for instrucao in codigoParaAnalisadorSintatico:
-            sintatico.scan(instrucao)
-
-
-
-        self.ThreadJogo.jogo.apagarrobo()
-        self.ThreadJogo.jogo.atualizar()
-        self.ThreadJogo.jogo.robo.posicaoinicial()
-
-
+    def onClick(self,event):
+        self.eventos.clickRodar(self)

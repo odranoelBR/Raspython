@@ -7,7 +7,7 @@ global pygame
 import pygame
 pygame_init_flag = False
 
-class ThreadJogo(wx.Panel):
+class PainelJogo(wx.Panel):
     def __init__(self,parent,ID,tplSize):
         wx.Panel.__init__(self, parent, ID, size=tplSize)
 
