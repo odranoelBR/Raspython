@@ -1,6 +1,8 @@
 import os
 import threading
 import wx
+import time
+
 from model.Jogo import Jogo
 
 global pygame
@@ -10,6 +12,8 @@ pygame_init_flag = False
 class PainelJogo(wx.Panel):
     def __init__(self,parent,ID,tplSize):
         wx.Panel.__init__(self, parent, ID, size=tplSize)
+
+
 
         os.environ['SDL_WINDOWID'] = str(self.GetHandle())
         self.continuar = True
@@ -39,10 +43,13 @@ class PainelJogo(wx.Panel):
         return self.m_bRunning
 
     def Run(self):
+
         while self.m_bKeepGoing:
-            self.clock.tick(150)
+            pygame.display.flip()
 
             self.m_bRunning = False;
+            time.sleep(0.3)
+
         print "Loop do jogo foi finalizado!"
 
 

@@ -24,11 +24,6 @@ class TelaPrincipal(wx.Frame):
         # Centraliza o frame no monitor
         self.Centre()
 
-        self.hwnd = self.GetChildren()[1].GetHandle()
-        if sys.platform == "win32":
-            os.environ['SDL_VIDEODRIVER'] = 'windib'
-        os.environ['SDL_WINDOWID'] = str(self.hwnd) #must be before init
-
         for control, x, y, width, height in \
                  [
                  (self.toolbar, 15, 5, 965, 50),
