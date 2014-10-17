@@ -10,7 +10,7 @@ class Robo(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.angulo = 0
-        self.image, self.rect = load_image('view/img/robot82.gif')
+        self.image, self.rect = load_image('view/img/Normal_Zombie.gif')
         self.screen = pygame.display.get_surface()
         self.area = self.screen.get_rect()
         self.speed = 50
