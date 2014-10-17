@@ -9,8 +9,8 @@ class ToolBar(wx.ToolBar):
         self.BackgroundColour = '#97CD56'
         self.SetSize([965,50])
 
-        self.sair = self.AddLabelTool(wx.ID_ANY, 'Sair', wx.ArtProvider.GetBitmap(wx.ART_QUIT, wx.ART_QUIT, [32,32]))
-        self.info = self.AddLabelTool(wx.ID_ANY, 'Info', wx.ArtProvider.GetBitmap(wx.ART_INFORMATION, wx.ART_INFORMATION, [32,32]))
+        self.sair = self.AddLabelTool(wx.ID_ANY, 'Sair', wx.ArtProvider.GetBitmap(wx.ART_QUIT, wx.ART_TOOLBAR, [32,32]))
+        self.info = self.AddLabelTool(wx.ID_ANY, 'Info', wx.ArtProvider.GetBitmap(wx.ART_INFORMATION, wx.ART_TOOLBAR, [32,32]))
         self.Realize()
 
         self.Bind(wx.EVT_TOOL, self.onQuit, self.sair)

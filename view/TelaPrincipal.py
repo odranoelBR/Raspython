@@ -12,7 +12,6 @@ class TelaPrincipal(wx.Frame):
         super(TelaPrincipal, self).__init__(*args, **kwargs)
 
         self.BackgroundColour = '#97CD56'
-        self.SetBackgroundStyle(wx.BG_STYLE_CUSTOM)
         # Exibe a tela
         self.Show()
         # Adiciona os elementos da tela
@@ -54,7 +53,6 @@ class TelaPrincipal(wx.Frame):
     def anexarEventos(self):
         for control, event, handler in \
                 [(self.botao, wx.EVT_BUTTON, self.onClick),
-                 (self.botao, wx.EVT_BUTTON, self.onClick)
                 ]:
             control.Bind(event, handler)
 
