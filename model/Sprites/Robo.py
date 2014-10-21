@@ -1,5 +1,4 @@
 import pygame
-import sys
 
 from model.CarregadorImagem import load_image
 

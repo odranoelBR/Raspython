@@ -29,7 +29,7 @@ class TelaPrincipal(wx.Frame):
                  (self.toolbar, 15, 5, 965, 50),
                  (self.caixadigitacao, 580, 60, 400, 300),
                  (self.botao, 740, 380, 80, 40),
-                 (self.PainelJogo, 15, 60, 550, 500)]:
+                 (self.paineljogo, 15, 60, 550, 500)]:
             control.SetDimensions(x=x, y=y, width=width, height=height)
 
 
@@ -38,7 +38,7 @@ class TelaPrincipal(wx.Frame):
 
         self.toolbar = ToolBar(self)
 
-        self.PainelJogo = PainelJogo(self, -1, (550, 500))
+        self.paineljogo = PainelJogo(self, -1, (550, 500))
 
         self.botao = wx.Button(self, label="Rodar")
 

@@ -7,7 +7,7 @@ class AnalisadorSintatico():
         self.tela = tela
 
     def scan(self,codigo):
-        thread = self.tela.PainelJogo
+        thread = self.tela.paineljogo
 
         def p_assign_mover_frente(p):
             '''assign : FRENTE '''
@@ -43,6 +43,14 @@ class AnalisadorSintatico():
                 parsearCodigo(p[4])
                 atualizarJogo()
 
+        def p_faca_stmt(p):
+            '''assign : FACA NUMERO VEZES blocoExecutar'''
+            quantidade = p[2]
+            for x in xrange(int(quantidade)):
+                parsearCodigo(p[4])
+                atualizarJogo()
+
+
 
         def p_expressao(p):
             '''expressao :  COLUNAESQUERDA VERDADEIRO COLUNADIREITA
@@ -59,6 +67,7 @@ class AnalisadorSintatico():
                             |   ESQUERDA
                             |   VOLTA'''
             p[0] = p[1]
+
 
         def p_error(p):
             self.tela.statusbar.SetBackgroundColour('#FF7373')
