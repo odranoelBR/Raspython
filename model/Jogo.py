@@ -16,7 +16,7 @@ class Jogo():
 
         # Adicionando o sprite robo no jogo
         self.robo = Robo()
-        self.saida = Saida(0,450)
+        self.saida = Saida(450,450)
 
         # Criando / adicionaondo paredes
         self.grupowalls = pygame.sprite.Group()
@@ -53,11 +53,14 @@ class Jogo():
         for x in range(0,450,50):
             self.grupowalls.add(Wall(400,x,50,50))
 
-    def atualizar(self):
+    def atualizar(self,tela):
         clock = pygame.time.Clock()
         clock.tick(150)
         self.screen.blit(self.background, self.robo)
         self.playersprites.update(self.grupowalls)
+
+        self.saida.update(self.playersprites, tela)
+
         self.grupowalls.draw(self.screen)
         self.playersprites.draw(self.screen)
         pygame.display.flip()

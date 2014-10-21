@@ -78,7 +78,7 @@ class AnalisadorSintatico():
             yacc.parse(codigo)
 
         def atualizarJogo():
-            thread.jogo.atualizar()
+            thread.jogo.atualizar(self.tela)
 
         tokens = self.tokenList
         self.parser = yacc.yacc()

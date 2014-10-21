@@ -22,4 +22,4 @@ class Evento:
         for instrucao in codigoParaAnalisadorSintatico:
             sintatico.scan(instrucao)
 
-        tela.paineljogo.jogo.atualizar()
+        tela.paineljogo.jogo.atualizar(tela)

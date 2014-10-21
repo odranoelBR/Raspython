@@ -47,8 +47,8 @@ class AnalisadorLexico():
         def t_error(t):
             self.tela.statusbar.SetBackgroundColour('#FF7373')
             self.tela.statusbar.SetStatusText("Existe um caracter ilegal ou desconhecido!%s " % t.value, 0)
-            sys.exit()
-            t.lexer.skip(1)
+            t.lexer.skip(5)
+
 
         lex.lex()
 
