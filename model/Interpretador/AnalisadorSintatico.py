@@ -25,8 +25,15 @@ class AnalisadorSintatico():
             '''assign : BAIXO '''
             thread.jogo.robo.moveback()
 
+
+        def p_stmt(p):
+            '''assign:  se_stmt
+                    |   enquanto_stmt
+                    |   comando_stmt
+                    |   faca_stmt'''
+
         def p_se_stmt(p):
-            '''assign : SE expressao  blocoExecutar '''
+            '''se : SE boolean_expression stmt'''
             if (p[2]):
                 parsearCodigo(p[3])
 
@@ -51,17 +58,17 @@ class AnalisadorSintatico():
                 atualizarJogo()
 
 
-        def p_expressao(p):
-            '''expressao :  COLUNAESQUERDA VERDADEIRO COLUNADIREITA
-                        |   COLUNAESQUERDA FALSO COLUNADIREITA
-                        |   COLUNAESQUERDA SENSORFRENTE COLUNADIREITA'''
+        def p_boolean_expression(p):
+            '''boolean_expression : COLUNAESQUERDA VERDADEIRO COLUNADIREITA
+                                |   COLUNAESQUERDA FALSO COLUNADIREITA
+                                |   COLUNAESQUERDA SENSORFRENTE COLUNADIREITA'''
             if(p[2] == 'FALSO'):
                 p[0] = False
             else:
                 p[0] = True
 
-        def p_blocoExecutar(p):
-            '''blocoExecutar :  DIREITA
+        def p_comando_stmt(p):
+            '''comando_stmt :  DIREITA
                             |   CIMA
                             |   ESQUERDA
                             |   BAIXO'''
