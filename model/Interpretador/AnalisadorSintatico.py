@@ -51,7 +51,6 @@ class AnalisadorSintatico():
                 atualizarJogo()
 
 
-
         def p_expressao(p):
             '''expressao :  COLUNAESQUERDA VERDADEIRO COLUNADIREITA
                         |   COLUNAESQUERDA FALSO COLUNADIREITA

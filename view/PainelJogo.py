@@ -26,6 +26,7 @@ class PainelJogo(wx.Panel):
         self.m_bKeepGoing = self.m_bRunning = True
         self.thread = threading.Thread(group=None, target=self.Run, name=None,
                                        args=(), kwargs={})
+
         self.thread.start()
 
     def __del__(self):
@@ -38,15 +39,15 @@ class PainelJogo(wx.Panel):
         self.thread.join()
 
     def IsRunning(self):
+
         return self.m_bRunning
 
     def Run(self):
 
         while self.m_bKeepGoing:
             pygame.display.flip()
-
             self.m_bRunning = False;
-            time.sleep(0.6)
+            time.sleep(1)
 
         print "Loop do jogo foi finalizado!"
 
