@@ -11,7 +11,7 @@ class TelaPrincipal(wx.Frame):
     def __init__(self, *args, **kwargs):
         super(TelaPrincipal, self).__init__(*args, **kwargs)
 
-        self.BackgroundColour = '#97CD56'
+        self.BackgroundColour = '#0A8B9E'
         self.SetWindowStyle(wx.DOUBLE_BORDER)
         # Exibe a tela
         self.Show()
@@ -48,7 +48,7 @@ class TelaPrincipal(wx.Frame):
         self.statusbar = self.CreateStatusBar()
         self.statusbar.SetFieldsCount(2)
         self.statusbar.SetStatusWidths([565,435])
-        self.statusbar.SetBackgroundColour('#48372D')
+        self.statusbar.SetBackgroundColour('#035A66')
         self.statusbar.Refresh()
 
     def anexarEventos(self):

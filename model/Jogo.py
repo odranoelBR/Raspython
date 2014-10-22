@@ -1,4 +1,5 @@
 import pygame
+from model.Sprites.Ground import Ground
 from model.Sprites.Saida import Saida
 from model.Sprites.Wall import Wall
 from model.Sprites.Robo import Robo
@@ -10,6 +11,7 @@ class Jogo():
 
         # Criando tela no jogo
         self.screen = pygame.display.set_mode(tplSize)
+        self.screen.fill([30,168,16])
 
         # Criacao da surface
         self.background = pygame.Surface(self.screen.get_size())
@@ -21,6 +23,11 @@ class Jogo():
         # Criando / adicionaondo paredes
         self.grupowalls = pygame.sprite.Group()
         self.gerarparedes()
+
+        # Criando / adicionado o chao
+        self.ground = pygame.sprite.Group()
+        self.gerarChao()
+        self.ground.draw(self.screen)
 
         # Renderizando as paredes
         self.grupowalls.clear(self.screen, self.background)
@@ -61,6 +68,7 @@ class Jogo():
 
         self.saida.update(self.playersprites, tela)
 
+        self.ground.draw(self.screen)
         self.grupowalls.draw(self.screen)
         self.playersprites.draw(self.screen)
         pygame.display.flip()
@@ -69,3 +77,40 @@ class Jogo():
 
     def apagarrobo(self):
         pygame.sprite.RenderClear(self.robo)
+
+    def gerarChao(self):
+        for x in range(0,500,150):
+            self.ground.add(Ground(50,x,50,50,'ground'))
+            self.ground.add(Ground(50,x+50,50,50,'ground1'))
+            self.ground.add(Ground(50,x+100,50,50,'ground2'))
+
+        for x in range(0,500,150):
+            self.ground.add(Ground(150,x,50,50,'ground'))
+            self.ground.add(Ground(150,x+100,50,50,'ground1'))
+            self.ground.add(Ground(150,x+50,50,50,'ground2'))
+
+        for x in range(0,500,150):
+            self.ground.add(Ground(250,x,50,50,'ground'))
+            self.ground.add(Ground(250,x+50,50,50,'ground1'))
+            self.ground.add(Ground(250,x+100,50,50,'ground2'))
+
+        for x in range(0,500,150):
+            self.ground.add(Ground(350,x,50,50,'ground'))
+            self.ground.add(Ground(350,x+100,50,50,'ground1'))
+            self.ground.add(Ground(350,x+50,50,50,'ground2'))
+
+        for x in range(0,500,150):
+            self.ground.add(Ground(450,x,50,50,'ground'))
+            self.ground.add(Ground(450,x+50,50,50,'ground1'))
+            self.ground.add(Ground(450,x+100,50,50,'ground2'))
+
+        for x in range(0,500,150):
+            self.ground.add(Ground(500,x,50,50,'ground'))
+            self.ground.add(Ground(500,x+100,50,50,'ground1'))
+            self.ground.add(Ground(500,x+50,50,50,'ground2'))
+
+        self.ground.add(Ground(100,0,50,50,'ground1'))
+        self.ground.add(Ground(200,450,50,50,'ground1'))
+        self.ground.add(Ground(300,0,50,50,'ground1'))
+        self.ground.add(Ground(400,450,50,50,'ground1'))
+

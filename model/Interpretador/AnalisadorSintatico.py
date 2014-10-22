@@ -10,7 +10,7 @@ class AnalisadorSintatico():
         thread = self.tela.paineljogo
 
         def p_assign_mover_frente(p):
-            '''assign : FRENTE '''
+            '''assign : CIMA '''
             thread.jogo.robo.move()
 
         def p_assign_mover_direita(p):
@@ -22,7 +22,7 @@ class AnalisadorSintatico():
             thread.jogo.robo.moveleft()
 
         def p_assign_mover_volta(p):
-            '''assign : VOLTA '''
+            '''assign : BAIXO '''
             thread.jogo.robo.moveback()
 
         def p_se_stmt(p):
@@ -63,9 +63,9 @@ class AnalisadorSintatico():
 
         def p_blocoExecutar(p):
             '''blocoExecutar :  DIREITA
-                            |   FRENTE
+                            |   CIMA
                             |   ESQUERDA
-                            |   VOLTA'''
+                            |   BAIXO'''
             p[0] = p[1]
 
 

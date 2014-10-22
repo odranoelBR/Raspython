@@ -46,45 +46,13 @@ class Robo(pygame.sprite.Sprite):
 
 
     def move(self):
-        self.emfrente = True
-
-        if (self.angulo == 0 ):
-            self.movepos[1] = self.movepos[1] - (self.speed) # para cima
-        elif(self.angulo == 90  or self.angulo == -270):
-            self.movepos[0] = self.movepos[1] - (self.speed) # para esquerda
-        elif(self.angulo == 180 or self.angulo == -180):
-            self.movepos[1] = self.movepos[1] + (self.speed) # para tras
-        elif(self.angulo == 270 or  self.angulo == -90):
-            self.movepos[0] = self.movepos[0] + (self.speed) # para direita
+        self.movepos[1] = self.movepos[1] - (self.speed) # para cima
 
     def moveback(self):
-        self.emfrente = False
-
-        if(self.angulo == 0 ):
-            self.movepos[1] = self.movepos[1] + (self.speed) # para cima
-        elif(self.angulo == 90  or self.angulo == -270):
-            self.movepos[0] = self.movepos[1] + (self.speed) # para esquerda
-        elif(self.angulo == 180 or self.angulo == -180):
-            self.movepos[1] = self.movepos[1] - (self.speed) # para tras
-        elif(self.angulo == 270 or  self.angulo == -90):
-            self.movepos[0] = self.movepos[0] - (self.speed) # para direita
+        self.movepos[1] = self.movepos[1] + (self.speed) # para tras
 
     def moveleft(self):
-        self.angulo += 90
-        self.rotacionar(90)
+        self.movepos[0] = self.movepos[1] - (self.speed) # para esquerda
 
     def moveright(self):
-        self.angulo -= 90
-        self.rotacionar(-90)
-
-    def rotacionar(self,angulo):
-
-        if(self.angulo == 360 or self.angulo == -360):
-            self.angulo = 0
-
-        orig_rect = self.image.get_rect()
-        rot_image = pygame.transform.rotate(self.image, angulo)
-        rot_rect = orig_rect.copy()
-        rot_rect.center = rot_image.get_rect().center
-        rot_image = rot_image.subsurface(rot_rect).copy()
-        self.image =  rot_image
+        self.movepos[0] = self.movepos[0] + (self.speed) # para direita

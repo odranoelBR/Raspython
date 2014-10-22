@@ -13,8 +13,6 @@ class PainelJogo(wx.Panel):
     def __init__(self,parent,ID,tplSize):
         wx.Panel.__init__(self, parent, ID, size=tplSize)
 
-
-
         os.environ['SDL_WINDOWID'] = str(self.GetHandle())
         self.continuar = True
         self.jogo = Jogo(tplSize)
@@ -48,7 +46,7 @@ class PainelJogo(wx.Panel):
             pygame.display.flip()
 
             self.m_bRunning = False;
-            time.sleep(0.3)
+            time.sleep(0.6)
 
         print "Loop do jogo foi finalizado!"
 

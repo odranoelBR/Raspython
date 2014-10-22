@@ -8,7 +8,7 @@ class AnalisadorLexico():
 
     def getTokenList(self):
         tokens = [
-            'DIREITA','ESQUERDA','FRENTE','VOLTA',
+            'DIREITA','ESQUERDA','CIMA','BAIXO',
             'SE','SENAO',
             'FIMINSTRUCAO',
             'VEZES',
@@ -34,10 +34,9 @@ class AnalisadorLexico():
         t_VERDADEIRO = 'VERDADEIRO'
         t_FALSO = 'FALSO'
         t_ESQUERDA = 'ESQUERDA'
-        t_FRENTE = 'FRENTE'
-        t_VOLTA = 'VOLTA'
+        t_FRENTE = 'CIMA'
+        t_VOLTA = 'BAIXO'
         t_SE = 'SE'
-
         t_SENAO = 'SENAO'
         t_ENQUANTO = 'ENQUANTO'
         t_FACA = 'FACA'
@@ -45,7 +44,7 @@ class AnalisadorLexico():
         t_NUMERO = r'\d+'
         t_ignore = ' \t'
         def t_error(t):
-            self.tela.statusbar.SetBackgroundColour('#FF7373')
+            self.tela.statusbar.SetBackgroundColour('#FF8379')
             self.tela.statusbar.SetStatusText("Existe um caracter ilegal ou desconhecido!%s " % t.value, 0)
             t.lexer.skip(5)
 

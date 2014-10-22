@@ -6,7 +6,7 @@ class ToolBar(wx.ToolBar):
     def __init__(self, parent):
         wx.ToolBar.__init__(self, parent)
 
-        self.BackgroundColour = '#97CD56'
+        self.BackgroundColour = '#0A8B9E'
         self.SetSize([965,50])
 
         self.sair = self.AddLabelTool(wx.ID_ANY, 'Sair', wx.ArtProvider.GetBitmap(wx.ART_QUIT, wx.ART_TOOLBAR, [32,32]))
