@@ -16,7 +16,7 @@ class Jogo():
 
         # Adicionando o sprite robo no jogo
         self.robo = Robo()
-        self.saida = Saida(450,450)
+        self.saida = Saida(0,450)
 
         # Criando / adicionaondo paredes
         self.grupowalls = pygame.sprite.Group()
