@@ -7,21 +7,20 @@ class Evento:
     def clickRodar(self, tela):
 
         codigo = tela.caixadigitacao.GetValue()
-        codigo = string.replace(codigo, '\t', '')
-        codigo = string.replace(codigo, '\n', '')
-        codigo = codigo.split(' ')
+        codigoParaAnalisadorSintatico = codigo.split('\n')
 
         ## Fazemdo a analise lexica
         lexico = AnalisadorLexico(tela)
-        for token in codigo:
-            lexico.scan(token)
+
+        for instrucao in codigoParaAnalisadorSintatico:
+            lexico.scan(instrucao)
 
 
         ## Fazendo a analise sintatica
         sintatico = AnalisadorSintatico(lexico.getTokenList(), tela)
 
         #for instrucao in codigoParaAnalisadorSintatico:
-        for token in codigo:
-            sintatico.scan(token)
+        for instrucao in codigoParaAnalisadorSintatico:
+            sintatico.scan(instrucao)
 
         tela.paineljogo.jogo.atualizar(tela)
