@@ -1,4 +1,3 @@
-# Embedded file name: model\Jogo.pyc
 import pygame
 from model.Sprites.Ground import Ground
 from model.Sprites.Saida import Saida
@@ -13,7 +12,7 @@ class Jogo:
         self.screen.fill([30, 168, 16])
         self.background = pygame.Surface(self.screen.get_size())
         self.robo = Robo()
-        self.saida = Saida(0, 450)
+        self.saida = Saida(50, 0)
         self.grupowalls = pygame.sprite.Group()
         self.gerarparedes()
         self.ground = pygame.sprite.Group()
@@ -29,20 +28,12 @@ class Jogo:
         pygame.display.flip()
 
     def gerarparedes(self):
-        for x in range(0, 450, 50):
-            self.grupowalls.add(Wall(0, x, 50, 50))
-
-        for x in range(0, 450, 50):
-            self.grupowalls.add(Wall(100, x + 50, 50, 50))
-
-        for x in range(0, 450, 50):
-            self.grupowalls.add(Wall(200, x, 50, 50))
-
-        for x in range(0, 450, 50):
-            self.grupowalls.add(Wall(300, x + 50, 50, 50))
-
-        for x in range(0, 450, 50):
-            self.grupowalls.add(Wall(400, x, 50, 50))
+        for x in range(0, 400, 100):
+            self.grupowalls.add(Wall(350, x + 100, 100, 100))
+        for x in range(0, 400, 100):
+            self.grupowalls.add(Wall(150, x + 0, 100, 100))
+        for x in range(0, 500, 100):
+            self.grupowalls.add(Wall(-50, x + 0, 100, 100))
 
     def atualizar(self, tela):
         clock = pygame.time.Clock()

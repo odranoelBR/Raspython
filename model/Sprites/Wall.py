@@ -9,7 +9,7 @@ class Wall(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         # Make a BLUE wall, of the size specified in the parameters
-        self.image, self.rect = load_image('view/img/wall.png')
+        self.image, self.rect = load_image('view/img/wall.jpg')
 
         # Make our top-left corner the passed-in location.
         self.rect = self.image.get_rect()

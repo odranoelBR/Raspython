@@ -7,11 +7,11 @@ class Robo(pygame.sprite.Sprite):
 
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image, self.rect = load_image('view/img/Normal_Zombie.gif')
+        self.image, self.rect = load_image('view/img/zombie.png')
         self.screen = pygame.display.get_surface()
         self.area = self.screen.get_rect()
-        self.speed = 50
-        self.rect.midright = [550,475];
+        self.speed = 100
+        self.rect.midright = [550,450];
         self.movepos = [0,0]
 
     def posicaoinicial(self):

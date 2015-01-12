@@ -5,7 +5,7 @@ class Saida(pygame.sprite.Sprite):
     def __init__(self,x,y):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image, self.rect = load_image('view/img/planta.gif')
+        self.image, self.rect = load_image('view/img/saida.jpg')
 
         self.rect = self.image.get_rect()
         self.rect.y = y

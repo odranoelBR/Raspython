@@ -1,0 +1,341 @@
+Created by PLY version 3.3 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    FIMINSTRUCAO
+
+Grammar
+
+Rule 0     S' -> assign
+Rule 1     assign -> CIMA
+Rule 2     assign -> DIREITA
+Rule 3     assign -> ESQUERDA
+Rule 4     assign -> BAIXO
+Rule 5     assign -> SE expressao blocoExecutar
+Rule 6     assign -> SE expressao blocoExecutar SENAO blocoExecutar
+Rule 7     assign -> ENQUANTO expressao FACA blocoExecutar
+Rule 8     assign -> REPITA NUMERO VEZES blocoExecutar
+Rule 9     expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA
+Rule 10    expressao -> COLUNAESQUERDA FALSO COLUNADIREITA
+Rule 11    expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA
+Rule 12    blocoExecutar -> DIREITA
+Rule 13    blocoExecutar -> CIMA
+Rule 14    blocoExecutar -> ESQUERDA
+Rule 15    blocoExecutar -> BAIXO
+
+Terminals, with rules where they appear
+
+BAIXO                : 4 15
+CIMA                 : 1 13
+COLUNADIREITA        : 9 10 11
+COLUNAESQUERDA       : 9 10 11
+DIREITA              : 2 12
+ENQUANTO             : 7
+ESQUERDA             : 3 14
+FACA                 : 7
+FALSO                : 10
+FIMINSTRUCAO         : 
+NUMERO               : 8
+REPITA               : 8
+SE                   : 5 6
+SENAO                : 6
+SENSORFRENTE         : 11
+VERDADEIRO           : 9
+VEZES                : 8
+error                : 
+
+Nonterminals, with rules where they appear
+
+assign               : 0
+blocoExecutar        : 5 6 6 7 8
+expressao            : 5 6 7
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . assign
+    (1) assign -> . CIMA
+    (2) assign -> . DIREITA
+    (3) assign -> . ESQUERDA
+    (4) assign -> . BAIXO
+    (5) assign -> . SE expressao blocoExecutar
+    (6) assign -> . SE expressao blocoExecutar SENAO blocoExecutar
+    (7) assign -> . ENQUANTO expressao FACA blocoExecutar
+    (8) assign -> . REPITA NUMERO VEZES blocoExecutar
+
+    CIMA            shift and go to state 2
+    DIREITA         shift and go to state 5
+    ESQUERDA        shift and go to state 6
+    BAIXO           shift and go to state 4
+    SE              shift and go to state 8
+    ENQUANTO        shift and go to state 3
+    REPITA          shift and go to state 1
+
+    assign                         shift and go to state 7
+
+state 1
+
+    (8) assign -> REPITA . NUMERO VEZES blocoExecutar
+
+    NUMERO          shift and go to state 9
+
+
+state 2
+
+    (1) assign -> CIMA .
+
+    $end            reduce using rule 1 (assign -> CIMA .)
+
+
+state 3
+
+    (7) assign -> ENQUANTO . expressao FACA blocoExecutar
+    (9) expressao -> . COLUNAESQUERDA VERDADEIRO COLUNADIREITA
+    (10) expressao -> . COLUNAESQUERDA FALSO COLUNADIREITA
+    (11) expressao -> . COLUNAESQUERDA SENSORFRENTE COLUNADIREITA
+
+    COLUNAESQUERDA  shift and go to state 11
+
+    expressao                      shift and go to state 10
+
+state 4
+
+    (4) assign -> BAIXO .
+
+    $end            reduce using rule 4 (assign -> BAIXO .)
+
+
+state 5
+
+    (2) assign -> DIREITA .
+
+    $end            reduce using rule 2 (assign -> DIREITA .)
+
+
+state 6
+
+    (3) assign -> ESQUERDA .
+
+    $end            reduce using rule 3 (assign -> ESQUERDA .)
+
+
+state 7
+
+    (0) S' -> assign .
+
+
+
+state 8
+
+    (5) assign -> SE . expressao blocoExecutar
+    (6) assign -> SE . expressao blocoExecutar SENAO blocoExecutar
+    (9) expressao -> . COLUNAESQUERDA VERDADEIRO COLUNADIREITA
+    (10) expressao -> . COLUNAESQUERDA FALSO COLUNADIREITA
+    (11) expressao -> . COLUNAESQUERDA SENSORFRENTE COLUNADIREITA
+
+    COLUNAESQUERDA  shift and go to state 11
+
+    expressao                      shift and go to state 12
+
+state 9
+
+    (8) assign -> REPITA NUMERO . VEZES blocoExecutar
+
+    VEZES           shift and go to state 13
+
+
+state 10
+
+    (7) assign -> ENQUANTO expressao . FACA blocoExecutar
+
+    FACA            shift and go to state 14
+
+
+state 11
+
+    (9) expressao -> COLUNAESQUERDA . VERDADEIRO COLUNADIREITA
+    (10) expressao -> COLUNAESQUERDA . FALSO COLUNADIREITA
+    (11) expressao -> COLUNAESQUERDA . SENSORFRENTE COLUNADIREITA
+
+    VERDADEIRO      shift and go to state 16
+    FALSO           shift and go to state 17
+    SENSORFRENTE    shift and go to state 15
+
+
+state 12
+
+    (5) assign -> SE expressao . blocoExecutar
+    (6) assign -> SE expressao . blocoExecutar SENAO blocoExecutar
+    (12) blocoExecutar -> . DIREITA
+    (13) blocoExecutar -> . CIMA
+    (14) blocoExecutar -> . ESQUERDA
+    (15) blocoExecutar -> . BAIXO
+
+    DIREITA         shift and go to state 22
+    CIMA            shift and go to state 18
+    ESQUERDA        shift and go to state 21
+    BAIXO           shift and go to state 19
+
+    blocoExecutar                  shift and go to state 20
+
+state 13
+
+    (8) assign -> REPITA NUMERO VEZES . blocoExecutar
+    (12) blocoExecutar -> . DIREITA
+    (13) blocoExecutar -> . CIMA
+    (14) blocoExecutar -> . ESQUERDA
+    (15) blocoExecutar -> . BAIXO
+
+    DIREITA         shift and go to state 22
+    CIMA            shift and go to state 18
+    ESQUERDA        shift and go to state 21
+    BAIXO           shift and go to state 19
+
+    blocoExecutar                  shift and go to state 23
+
+state 14
+
+    (7) assign -> ENQUANTO expressao FACA . blocoExecutar
+    (12) blocoExecutar -> . DIREITA
+    (13) blocoExecutar -> . CIMA
+    (14) blocoExecutar -> . ESQUERDA
+    (15) blocoExecutar -> . BAIXO
+
+    DIREITA         shift and go to state 22
+    CIMA            shift and go to state 18
+    ESQUERDA        shift and go to state 21
+    BAIXO           shift and go to state 19
+
+    blocoExecutar                  shift and go to state 24
+
+state 15
+
+    (11) expressao -> COLUNAESQUERDA SENSORFRENTE . COLUNADIREITA
+
+    COLUNADIREITA   shift and go to state 25
+
+
+state 16
+
+    (9) expressao -> COLUNAESQUERDA VERDADEIRO . COLUNADIREITA
+
+    COLUNADIREITA   shift and go to state 26
+
+
+state 17
+
+    (10) expressao -> COLUNAESQUERDA FALSO . COLUNADIREITA
+
+    COLUNADIREITA   shift and go to state 27
+
+
+state 18
+
+    (13) blocoExecutar -> CIMA .
+
+    $end            reduce using rule 13 (blocoExecutar -> CIMA .)
+    SENAO           reduce using rule 13 (blocoExecutar -> CIMA .)
+
+
+state 19
+
+    (15) blocoExecutar -> BAIXO .
+
+    $end            reduce using rule 15 (blocoExecutar -> BAIXO .)
+    SENAO           reduce using rule 15 (blocoExecutar -> BAIXO .)
+
+
+state 20
+
+    (5) assign -> SE expressao blocoExecutar .
+    (6) assign -> SE expressao blocoExecutar . SENAO blocoExecutar
+
+    $end            reduce using rule 5 (assign -> SE expressao blocoExecutar .)
+    SENAO           shift and go to state 28
+
+
+state 21
+
+    (14) blocoExecutar -> ESQUERDA .
+
+    $end            reduce using rule 14 (blocoExecutar -> ESQUERDA .)
+    SENAO           reduce using rule 14 (blocoExecutar -> ESQUERDA .)
+
+
+state 22
+
+    (12) blocoExecutar -> DIREITA .
+
+    $end            reduce using rule 12 (blocoExecutar -> DIREITA .)
+    SENAO           reduce using rule 12 (blocoExecutar -> DIREITA .)
+
+
+state 23
+
+    (8) assign -> REPITA NUMERO VEZES blocoExecutar .
+
+    $end            reduce using rule 8 (assign -> REPITA NUMERO VEZES blocoExecutar .)
+
+
+state 24
+
+    (7) assign -> ENQUANTO expressao FACA blocoExecutar .
+
+    $end            reduce using rule 7 (assign -> ENQUANTO expressao FACA blocoExecutar .)
+
+
+state 25
+
+    (11) expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .
+
+    DIREITA         reduce using rule 11 (expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .)
+    CIMA            reduce using rule 11 (expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .)
+    ESQUERDA        reduce using rule 11 (expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .)
+    BAIXO           reduce using rule 11 (expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .)
+    FACA            reduce using rule 11 (expressao -> COLUNAESQUERDA SENSORFRENTE COLUNADIREITA .)
+
+
+state 26
+
+    (9) expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .
+
+    DIREITA         reduce using rule 9 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
+    CIMA            reduce using rule 9 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
+    ESQUERDA        reduce using rule 9 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
+    BAIXO           reduce using rule 9 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
+    FACA            reduce using rule 9 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
+
+
+state 27
+
+    (10) expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .
+
+    DIREITA         reduce using rule 10 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
+    CIMA            reduce using rule 10 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
+    ESQUERDA        reduce using rule 10 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
+    BAIXO           reduce using rule 10 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
+    FACA            reduce using rule 10 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
+
+
+state 28
+
+    (6) assign -> SE expressao blocoExecutar SENAO . blocoExecutar
+    (12) blocoExecutar -> . DIREITA
+    (13) blocoExecutar -> . CIMA
+    (14) blocoExecutar -> . ESQUERDA
+    (15) blocoExecutar -> . BAIXO
+
+    DIREITA         shift and go to state 22
+    CIMA            shift and go to state 18
+    ESQUERDA        shift and go to state 21
+    BAIXO           shift and go to state 19
+
+    blocoExecutar                  shift and go to state 29
+
+state 29
+
+    (6) assign -> SE expressao blocoExecutar SENAO blocoExecutar .
+
+    $end            reduce using rule 6 (assign -> SE expressao blocoExecutar SENAO blocoExecutar .)
+
