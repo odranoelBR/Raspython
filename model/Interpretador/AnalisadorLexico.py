@@ -1,35 +1,37 @@
-import sys
 from model.Interpretador.ply import lex
 
-class AnalisadorLexico():
+class AnalisadorLexico:
 
     def __init__(self, tela):
-        self.tela = tela;
+        self.tela = tela
 
     def getTokenList(self):
-        tokens = [
-            'DIREITA','ESQUERDA','CIMA','BAIXO',
-            'SE','SENAO',
-            'FIMINSTRUCAO',
-            'VEZES',
-            'ENQUANTO', 'FACA',
-            'SENSORFRENTE',
-            'NUMERO',
-            'VERDADEIRO',
-            'FALSO',
-            'COLUNAESQUERDA',
-            'COLUNADIREITA',
-            ]
+        tokens = ['DIREITA',
+         'ESQUERDA',
+         'CIMA',
+         'BAIXO',
+         'SE',
+         'SENAO',
+         'FIMINSTRUCAO',
+         'VEZES',
+         'ENQUANTO',
+         'FACA',
+         'SENSORFRENTE',
+         'NUMERO',
+         'VERDADEIRO',
+         'FALSO',
+         'REPITA',
+         'COLUNAESQUERDA',
+         'COLUNADIREITA']
         return tokens
 
-    def scan(self,codigo):
-
+    def scan(self, codigo):
         tokens = self.getTokenList()
-
-        t_FIMINSTRUCAO = r';'
+        t_FIMINSTRUCAO = ';'
+        t_REPITA = 'REPITA'
         t_VEZES = 'VEZES'
-        t_COLUNAESQUERDA = r'\('
-        t_COLUNADIREITA = r'\)'
+        t_COLUNAESQUERDA = '\\('
+        t_COLUNADIREITA = '\\)'
         t_DIREITA = 'DIREITA'
         t_VERDADEIRO = 'VERDADEIRO'
         t_FALSO = 'FALSO'
@@ -41,22 +43,18 @@ class AnalisadorLexico():
         t_ENQUANTO = 'ENQUANTO'
         t_FACA = 'FACA'
         t_SENSORFRENTE = 'SENSORFRENTE'
-        t_NUMERO = r'\d+'
+        t_NUMERO = '\\d+'
         t_ignore = ' \t'
+
         def t_error(t):
             self.tela.statusbar.SetBackgroundColour('#FF8379')
-            self.tela.statusbar.SetStatusText("Existe um caracter ilegal ou desconhecido!%s " % t.value, 0)
+            self.tela.statusbar.SetStatusText('Existe um caracter ilegal ou desconhecido!%s ' % t.value, 0)
             t.lexer.skip(5)
 
-
         lex.lex()
-
         codigo = codigo.upper()
         lex.input(codigo)
-
         while True:
             tok = lex.token()
-            if not tok: break
-            # Use token
-
-
+            if not tok:
+                break
