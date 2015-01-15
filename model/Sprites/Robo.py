@@ -29,7 +29,7 @@ class Robo(pygame.sprite.Sprite):
         for wall in possivelcolisao:
             self.rect = oldpos
 
-    def temColisaoCima(self, grupowalls, negacao):
+    def temColisaoCima(self, grupowalls):
         temColisao = False;
 
         self.rect[1] -= self.speed
@@ -40,13 +40,10 @@ class Robo(pygame.sprite.Sprite):
 
         self.rect[1] += self.speed
 
-        if negacao == '!':
-            return not temColisao
-
         return temColisao
 
 
-    def temColisaoEsquerda(self, grupowalls, negacao):
+    def temColisaoEsquerda(self, grupowalls):
         temColisao = False;
         self.rect[0] -= self.speed
 
@@ -56,12 +53,11 @@ class Robo(pygame.sprite.Sprite):
 
         self.rect[0] += self.speed
 
-        if negacao == '!':
-            return not temColisao
+
 
         return temColisao
 
-    def temColisaoDireita(self, grupowalls, negacao):
+    def temColisaoDireita(self, grupowalls):
         temColisao = False;
         self.rect[0] += self.speed
 
@@ -71,12 +67,10 @@ class Robo(pygame.sprite.Sprite):
 
         self.rect[0] -= self.speed
 
-        if negacao == '!':
-            return not temColisao
 
         return temColisao
 
-    def temColisaoBaixo(self, grupowalls, negacao):
+    def temColisaoBaixo(self, grupowalls):
         temColisao = False;
         self.rect[1] += self.speed
 
@@ -86,8 +80,6 @@ class Robo(pygame.sprite.Sprite):
 
         self.rect[1] -= self.speed
 
-        if negacao == '!':
-            return not temColisao
 
         return temColisao
 

@@ -26,19 +26,19 @@ class AnalisadorSintatico:
             thread.jogo.robo.moveback()
 
         def p_se_stmt(p):
-            """assign : SE expressao blocoExecutar """
+            """assign : SE blocoLogico blocoExecutar """
             if p[2]:
                 parsearCodigo(p[3])
 
         def p_se_senao_stmt(p):
-            """assign : SE expressao  blocoExecutar SENAO blocoExecutar"""
+            """assign : SE blocoLogico  blocoExecutar SENAO blocoExecutar"""
             if p[2]:
                 parsearCodigo(p[3])
             else:
                 parsearCodigo(p[5])
 
         def p_enquanto_stmt(p):
-            """assign : ENQUANTO expressao FACA blocoExecutar"""
+            """assign : ENQUANTO blocoLogico FACA blocoExecutar"""
             while p[2]:
                 parsearCodigo(p[4])
                 atualizarJogo()
@@ -50,38 +50,47 @@ class AnalisadorSintatico:
                 parsearCodigo(p[4])
                 atualizarJogo()
 
-        def p_expressao(p):
-            """expressao : COLUNAESQUERDA VERDADEIRO COLUNADIREITA
-            |   COLUNAESQUERDA FALSO COLUNADIREITA
-            |   COLUNAESQUERDA sensorCima COLUNADIREITA
-            |   COLUNAESQUERDA sensorDireita COLUNADIREITA
-            |   COLUNAESQUERDA sensorEsquerda COLUNADIREITA
-            |   COLUNAESQUERDA sensorBaixo COLUNADIREITA"""
+        def p_blocoLogico(p):
+            """blocoLogico : COLUNAESQUERDA logico
+            | COLUNAESQUERDA NEGACAO logico"""
 
-            if p[2] == 'FALSO' or p[2] == False:
+            if p[2] == '!':
+                p[0] = not p[3]
+            else:
+                p[0] = p[2]
+
+        def p_logico(p):
+            """logico :  VERDADEIRO COLUNADIREITA
+            |    FALSO COLUNADIREITA
+            |    sensorCima COLUNADIREITA
+            |    sensorDireita COLUNADIREITA
+            |    sensorEsquerda COLUNADIREITA
+            |    sensorBaixo COLUNADIREITA"""
+
+            if p[1] == 'FALSO' or p[1] == False:
                 p[0] = False
             else:
                 p[0] = True
 
         def p_sensorCima(p):
-            """sensorCima : SENSORCIMA
-            |  NEGACAO SENSORCIMA"""
-            p[0] = thread.jogo.robo.temColisaoCima(self.tela.paineljogo.jogo.grupowalls, p[1])
+            """sensorCima : SENSORCIMA"""
+
+            p[0] = thread.jogo.robo.temColisaoCima(self.tela.paineljogo.jogo.grupowalls)
 
         def p_sensorEsquerda(p):
-            """sensorEsquerda : SENSORESQUERDA
-            |  NEGACAO SENSORESQUERDA"""
-            p[0] = thread.jogo.robo.temColisaoEsquerda(self.tela.paineljogo.jogo.grupowalls, p[1])
+            """sensorEsquerda : SENSORESQUERDA"""
+
+            p[0] = thread.jogo.robo.temColisaoEsquerda(self.tela.paineljogo.jogo.grupowalls)
 
         def p_sensorDireita(p):
-            """sensorDireita : SENSORDIREITA
-            | NEGACAO SENSORDIREITA"""
-            p[0] = thread.jogo.robo.temColisaoDireita(self.tela.paineljogo.jogo.grupowalls, p[1])
+            """sensorDireita : SENSORDIREITA"""
+
+            p[0] = thread.jogo.robo.temColisaoDireita(self.tela.paineljogo.jogo.grupowalls)
 
         def p_sensorBaixo(p):
-            """sensorBaixo : SENSORBAIXO
-            | NEGACAO SENSORBAIXO"""
-            p[0] = thread.jogo.robo.temColisaoBaixo(self.tela.paineljogo.jogo.grupowalls, p[1])
+            """sensorBaixo : SENSORBAIXO"""
+
+            p[0] = thread.jogo.robo.temColisaoBaixo(self.tela.paineljogo.jogo.grupowalls)
 
 
         def p_blocoExecutar(p):
