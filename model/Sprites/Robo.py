@@ -29,6 +29,58 @@ class Robo(pygame.sprite.Sprite):
         for wall in possivelcolisao:
             self.rect = oldpos
 
+    def temColisaoCima(self, grupowalls):
+        temColisao = False;
+        print self.rect
+
+        self.rect[1] -= self.speed
+        print self.rect
+
+        possivelcolisao = pygame.sprite.spritecollide(self, grupowalls, False)
+        for wall in possivelcolisao:
+            temColisao = True
+
+        self.rect[1] += self.speed
+
+        return temColisao
+
+
+    def temColisaoEsquerda(self, grupowalls):
+        temColisao = False;
+        self.rect[0] -= self.speed
+
+        possivelcolisao = pygame.sprite.spritecollide(self, grupowalls, False)
+        for wall in possivelcolisao:
+            temColisao = True
+
+        self.rect[0] += self.speed
+
+        return temColisao
+
+    def temColisaoDireita(self, grupowalls):
+        temColisao = False;
+        self.rect[0] += self.speed
+
+        possivelcolisao = pygame.sprite.spritecollide(self, grupowalls, False)
+        for wall in possivelcolisao:
+            temColisao = True
+
+        self.rect[0] -= self.speed
+
+        return temColisao
+
+    def temColisaoBaixo(self, grupowalls):
+        temColisao = False;
+        self.rect[1] += self.speed
+        print self.rect
+
+        possivelcolisao = pygame.sprite.spritecollide(self, grupowalls, False)
+        for wall in possivelcolisao:
+            temColisao = True
+
+        self.rect[1] -= self.speed
+
+        return temColisao
 
     def move(self):
         self.movepos[1] = self.movepos[1] - (self.speed) # para cima

@@ -53,11 +53,32 @@ class AnalisadorSintatico:
         def p_expressao(p):
             """expressao : COLUNAESQUERDA VERDADEIRO COLUNADIREITA
             |   COLUNAESQUERDA FALSO COLUNADIREITA
-            |   COLUNAESQUERDA SENSORFRENTE COLUNADIREITA"""
-            if p[2] == 'FALSO':
+            |   COLUNAESQUERDA sensorCima COLUNADIREITA
+            |   COLUNAESQUERDA sensorDireita COLUNADIREITA
+            |   COLUNAESQUERDA sensorEsquerda COLUNADIREITA
+            |   COLUNAESQUERDA sensorBaixo COLUNADIREITA"""
+
+            if p[2] == 'FALSO' or p[2] == False:
                 p[0] = False
             else:
                 p[0] = True
+
+        def p_sensorCima(p):
+            """sensorCima : SENSORCIMA"""
+            p[0] = thread.jogo.robo.temColisaoCima(self.tela.paineljogo.jogo.grupowalls)
+
+        def p_sensorEsquerda(p):
+            """sensorEsquerda : SENSORESQUERDA"""
+            p[0] = thread.jogo.robo.temColisaoEsquerda(self.tela.paineljogo.jogo.grupowalls)
+
+        def p_sensorDireita(p):
+            """sensorDireita : SENSORDIREITA"""
+            p[0] = thread.jogo.robo.temColisaoDireita(self.tela.paineljogo.jogo.grupowalls)
+
+        def p_sensorBaixo(p):
+            """sensorBaixo : SENSORBAIXO"""
+            p[0] = thread.jogo.robo.temColisaoBaixo(self.tela.paineljogo.jogo.grupowalls)
+
 
         def p_blocoExecutar(p):
             """blocoExecutar :  DIREITA

@@ -12,11 +12,13 @@ class AnalisadorLexico:
          'BAIXO',
          'SE',
          'SENAO',
-         'FIMINSTRUCAO',
          'VEZES',
          'ENQUANTO',
          'FACA',
-         'SENSORFRENTE',
+         'SENSORCIMA',
+         'SENSORESQUERDA',
+         'SENSORDIREITA',
+         'SENSORBAIXO',
          'NUMERO',
          'VERDADEIRO',
          'FALSO',
@@ -27,7 +29,6 @@ class AnalisadorLexico:
 
     def scan(self, codigo):
         tokens = self.getTokenList()
-        t_FIMINSTRUCAO = ';'
         t_REPITA = 'REPITA'
         t_VEZES = 'VEZES'
         t_COLUNAESQUERDA = '\\('
@@ -42,7 +43,10 @@ class AnalisadorLexico:
         t_SENAO = 'SENAO'
         t_ENQUANTO = 'ENQUANTO'
         t_FACA = 'FACA'
-        t_SENSORFRENTE = 'SENSORFRENTE'
+        t_SENSORCIMA = 'SENSORCIMA'
+        t_SENSORESQUERDA = 'SENSORESQUERDA'
+        t_SENSORDIREITA = 'SENSORDIREITA'
+        t_SENSORBAIXO = 'SENSORBAIXO'
         t_NUMERO = '\\d+'
         t_ignore = ' \t'
 
