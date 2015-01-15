@@ -18,33 +18,38 @@ Rule 12    expressao -> COLUNAESQUERDA sensorDireita COLUNADIREITA
 Rule 13    expressao -> COLUNAESQUERDA sensorEsquerda COLUNADIREITA
 Rule 14    expressao -> COLUNAESQUERDA sensorBaixo COLUNADIREITA
 Rule 15    sensorCima -> SENSORCIMA
-Rule 16    sensorEsquerda -> SENSORESQUERDA
-Rule 17    sensorDireita -> SENSORDIREITA
-Rule 18    sensorBaixo -> SENSORBAIXO
-Rule 19    blocoExecutar -> DIREITA
-Rule 20    blocoExecutar -> CIMA
-Rule 21    blocoExecutar -> ESQUERDA
-Rule 22    blocoExecutar -> BAIXO
+Rule 16    sensorCima -> NEGACAO SENSORCIMA
+Rule 17    sensorEsquerda -> SENSORESQUERDA
+Rule 18    sensorEsquerda -> NEGACAO SENSORESQUERDA
+Rule 19    sensorDireita -> SENSORDIREITA
+Rule 20    sensorDireita -> NEGACAO SENSORDIREITA
+Rule 21    sensorBaixo -> SENSORBAIXO
+Rule 22    sensorBaixo -> NEGACAO SENSORBAIXO
+Rule 23    blocoExecutar -> DIREITA
+Rule 24    blocoExecutar -> CIMA
+Rule 25    blocoExecutar -> ESQUERDA
+Rule 26    blocoExecutar -> BAIXO
 
 Terminals, with rules where they appear
 
-BAIXO                : 4 22
-CIMA                 : 1 20
+BAIXO                : 4 26
+CIMA                 : 1 24
 COLUNADIREITA        : 9 10 11 12 13 14
 COLUNAESQUERDA       : 9 10 11 12 13 14
-DIREITA              : 2 19
+DIREITA              : 2 23
 ENQUANTO             : 7
-ESQUERDA             : 3 21
+ESQUERDA             : 3 25
 FACA                 : 7
 FALSO                : 10
+NEGACAO              : 16 18 20 22
 NUMERO               : 8
 REPITA               : 8
 SE                   : 5 6
 SENAO                : 6
-SENSORBAIXO          : 18
-SENSORCIMA           : 15
-SENSORDIREITA        : 17
-SENSORESQUERDA       : 16
+SENSORBAIXO          : 21 22
+SENSORCIMA           : 15 16
+SENSORDIREITA        : 19 20
+SENSORESQUERDA       : 17 18
 VERDADEIRO           : 9
 VEZES                : 8
 error                : 
@@ -176,101 +181,106 @@ state 11
     (13) expressao -> COLUNAESQUERDA . sensorEsquerda COLUNADIREITA
     (14) expressao -> COLUNAESQUERDA . sensorBaixo COLUNADIREITA
     (15) sensorCima -> . SENSORCIMA
-    (17) sensorDireita -> . SENSORDIREITA
-    (16) sensorEsquerda -> . SENSORESQUERDA
-    (18) sensorBaixo -> . SENSORBAIXO
+    (16) sensorCima -> . NEGACAO SENSORCIMA
+    (19) sensorDireita -> . SENSORDIREITA
+    (20) sensorDireita -> . NEGACAO SENSORDIREITA
+    (17) sensorEsquerda -> . SENSORESQUERDA
+    (18) sensorEsquerda -> . NEGACAO SENSORESQUERDA
+    (21) sensorBaixo -> . SENSORBAIXO
+    (22) sensorBaixo -> . NEGACAO SENSORBAIXO
 
     VERDADEIRO      shift and go to state 16
     FALSO           shift and go to state 19
     SENSORCIMA      shift and go to state 20
+    NEGACAO         shift and go to state 22
     SENSORDIREITA   shift and go to state 18
     SENSORESQUERDA  shift and go to state 17
-    SENSORBAIXO     shift and go to state 23
+    SENSORBAIXO     shift and go to state 24
 
     sensorDireita                  shift and go to state 15
-    sensorBaixo                    shift and go to state 22
+    sensorBaixo                    shift and go to state 23
     sensorEsquerda                 shift and go to state 21
-    sensorCima                     shift and go to state 24
+    sensorCima                     shift and go to state 25
 
 state 12
 
     (5) assign -> SE expressao . blocoExecutar
     (6) assign -> SE expressao . blocoExecutar SENAO blocoExecutar
-    (19) blocoExecutar -> . DIREITA
-    (20) blocoExecutar -> . CIMA
-    (21) blocoExecutar -> . ESQUERDA
-    (22) blocoExecutar -> . BAIXO
+    (23) blocoExecutar -> . DIREITA
+    (24) blocoExecutar -> . CIMA
+    (25) blocoExecutar -> . ESQUERDA
+    (26) blocoExecutar -> . BAIXO
 
-    DIREITA         shift and go to state 29
-    CIMA            shift and go to state 25
-    ESQUERDA        shift and go to state 28
-    BAIXO           shift and go to state 26
+    DIREITA         shift and go to state 30
+    CIMA            shift and go to state 26
+    ESQUERDA        shift and go to state 29
+    BAIXO           shift and go to state 27
 
-    blocoExecutar                  shift and go to state 27
+    blocoExecutar                  shift and go to state 28
 
 state 13
 
     (8) assign -> REPITA NUMERO VEZES . blocoExecutar
-    (19) blocoExecutar -> . DIREITA
-    (20) blocoExecutar -> . CIMA
-    (21) blocoExecutar -> . ESQUERDA
-    (22) blocoExecutar -> . BAIXO
+    (23) blocoExecutar -> . DIREITA
+    (24) blocoExecutar -> . CIMA
+    (25) blocoExecutar -> . ESQUERDA
+    (26) blocoExecutar -> . BAIXO
 
-    DIREITA         shift and go to state 29
-    CIMA            shift and go to state 25
-    ESQUERDA        shift and go to state 28
-    BAIXO           shift and go to state 26
+    DIREITA         shift and go to state 30
+    CIMA            shift and go to state 26
+    ESQUERDA        shift and go to state 29
+    BAIXO           shift and go to state 27
 
-    blocoExecutar                  shift and go to state 30
+    blocoExecutar                  shift and go to state 31
 
 state 14
 
     (7) assign -> ENQUANTO expressao FACA . blocoExecutar
-    (19) blocoExecutar -> . DIREITA
-    (20) blocoExecutar -> . CIMA
-    (21) blocoExecutar -> . ESQUERDA
-    (22) blocoExecutar -> . BAIXO
+    (23) blocoExecutar -> . DIREITA
+    (24) blocoExecutar -> . CIMA
+    (25) blocoExecutar -> . ESQUERDA
+    (26) blocoExecutar -> . BAIXO
 
-    DIREITA         shift and go to state 29
-    CIMA            shift and go to state 25
-    ESQUERDA        shift and go to state 28
-    BAIXO           shift and go to state 26
+    DIREITA         shift and go to state 30
+    CIMA            shift and go to state 26
+    ESQUERDA        shift and go to state 29
+    BAIXO           shift and go to state 27
 
-    blocoExecutar                  shift and go to state 31
+    blocoExecutar                  shift and go to state 32
 
 state 15
 
     (12) expressao -> COLUNAESQUERDA sensorDireita . COLUNADIREITA
 
-    COLUNADIREITA   shift and go to state 32
+    COLUNADIREITA   shift and go to state 33
 
 
 state 16
 
     (9) expressao -> COLUNAESQUERDA VERDADEIRO . COLUNADIREITA
 
-    COLUNADIREITA   shift and go to state 33
+    COLUNADIREITA   shift and go to state 34
 
 
 state 17
 
-    (16) sensorEsquerda -> SENSORESQUERDA .
+    (17) sensorEsquerda -> SENSORESQUERDA .
 
-    COLUNADIREITA   reduce using rule 16 (sensorEsquerda -> SENSORESQUERDA .)
+    COLUNADIREITA   reduce using rule 17 (sensorEsquerda -> SENSORESQUERDA .)
 
 
 state 18
 
-    (17) sensorDireita -> SENSORDIREITA .
+    (19) sensorDireita -> SENSORDIREITA .
 
-    COLUNADIREITA   reduce using rule 17 (sensorDireita -> SENSORDIREITA .)
+    COLUNADIREITA   reduce using rule 19 (sensorDireita -> SENSORDIREITA .)
 
 
 state 19
 
     (10) expressao -> COLUNAESQUERDA FALSO . COLUNADIREITA
 
-    COLUNADIREITA   shift and go to state 34
+    COLUNADIREITA   shift and go to state 35
 
 
 state 20
@@ -284,86 +294,99 @@ state 21
 
     (13) expressao -> COLUNAESQUERDA sensorEsquerda . COLUNADIREITA
 
-    COLUNADIREITA   shift and go to state 35
+    COLUNADIREITA   shift and go to state 36
 
 
 state 22
 
-    (14) expressao -> COLUNAESQUERDA sensorBaixo . COLUNADIREITA
+    (16) sensorCima -> NEGACAO . SENSORCIMA
+    (20) sensorDireita -> NEGACAO . SENSORDIREITA
+    (18) sensorEsquerda -> NEGACAO . SENSORESQUERDA
+    (22) sensorBaixo -> NEGACAO . SENSORBAIXO
 
-    COLUNADIREITA   shift and go to state 36
+    SENSORCIMA      shift and go to state 39
+    SENSORDIREITA   shift and go to state 40
+    SENSORESQUERDA  shift and go to state 38
+    SENSORBAIXO     shift and go to state 37
 
 
 state 23
 
-    (18) sensorBaixo -> SENSORBAIXO .
+    (14) expressao -> COLUNAESQUERDA sensorBaixo . COLUNADIREITA
 
-    COLUNADIREITA   reduce using rule 18 (sensorBaixo -> SENSORBAIXO .)
+    COLUNADIREITA   shift and go to state 41
 
 
 state 24
 
-    (11) expressao -> COLUNAESQUERDA sensorCima . COLUNADIREITA
+    (21) sensorBaixo -> SENSORBAIXO .
 
-    COLUNADIREITA   shift and go to state 37
+    COLUNADIREITA   reduce using rule 21 (sensorBaixo -> SENSORBAIXO .)
 
 
 state 25
 
-    (20) blocoExecutar -> CIMA .
+    (11) expressao -> COLUNAESQUERDA sensorCima . COLUNADIREITA
 
-    $end            reduce using rule 20 (blocoExecutar -> CIMA .)
-    SENAO           reduce using rule 20 (blocoExecutar -> CIMA .)
+    COLUNADIREITA   shift and go to state 42
 
 
 state 26
 
-    (22) blocoExecutar -> BAIXO .
+    (24) blocoExecutar -> CIMA .
 
-    $end            reduce using rule 22 (blocoExecutar -> BAIXO .)
-    SENAO           reduce using rule 22 (blocoExecutar -> BAIXO .)
+    $end            reduce using rule 24 (blocoExecutar -> CIMA .)
+    SENAO           reduce using rule 24 (blocoExecutar -> CIMA .)
 
 
 state 27
+
+    (26) blocoExecutar -> BAIXO .
+
+    $end            reduce using rule 26 (blocoExecutar -> BAIXO .)
+    SENAO           reduce using rule 26 (blocoExecutar -> BAIXO .)
+
+
+state 28
 
     (5) assign -> SE expressao blocoExecutar .
     (6) assign -> SE expressao blocoExecutar . SENAO blocoExecutar
 
     $end            reduce using rule 5 (assign -> SE expressao blocoExecutar .)
-    SENAO           shift and go to state 38
-
-
-state 28
-
-    (21) blocoExecutar -> ESQUERDA .
-
-    $end            reduce using rule 21 (blocoExecutar -> ESQUERDA .)
-    SENAO           reduce using rule 21 (blocoExecutar -> ESQUERDA .)
+    SENAO           shift and go to state 43
 
 
 state 29
 
-    (19) blocoExecutar -> DIREITA .
+    (25) blocoExecutar -> ESQUERDA .
 
-    $end            reduce using rule 19 (blocoExecutar -> DIREITA .)
-    SENAO           reduce using rule 19 (blocoExecutar -> DIREITA .)
+    $end            reduce using rule 25 (blocoExecutar -> ESQUERDA .)
+    SENAO           reduce using rule 25 (blocoExecutar -> ESQUERDA .)
 
 
 state 30
+
+    (23) blocoExecutar -> DIREITA .
+
+    $end            reduce using rule 23 (blocoExecutar -> DIREITA .)
+    SENAO           reduce using rule 23 (blocoExecutar -> DIREITA .)
+
+
+state 31
 
     (8) assign -> REPITA NUMERO VEZES blocoExecutar .
 
     $end            reduce using rule 8 (assign -> REPITA NUMERO VEZES blocoExecutar .)
 
 
-state 31
+state 32
 
     (7) assign -> ENQUANTO expressao FACA blocoExecutar .
 
     $end            reduce using rule 7 (assign -> ENQUANTO expressao FACA blocoExecutar .)
 
 
-state 32
+state 33
 
     (12) expressao -> COLUNAESQUERDA sensorDireita COLUNADIREITA .
 
@@ -374,7 +397,7 @@ state 32
     FACA            reduce using rule 12 (expressao -> COLUNAESQUERDA sensorDireita COLUNADIREITA .)
 
 
-state 33
+state 34
 
     (9) expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .
 
@@ -385,7 +408,7 @@ state 33
     FACA            reduce using rule 9 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
 
 
-state 34
+state 35
 
     (10) expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .
 
@@ -396,7 +419,7 @@ state 34
     FACA            reduce using rule 10 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
 
 
-state 35
+state 36
 
     (13) expressao -> COLUNAESQUERDA sensorEsquerda COLUNADIREITA .
 
@@ -407,7 +430,35 @@ state 35
     FACA            reduce using rule 13 (expressao -> COLUNAESQUERDA sensorEsquerda COLUNADIREITA .)
 
 
-state 36
+state 37
+
+    (22) sensorBaixo -> NEGACAO SENSORBAIXO .
+
+    COLUNADIREITA   reduce using rule 22 (sensorBaixo -> NEGACAO SENSORBAIXO .)
+
+
+state 38
+
+    (18) sensorEsquerda -> NEGACAO SENSORESQUERDA .
+
+    COLUNADIREITA   reduce using rule 18 (sensorEsquerda -> NEGACAO SENSORESQUERDA .)
+
+
+state 39
+
+    (16) sensorCima -> NEGACAO SENSORCIMA .
+
+    COLUNADIREITA   reduce using rule 16 (sensorCima -> NEGACAO SENSORCIMA .)
+
+
+state 40
+
+    (20) sensorDireita -> NEGACAO SENSORDIREITA .
+
+    COLUNADIREITA   reduce using rule 20 (sensorDireita -> NEGACAO SENSORDIREITA .)
+
+
+state 41
 
     (14) expressao -> COLUNAESQUERDA sensorBaixo COLUNADIREITA .
 
@@ -418,7 +469,7 @@ state 36
     FACA            reduce using rule 14 (expressao -> COLUNAESQUERDA sensorBaixo COLUNADIREITA .)
 
 
-state 37
+state 42
 
     (11) expressao -> COLUNAESQUERDA sensorCima COLUNADIREITA .
 
@@ -429,22 +480,22 @@ state 37
     FACA            reduce using rule 11 (expressao -> COLUNAESQUERDA sensorCima COLUNADIREITA .)
 
 
-state 38
+state 43
 
     (6) assign -> SE expressao blocoExecutar SENAO . blocoExecutar
-    (19) blocoExecutar -> . DIREITA
-    (20) blocoExecutar -> . CIMA
-    (21) blocoExecutar -> . ESQUERDA
-    (22) blocoExecutar -> . BAIXO
+    (23) blocoExecutar -> . DIREITA
+    (24) blocoExecutar -> . CIMA
+    (25) blocoExecutar -> . ESQUERDA
+    (26) blocoExecutar -> . BAIXO
 
-    DIREITA         shift and go to state 29
-    CIMA            shift and go to state 25
-    ESQUERDA        shift and go to state 28
-    BAIXO           shift and go to state 26
+    DIREITA         shift and go to state 30
+    CIMA            shift and go to state 26
+    ESQUERDA        shift and go to state 29
+    BAIXO           shift and go to state 27
 
-    blocoExecutar                  shift and go to state 39
+    blocoExecutar                  shift and go to state 44
 
-state 39
+state 44
 
     (6) assign -> SE expressao blocoExecutar SENAO blocoExecutar .
 

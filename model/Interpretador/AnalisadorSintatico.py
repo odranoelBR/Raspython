@@ -64,20 +64,24 @@ class AnalisadorSintatico:
                 p[0] = True
 
         def p_sensorCima(p):
-            """sensorCima : SENSORCIMA"""
-            p[0] = thread.jogo.robo.temColisaoCima(self.tela.paineljogo.jogo.grupowalls)
+            """sensorCima : SENSORCIMA
+            |  NEGACAO SENSORCIMA"""
+            p[0] = thread.jogo.robo.temColisaoCima(self.tela.paineljogo.jogo.grupowalls, p[1])
 
         def p_sensorEsquerda(p):
-            """sensorEsquerda : SENSORESQUERDA"""
-            p[0] = thread.jogo.robo.temColisaoEsquerda(self.tela.paineljogo.jogo.grupowalls)
+            """sensorEsquerda : SENSORESQUERDA
+            |  NEGACAO SENSORESQUERDA"""
+            p[0] = thread.jogo.robo.temColisaoEsquerda(self.tela.paineljogo.jogo.grupowalls, p[1])
 
         def p_sensorDireita(p):
-            """sensorDireita : SENSORDIREITA"""
-            p[0] = thread.jogo.robo.temColisaoDireita(self.tela.paineljogo.jogo.grupowalls)
+            """sensorDireita : SENSORDIREITA
+            | NEGACAO SENSORDIREITA"""
+            p[0] = thread.jogo.robo.temColisaoDireita(self.tela.paineljogo.jogo.grupowalls, p[1])
 
         def p_sensorBaixo(p):
-            """sensorBaixo : SENSORBAIXO"""
-            p[0] = thread.jogo.robo.temColisaoBaixo(self.tela.paineljogo.jogo.grupowalls)
+            """sensorBaixo : SENSORBAIXO
+            | NEGACAO SENSORBAIXO"""
+            p[0] = thread.jogo.robo.temColisaoBaixo(self.tela.paineljogo.jogo.grupowalls, p[1])
 
 
         def p_blocoExecutar(p):

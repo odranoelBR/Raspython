@@ -19,6 +19,7 @@ class AnalisadorLexico:
          'SENSORESQUERDA',
          'SENSORDIREITA',
          'SENSORBAIXO',
+         'NEGACAO',
          'NUMERO',
          'VERDADEIRO',
          'FALSO',
@@ -47,6 +48,7 @@ class AnalisadorLexico:
         t_SENSORESQUERDA = 'SENSORESQUERDA'
         t_SENSORDIREITA = 'SENSORDIREITA'
         t_SENSORBAIXO = 'SENSORBAIXO'
+        t_NEGACAO = '\\!'
         t_NUMERO = '\\d+'
         t_ignore = ' \t'
 
