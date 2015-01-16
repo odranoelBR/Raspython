@@ -22,7 +22,7 @@ class Robo(pygame.sprite.Sprite):
     def update(self,grupowalls):
 
         oldpos = self.rect
-        newpos = self.rect.moveFront(self.movepos)
+        newpos = self.rect.move(self.movepos)
         if self.area.contains(newpos):
             self.rect = newpos
         self.movepos = [0,0]
@@ -86,7 +86,7 @@ class Robo(pygame.sprite.Sprite):
         return temColisao
 
     def moveFront(self):
-        self.roboControllerApi.moveFront()
+        #self.roboControllerApi.moveFront()
         self.movepos[1] = self.movepos[1] - (self.speed) # para cima
 
     def moveBack(self):
