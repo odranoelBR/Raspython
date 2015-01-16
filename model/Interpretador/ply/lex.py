@@ -347,7 +347,7 @@ class Lexer:
 
                 newtok = func(tok)
 
-                # Every function must return a token, if nothing, we just move to next token
+                # Every function must return a token, if nothing, we just moveFront to next token
                 if not newtok:
                     lexpos    = self.lexpos         # This is here in case user has updated lexpos.
                     lexignore = self.lexignore      # This is here in case there was a state change

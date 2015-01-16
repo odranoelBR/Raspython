@@ -11,19 +11,19 @@ class AnalisadorSintatico:
 
         def p_assign_mover_frente(p):
             """assign : CIMA """
-            thread.jogo.robo.move()
+            thread.jogo.robo.moveFront()
 
         def p_assign_mover_direita(p):
             """assign : DIREITA """
-            thread.jogo.robo.moveright()
+            thread.jogo.robo.moveRight()
 
         def p_assign_mover_esquerda(p):
             """assign : ESQUERDA """
-            thread.jogo.robo.moveleft()
+            thread.jogo.robo.moveLeft()
 
         def p_assign_mover_volta(p):
             """assign : BAIXO """
-            thread.jogo.robo.moveback()
+            thread.jogo.robo.moveBack()
 
         def p_se_stmt(p):
             """assign : SE blocoLogico blocoExecutar """
