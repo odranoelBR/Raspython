@@ -12,6 +12,8 @@ class AnalisadorLexico:
          'BAIXO',
          'SE',
          'SENAO',
+         'E',
+         'OU',
          'VEZES',
          'ENQUANTO',
          'FACA',
@@ -41,6 +43,8 @@ class AnalisadorLexico:
         t_BAIXO = 'BAIXO'
         t_CIMA = 'CIMA'
         t_SE = 'SE'
+        t_E = 'E'
+        t_OU = 'OU'
         t_SENAO = 'SENAO'
         t_ENQUANTO = 'ENQUANTO'
         t_FACA = 'FACA'

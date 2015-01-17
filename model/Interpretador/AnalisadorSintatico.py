@@ -51,45 +51,67 @@ class AnalisadorSintatico:
                 atualizarJogo()
 
         def p_blocoLogico(p):
-            """blocoLogico : COLUNAESQUERDA logico
-            | COLUNAESQUERDA NEGACAO logico"""
+            """blocoLogico : COLUNAESQUERDA logico COLUNADIREITA"""
+            p[0] = p[2]
 
-            if p[2] == '!':
-                p[0] = not p[3]
+
+        def p_booleanos(p):
+            """booleanos :  VERDADEIRO
+            |    FALSO
+            |    sensorCima
+            |    sensorDireita
+            |    sensorEsquerda
+            |    sensorBaixo
+            |    NEGACAO VERDADEIRO
+            |    NEGACAO FALSO
+            |    NEGACAO sensorCima
+            |    NEGACAO sensorDireita
+            |    NEGACAO sensorEsquerda
+            |    NEGACAO sensorBaixo """
+
+            if len(p) > 2:
+                if p[2] == 'FALSO' or p[2] == False:
+                    p[0] = True
+                else:
+                    p[0] = False
             else:
-                p[0] = p[2]
+                if p[1] == 'FALSO' or p[1] == False:
+                    p[0] = False
+                else:
+                    p[0] = True
 
         def p_logico(p):
-            """logico :  VERDADEIRO COLUNADIREITA
-            |    FALSO COLUNADIREITA
-            |    sensorCima COLUNADIREITA
-            |    sensorDireita COLUNADIREITA
-            |    sensorEsquerda COLUNADIREITA
-            |    sensorBaixo COLUNADIREITA"""
-
-            if p[1] == 'FALSO' or p[1] == False:
-                p[0] = False
+            """logico : booleanos
+            |   booleanos E logico
+            |   booleanos OU logico"""
+            if len(p) > 2:
+               if p[2] == 'E':
+                   if p[1] and p[3]:
+                       p[0] = True
+               else:
+                   if p[1] or p[3]:
+                       p[0] = True
             else:
-                p[0] = True
+                p[0] = p[1]
+
+
+
+
 
         def p_sensorCima(p):
             """sensorCima : SENSORCIMA"""
-
             p[0] = thread.jogo.robo.temColisaoCima(self.tela.paineljogo.jogo.grupowalls)
 
         def p_sensorEsquerda(p):
             """sensorEsquerda : SENSORESQUERDA"""
-
             p[0] = thread.jogo.robo.temColisaoEsquerda(self.tela.paineljogo.jogo.grupowalls)
 
         def p_sensorDireita(p):
             """sensorDireita : SENSORDIREITA"""
-
             p[0] = thread.jogo.robo.temColisaoDireita(self.tela.paineljogo.jogo.grupowalls)
 
         def p_sensorBaixo(p):
             """sensorBaixo : SENSORBAIXO"""
-
             p[0] = thread.jogo.robo.temColisaoBaixo(self.tela.paineljogo.jogo.grupowalls)
 
 

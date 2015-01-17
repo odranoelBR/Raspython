@@ -1,3 +1,6 @@
 *.pyc
 parser.out
 .idea/workspace.xml
+*.xml
+*.iml
+*.xml

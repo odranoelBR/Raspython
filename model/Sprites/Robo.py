@@ -55,8 +55,6 @@ class Robo(pygame.sprite.Sprite):
 
         self.rect[0] += self.speed
 
-
-
         return temColisao
 
     def temColisaoDireita(self, grupowalls):
@@ -82,23 +80,22 @@ class Robo(pygame.sprite.Sprite):
 
         self.rect[1] -= self.speed
 
-
         return temColisao
 
     def moveFront(self):
-        self.roboControllerApi.moveFront()
+        #self.roboControllerApi.moveFront()
         self.movepos[1] = self.movepos[1] - (self.speed) # para cima
 
     def moveBack(self):
-        self.roboControllerApi.moveBack()
+        #self.roboControllerApi.moveBack()
         self.movepos[1] = self.movepos[1] + (self.speed) # para tras
 
     def moveLeft(self):
-        self.roboControllerApi.moveLeft()
-        self.roboControllerApi.moveFront()
+        #self.roboControllerApi.moveLeft()
+        #self.roboControllerApi.moveFront()
         self.movepos[0] = self.movepos[1] - (self.speed) # para esquerda
 
     def moveRight(self):
-        self.roboControllerApi.moveRight()
-        self.roboControllerApi.moveFront()
+        #self.roboControllerApi.moveRight()
+        #self.roboControllerApi.moveFront()
         self.movepos[0] = self.movepos[0] + (self.speed) # para direita
