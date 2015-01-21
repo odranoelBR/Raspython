@@ -45,7 +45,7 @@ class Jogo:
         self.grupowalls.draw(self.screen)
         self.playersprites.draw(self.screen)
         pygame.display.flip()
-        time.sleep(0.6)
+        time.sleep(0.3)
 
     def apagarrobo(self):
         pygame.sprite.RenderClear(self.robo)

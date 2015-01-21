@@ -1,3 +1,8 @@
+from model.Interpretador.Repita import Repita
+from model.Interpretador.Enquanto import Enquanto
+from model.Interpretador.SeSenao import SeSenao
+from model.Interpretador.Movimento import Movimento
+from model.Interpretador.Se import Se
 from model.Interpretador.ply import yacc
 
 class AnalisadorSintatico:
@@ -8,47 +13,52 @@ class AnalisadorSintatico:
 
     def scan(self, codigo):
         thread = self.tela.paineljogo
+        tela = self.tela
 
-        def p_assign_mover_frente(p):
-            """assign : CIMA """
-            thread.jogo.robo.moveFront()
+        def p_instrucao(p):
+            """assign : expression"""
+            p[1].execute()
 
-        def p_assign_mover_direita(p):
-            """assign : DIREITA """
-            thread.jogo.robo.moveRight()
+        def p_expression(p):
+            """expression : terminal_expression
+            |   non_terminal_expression
+            |   expression expression"""
 
-        def p_assign_mover_esquerda(p):
-            """assign : ESQUERDA """
-            thread.jogo.robo.moveLeft()
+            if len(p) > 2:
+                p[0] = p
+            else:
+                p[0] = p[1]
 
-        def p_assign_mover_volta(p):
-            """assign : BAIXO """
-            thread.jogo.robo.moveBack()
+        def p_terminal_expression(p):
+            """terminal_expression :  DIREITA
+            |   CIMA
+            |   ESQUERDA
+            |   BAIXO"""
+            p[0] = Movimento(p[1], thread, tela)
+
+        def p_non_terminal_expression(p):
+           """non_terminal_expression : se_stmt
+           |    se_senao_stmt
+           |    enquanto_stmt
+           |    repita_stmt"""
+           p[0] = p[1]
 
         def p_se_stmt(p):
-            """assign : SE blocoLogico blocoExecutar """
-            if p[2]:
-                parsearCodigo(p[3])
+            """se_stmt : SE blocoLogico CHAVESESQUERDA expression CHAVESDIREITA"""
+            p[0] = Se(p[2], p[4])
+
 
         def p_se_senao_stmt(p):
-            """assign : SE blocoLogico  blocoExecutar SENAO blocoExecutar"""
-            if p[2]:
-                parsearCodigo(p[3])
-            else:
-                parsearCodigo(p[5])
+            """se_senao_stmt : SE blocoLogico  expression SENAO expression"""
+            p[0] = SeSenao(p[2], p[3], p[5])
 
         def p_enquanto_stmt(p):
-            """assign : ENQUANTO blocoLogico FACA blocoExecutar"""
-            while p[2]:
-                parsearCodigo(p[4])
-                atualizarJogo()
+            """enquanto_stmt : ENQUANTO blocoLogico FACA expression"""
+            p[0] = Enquanto(p[2], p[4])
 
-        def p_faca_stmt(p):
-            """assign : REPITA NUMERO VEZES blocoExecutar"""
-            quantidade = p[2]
-            for x in xrange(int(quantidade)):
-                parsearCodigo(p[4])
-                atualizarJogo()
+        def p_repita_stmt(p):
+            """repita_stmt : REPITA NUMERO VEZES expression"""
+            p[0] = Repita(p[2], p[4])
 
         def p_blocoLogico(p):
             """blocoLogico : COLUNAESQUERDA logico COLUNADIREITA"""
@@ -94,10 +104,6 @@ class AnalisadorSintatico:
             else:
                 p[0] = p[1]
 
-
-
-
-
         def p_sensorCima(p):
             """sensorCima : SENSORCIMA"""
             p[0] = thread.jogo.robo.temColisaoCima(self.tela.paineljogo.jogo.grupowalls)
@@ -114,14 +120,6 @@ class AnalisadorSintatico:
             """sensorBaixo : SENSORBAIXO"""
             p[0] = thread.jogo.robo.temColisaoBaixo(self.tela.paineljogo.jogo.grupowalls)
 
-
-        def p_blocoExecutar(p):
-            """blocoExecutar :  DIREITA
-            |   CIMA
-            |   ESQUERDA
-            |   BAIXO"""
-            p[0] = p[1]
-
         def p_error(p):
             self.tela.statusbar.SetBackgroundColour('#FF7373')
             self.tela.statusbar.SetStatusText('Sua instrucao e invalida!', 1)
@@ -130,6 +128,8 @@ class AnalisadorSintatico:
         def parsearCodigo(codigo):
             codigo = codigo.upper()
             yacc.parse(codigo)
+            atualizarJogo()
+
 
         def atualizarJogo():
             thread.jogo.atualizar(self.tela)

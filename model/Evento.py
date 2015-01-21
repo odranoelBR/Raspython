@@ -6,7 +6,9 @@ class Evento:
 
     def clickRodar(self, tela):
         codigo = tela.caixadigitacao.GetValue()
-        codigoParaAnalisadorSintatico = codigo.split('\n')
+        codigoParaAnalisadorSintatico = codigo.replace('\n','')
+        codigoParaAnalisadorSintatico = codigoParaAnalisadorSintatico.split(';')
+        codigoParaAnalisadorSintatico.pop()
         lexico = AnalisadorLexico(tela)
         for instrucao in codigoParaAnalisadorSintatico:
             lexico.scan(instrucao)

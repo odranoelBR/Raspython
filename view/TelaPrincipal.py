@@ -44,7 +44,7 @@ class TelaPrincipal(wx.Frame):
     def adicionarWidgets(self):
         self.toolbar = ToolBar(self)
         self.paineljogo = PainelJogo(self, -1, (550, 500))
-        self.mensagem = wx.StaticText(self, label='O zumbi precisa comer girassois! Ajude-o a chegar em um.', style=wx.ALIGN_CENTRE)
+        self.mensagem = wx.StaticText(self, label='O zumbi precisa comer cogumelos! Ajude-o a chegar em um.', style=wx.ALIGN_CENTRE)
         font = wx.Font(16, wx.DECORATIVE, wx.ITALIC, wx.NORMAL)
         self.mensagem.ForegroundColour = '#FFFFFF'
         self.mensagem.SetFont(font)

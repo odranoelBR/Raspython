@@ -27,7 +27,9 @@ class AnalisadorLexico:
          'FALSO',
          'REPITA',
          'COLUNAESQUERDA',
-         'COLUNADIREITA']
+         'COLUNADIREITA',
+         'CHAVESESQUERDA',
+         'CHAVESDIREITA']
         return tokens
 
     def scan(self, codigo):
@@ -52,6 +54,8 @@ class AnalisadorLexico:
         t_SENSORESQUERDA = 'SENSORESQUERDA'
         t_SENSORDIREITA = 'SENSORDIREITA'
         t_SENSORBAIXO = 'SENSORBAIXO'
+        t_CHAVESESQUERDA = '\\{'
+        t_CHAVESDIREITA = '\\}'
         t_NEGACAO = '\\!'
         t_NUMERO = '\\d+'
         t_ignore = ' \t'
