@@ -1,4 +1,4 @@
-import wx
+import wx,os
 from model.Evento import Evento
 from view.PainelJogo import PainelJogo
 from view.ToolBar import ToolBar

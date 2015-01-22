@@ -1,5 +1,5 @@
 
-import urllib2
+import urllib2,os
 class RoboControllerApi:
 
     def moveFront(self):
@@ -20,4 +20,10 @@ class RoboControllerApi:
 
     def testConnection(self):
         url = 'http://10.5.5.1/test'
-        response = urllib2.urlopen(url).read()
+        try:
+            response = urllib2.urlopen(url, timeout=1)
+            os.environ.__setitem__('conexaoRobo', 'True')
+            return True
+        except urllib2.URLError as err: pass
+
+        return False
