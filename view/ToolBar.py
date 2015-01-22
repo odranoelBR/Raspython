@@ -1,6 +1,7 @@
 import wx
 from model.RoboControllerApi import RoboControllerApi
 
+
 class ToolBar(wx.ToolBar):
 
     def __init__(self, parent):
@@ -8,9 +9,9 @@ class ToolBar(wx.ToolBar):
         self.parent = parent
         self.BackgroundColour = '#0A8B9E'
         self.SetSize([80, 50])
-        self.ligarRobo = self.AddLabelTool(1, 'iniciandoConexao', wx.Bitmap('view/img/wioff.png'))
-        self.info = self.AddLabelTool(2, 'Info', wx.Bitmap('view/img/info.gif'))
-        self.sair = self.AddLabelTool(3, 'Sair', wx.Bitmap('view/img/close.png'))
+        self.ligarRobo = self.AddLabelTool(wx.ID_ANY, 'iniciandoConexao', wx.Bitmap('view/img/roboOK.png'))
+        self.info = self.AddLabelTool(wx.ID_ANY, 'Info', wx.Bitmap('view/img/info.gif'))
+        self.sair = self.AddLabelTool(wx.ID_ANY, 'Sair', wx.Bitmap('view/img/close.png'))
         self.Realize()
         self.anexarEventos()
         self.roboControllerApi = RoboControllerApi()
@@ -20,20 +21,12 @@ class ToolBar(wx.ToolBar):
 
     def iniciandoConexao(self,e):
 
-        if self.roboControllerApi.testConnection():
-            wx.MessageBox('Conexao com robo estabelecida com sucesso!', 'Info',
-            wx.OK | wx.ICON_INFORMATION)
-            self.RemoveTool(1)
-            self.RemoveTool(2)
-            self.RemoveTool(3)
-            self.AddLabelTool(1, 'iniciandoConexao', wx.Bitmap('view/img/wion.png'))
-            self.info = self.AddLabelTool(2, 'Info', wx.Bitmap('view/img/info.gif'))
-            self.sair = self.AddLabelTool(3, 'Sair', wx.Bitmap('view/img/close.png'))
-            self.Realize()
-        else:
-            wx.MessageBox('Desculpe. A conexao nao pode ser estabelecida!\n'
-                          'Verifique se esta conectado no wifi do robo.', 'Info',
-            wx.OK | wx.ICON_INFORMATION)
+        try:
+            self.roboControllerApi.testConnection()
+            self.ligarRobo = self.AddLabelTool(wx.ID_ANY, 'iniciandoConexao', wx.Bitmap('view/img/info.gif'))
+            self.Bind(wx.EVT_TOOL, self.iniciandoConexao, self.ligarRobo)
+        except ValueError:
+            print ' conexao nao foi'
 
     def onInfo(self, e):
         wx.MessageBox('Tutorial! \n '
