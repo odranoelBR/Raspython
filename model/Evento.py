@@ -18,3 +18,6 @@ class Evento:
             sintatico.scan(instrucao)
 
         tela.paineljogo.jogo.atualizar(tela)
+
+    def clickReset(self,tela):
+        tela.paineljogo.jogo.reset(tela)

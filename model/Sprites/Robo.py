@@ -17,7 +17,7 @@ class Robo(pygame.sprite.Sprite):
         self.roboControllerApi = RoboControllerApi()
 
     def posicaoinicial(self):
-        self.rect.midright = [550,475];
+        self.rect.midright = [550,450];
 
     def update(self,grupowalls):
 
