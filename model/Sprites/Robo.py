@@ -1,4 +1,4 @@
-import pygame
+import pygame, os
 
 from model.RoboControllerApi import RoboControllerApi
 from model.CarregadorImagem import load_image
@@ -15,6 +15,7 @@ class Robo(pygame.sprite.Sprite):
         self.rect.midright = [550,450];
         self.movepos = [0,0]
         self.roboControllerApi = RoboControllerApi()
+        self.conexaoRobo = os.environ.get('conexaoRobo')
 
     def posicaoinicial(self):
         self.rect.midright = [550,450];
@@ -83,19 +84,25 @@ class Robo(pygame.sprite.Sprite):
         return temColisao
 
     def moveFront(self):
-        #self.roboControllerApi.moveFront()
+        if self.conexaoRobo == 'True':
+            self.roboControllerApi.moveFront()
         self.movepos[1] = self.movepos[1] - (self.speed) # para cima
 
     def moveBack(self):
-        #self.roboControllerApi.moveBack()
+        if self.conexaoRobo == 'True':
+            self.roboControllerApi.moveBack()
         self.movepos[1] = self.movepos[1] + (self.speed) # para tras
 
     def moveLeft(self):
-        #self.roboControllerApi.moveLeft()
-        #self.roboControllerApi.moveFront()
+        if self.conexaoRobo == 'True':
+            self.roboControllerApi.moveLeft()
+            self.roboControllerApi.moveFront()
+
         self.movepos[0] = self.movepos[1] - (self.speed) # para esquerda
 
     def moveRight(self):
-        #self.roboControllerApi.moveRight()
-        #self.roboControllerApi.moveFront()
+        if self.conexaoRobo == 'True':
+            self.roboControllerApi.moveRight()
+            self.roboControllerApi.moveFront()
+
         self.movepos[0] = self.movepos[0] + (self.speed) # para direita
