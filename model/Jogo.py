@@ -47,12 +47,8 @@ class Jogo:
         pygame.display.flip()
         time.sleep(0.3)
 
-    def reset(self,tela):
-        self.robo.posicaoinicial()
-        self.atualizar(tela)
-        tela.statusbar.SetBackgroundColour('#035A66')
-        tela.statusbar.SetStatusText('', 0)
-        tela.statusbar.SetStatusText('', 1)
+    def apagarrobo(self):
+        pygame.sprite.RenderClear(self.robo)
 
     def gerarChao(self):
         for x in range(0, 500, 150):
