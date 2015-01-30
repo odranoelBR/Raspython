@@ -43,6 +43,7 @@ class Jogo:
         self.saida.update(self.playersprites, tela)
         self.ground.draw(self.screen)
         self.grupowalls.draw(self.screen)
+        self.saida.draw(self.screen)
         self.playersprites.draw(self.screen)
         pygame.display.flip()
         time.sleep(0.3)
