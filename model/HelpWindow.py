@@ -6,14 +6,14 @@ class HelpWindow(wx.Frame):
         wx.Frame.__init__(self, parent, id, title,style = wx.NO_BORDER, size=(800, 600))
 
         toolbar = self.CreateToolBar()
-        toolbar.AddLabelTool(1, 'Exit', wx.Bitmap('../view/img/close.png'))
+        toolbar.AddLabelTool(1, 'Exit', wx.Bitmap('view/img/close.png'))
 
 
         vbox2 = wx.BoxSizer(wx.VERTICAL)
         hbox = wx.BoxSizer(wx.HORIZONTAL)
 
         help = html.HtmlWindow(self, -1, style=wx.NO_BORDER)
-        help.LoadPage('../view/help.html')
+        help.LoadPage('view/help.html')
 
         vbox2.Add(help, 1, wx.EXPAND)
 
@@ -43,8 +43,3 @@ class HelpWindow(wx.Frame):
         if keycode == wx.WXK_F1:
             self.splitter.SplitVertically(self.panelLeft, self.panelRight)
             self.panelLeft.SetFocus()
-
-
-app = wx.App()
-HelpWindow(None, -1, 'HelpWindow')
-app.MainLoop()

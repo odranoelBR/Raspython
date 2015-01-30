@@ -4,52 +4,97 @@
 <h4>Tabela de ajuda</h4>
 
 <ul>
-<li><a href="#basic">Basico</a></li>
+<li><a href="#basic">B&aacute;sico</a></li>
 <li><a href="#comands">Comandos de movimento</a></li>
-<li><a href="#advanced">Estrutura condicional</a></li>
-<li><a href="#intro">Estruturas de iteração</a></li>
-<li><a href="#charts">Booleanos</a></li>
+<li><a href="#condicional">Estrutura condicional</a></li>
+<li><a href="#boolean">Condi&ccedil;&atilde;o booleana</a></li>
+<li><a href="#blocos">Bloco de execu&ccedil;&atilde;o</a></li>
+<li><a href="#iteracao">Estruturas de itera&ccedil;&atilde;o</a></li>
+
 </ul>
 
 <p>
 <a name="basic">
-<h6>Basico</h6>
-    Delimitador de instrucao ; <br/>
-    Delimitador de blocos { } <br/>
+<h6>B&aacute;sico</h6>
+    <p>Delimitador de instru&ccedil;&atilde;o ;</p>
+    <p>Delimitador de blocos { } </p>
 
-    Para que seu codigo fique mais organizado e legivel
-    e aconselhado pular linha para cada instruao e
+    <p>Para que seu c&oacute;digo fique mais organizado e leg&iacute;vel
+    e aconselhado pular linha para cada instru&ccedil;&atilde;o e
     apos os delimitadores de bloco.
-
-    Utilize o ; para separar cada instrucao.
-    Visualize exemplos de como fazer.
+    Utilize o ; para separar cada instru&ccedil;&atilde;o.
+    Visualize exemplos de como fazer.</p>
 
 </a>
 </p>
 
 <p>
-<a name="advanced">
-<h6>Advanced Statistics</h6>
-Overview of advanced concepts in statistics. Anova. Linear regression. 
-Estimation and  hypothesis testing.
-Error terms.
+<a name="comands">
+<h6>Comando de movimento</h6>
+    <p>CIMA - Movimenta o zumbi para cima.</p>
+    <p>BAIXO - Movimenta o zumbi para baixo.</p>
+    <p>DIREITA - Movimenta o zumbi para para direita.</p>
+    <p>ESQUERDA - Movimenta o zumbi para esquerda.</p>
+    <p>Exemplos : cima; baixo;</p>
 </a>
 </p>
 
 <p>
-<a name="intro">
-<h6>Introducing Newt</h6>
-Introducing the basic functionality of the Newt application. Creating sheets. 
-Charts. Menus and Toolbars. Importing data. Saving data in various formats. 
-Exporting data. Shortcuts. List of methods.
+<a name="condicional">
+<h6>Estrutura condicional</h6>
+    <p>Se (<a href="#boolean">Condi&ccedil;&atilde;o booleana</a>) { <a href="#blocos">Bloco de execu&ccedil;&atilde;o</a>}; </p>
+    <p>Se (<a href="#boolean">Condi&ccedil;&atilde;o booleana</a>) { <a href="#blocos">Bloco de execu&ccedil;&atilde;o</a>};
+        Senao {<a href="#blocos">Bloco de execu&ccedil;&atilde;o</a>}</p>
+
+    <p>Se a Condi&ccedil;&atilde;o booleana for verdadeira ent&atilde;o o Bloco de execu&ccedil;&atilde;o ser&aacute; executado.</p>
+    <p>Exemplo : Se (sensorfrente) { cima };</p>
+
+
 </a>
 </p>
 
 <p>
-<a name="charts">
-<h6>Charts</h6>
-Working with charts. 2D charts. 3D charts. Bar, line, box, pie, range charts. 
-Scatterplots. Histograms.
+<a name="boolean">
+<h6>Condi&ccedil;&otilde;es booleanas</h6>
+    <p>Verdadeiro</p>
+    <p>Falso</p>
+    <p>Sensorcima - Verifica se existe obst&atilde;culo em cima</p>
+    <p>Sensorbaixo - Verifica se existe obst&atilde;culo em baixo</p>
+    <p>Sensordireita - Verifica se existe obst&atilde;culo na direita</p>
+    <p>Senoresquerda - Verifica se existe obst&atilde;culo na esquerda</p>
+    <p>Negacao - Voc&ecirc; pode negar qualquer booleano com ! antes da condi&ccedil;&otilde como no exemplo.</p>
+
+    <p>Exemplo : Se (sensorfrente) { cima };</p>
+    <p>Exemplo : Se (!falso) { baixo };</p>
+</a>
+</p>
+
+<a name="blocos">
+<h6>Bloco de execu&ccedil;&atilde;o</h6>
+    <p>Dentro dos blocos de execu&ccedil;&otilde; podem ser escritos varias instru&ccedil;&otilde;es.</p>
+    <p>N&atilde;o &eacute; necess&atilde;rio usar o separador ; para cada uma.</p>
+    <p>Exemplo:</p>
+    <p>Se (sensorcima) { cima baixo direita direita};</p>
+    <p>Enquanto(!falso) faca {
+        se (sensorcima) {
+             cima
+        }
+    };</p>
+</a>
+</p>
+
+<p>
+<a name="iteracao">
+<h6>Itera&ccedil;&otilde;es</h6>
+    <p>Repita NUMERO vezes { <a href="#blocos">Bloco de execu&ccedil;&atilde;o</a> };</p>
+    <p>Enquanto (<a href="#condicional">Estrutura condicional</a>) faca { <a href="#blocos">Bloco de execu&ccedil;&atilde;o</a> };</p>
+
+    <p>Exemplo : repita 5 vezes {cima}; </p>
+    <p>Enquanto(!falso) faca {
+        se (sensorcima) {
+             cima
+        }
+    };</p>
 </a>
 </p>
 
