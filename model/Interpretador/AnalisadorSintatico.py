@@ -3,6 +3,7 @@ from model.Interpretador.Enquanto import Enquanto
 from model.Interpretador.SeSenao import SeSenao
 from model.Interpretador.Movimento import Movimento
 from model.Interpretador.Se import Se
+from model.Interpretador.SubExpressao import SubExpressao
 from model.Interpretador.ply import yacc
 
 class AnalisadorSintatico:
@@ -21,11 +22,14 @@ class AnalisadorSintatico:
 
         def p_expression(p):
             """expression : terminal_expression
-            |   non_terminal_expression
-            |   expression expression"""
+            |   non_terminal_expression"""
+            p[0] = p[1]
 
+        def p_sub_expression(p):
+            """sub_expression : expression
+            |   expression sub_expression"""
             if len(p) > 2:
-                p[0] = p
+                p[0] = SubExpressao(p.slice)
             else:
                 p[0] = p[1]
 
@@ -44,21 +48,20 @@ class AnalisadorSintatico:
            p[0] = p[1]
 
         def p_se_stmt(p):
-            """se_stmt : SE blocoLogico CHAVESESQUERDA expression CHAVESDIREITA"""
+            """se_stmt : SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA"""
             p[0] = Se(p[2], p[4])
 
-
         def p_se_senao_stmt(p):
-            """se_senao_stmt : SE blocoLogico  expression SENAO expression"""
-            p[0] = SeSenao(p[2], p[3], p[5])
+            """se_senao_stmt : SE blocoLogico  CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA"""
+            p[0] = SeSenao(p[2], p[4], p[8])
 
         def p_enquanto_stmt(p):
-            """enquanto_stmt : ENQUANTO blocoLogico FACA expression"""
-            p[0] = Enquanto(p[2], p[4])
+            """enquanto_stmt : ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA"""
+            p[0] = Enquanto(p[2], p[5])
 
         def p_repita_stmt(p):
-            """repita_stmt : REPITA NUMERO VEZES expression"""
-            p[0] = Repita(p[2], p[4])
+            """repita_stmt : REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA"""
+            p[0] = Repita(p[2], p[5])
 
         def p_blocoLogico(p):
             """blocoLogico : COLUNAESQUERDA logico COLUNADIREITA"""
