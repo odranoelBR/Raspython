@@ -44,12 +44,12 @@ class TelaPrincipal(wx.Frame):
     def adicionarWidgets(self):
         self.toolbar = ToolBar(self)
         self.paineljogo = PainelJogo(self, -1, (550, 500))
-        self.mensagem = wx.StaticText(self, label='O zumbi precisa comer cogumelos! Ajude-o a chegar em um.', style=wx.ALIGN_CENTRE)
+        self.mensagem = wx.StaticText(self, label='O zumbi precisa comer cerebros! Ajude-o a chegar em um.', style=wx.ALIGN_CENTRE)
         font = wx.Font(16, wx.DECORATIVE, wx.ITALIC, wx.NORMAL)
         self.mensagem.ForegroundColour = '#FFFFFF'
         self.mensagem.SetFont(font)
         self.botao = wx.Button(self, label='Rodar')
-        self.caixadigitacao = wx.TextCtrl(self, style=wx.TE_MULTILINE,value = 'se (verdadeiro){cima baixo};')
+        self.caixadigitacao = wx.TextCtrl(self, style=wx.TE_MULTILINE)
         self.caixadigitacao.BackgroundColour = '#FFFFFF'
         self.statusbar = self.CreateStatusBar()
         self.statusbar.SetFieldsCount(2)
