@@ -18,9 +18,6 @@ class Evento:
             sintatico.scan(instrucao)
 
         tela.paineljogo.jogo.atualizar(tela)
-        tela.statusbar.SetStatusText('',0)
-        tela.statusbar.SetStatusText('',1)
-        tela.statusbar.SetBackgroundColour('#035A66')
 
     def clickReset(self, tela):
         tela.caixadigitacao.Value = ''
