@@ -92,11 +92,16 @@ class AnalisadorSintatico:
             |   booleanos OU logico"""
             if len(p) > 2:
                if p[2] == 'E':
-                   if p[1] and p[3]:
-                       p[0] = True
+                   if p[1].execute() and p[3].execute():
+                       p[0] = Booleano(False, 'VERDADEIRO',thread,tela)
+                   else:
+                       p[0] = Booleano(False, 'FALSO',thread,tela)
                else:
-                   if p[1] or p[3]:
-                       p[0] = True
+                   if p[1].execute() or p[3].execute():
+                       p[0] = Booleano(False, 'VERDADEIRO',thread,tela)
+                   else:
+                       p[0] = Booleano(False, 'FALSO',thread,tela)
+
             else:
                 p[0] = p[1]
 

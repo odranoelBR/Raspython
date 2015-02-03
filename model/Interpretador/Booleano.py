@@ -18,10 +18,10 @@ class Booleano(IExpressao):
             if self.thread.jogo.robo.temColisaoEsquerda(self.tela.paineljogo.jogo.grupowalls):
                 retorno = True
         if self.expressao == 'SENSORCIMA' :
-            if self.thread.jogo.robo.temColisaoEsquerda(self.tela.paineljogo.jogo.grupowalls):
+            if self.thread.jogo.robo.temColisaoCima(self.tela.paineljogo.jogo.grupowalls):
                 retorno = True
         if self.expressao == 'SENSORBAIXO' :
-            if self.thread.jogo.robo.temColisaoEsquerda(self.tela.paineljogo.jogo.grupowalls):
+            if self.thread.jogo.robo.temColisaoBaixo(self.tela.paineljogo.jogo.grupowalls):
                 retorno = True
 
         if self.expressao == 'VERDADEIRO':
