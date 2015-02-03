@@ -3,501 +3,966 @@ Created by PLY version 3.3 (http://www.dabeaz.com/ply)
 Grammar
 
 Rule 0     S' -> assign
-Rule 1     assign -> CIMA
-Rule 2     assign -> DIREITA
-Rule 3     assign -> ESQUERDA
-Rule 4     assign -> BAIXO
-Rule 5     assign -> SE expressao blocoExecutar
-Rule 6     assign -> SE expressao blocoExecutar SENAO blocoExecutar
-Rule 7     assign -> ENQUANTO expressao FACA blocoExecutar
-Rule 8     assign -> REPITA NUMERO VEZES blocoExecutar
-Rule 9     expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA
-Rule 10    expressao -> COLUNAESQUERDA FALSO COLUNADIREITA
-Rule 11    expressao -> COLUNAESQUERDA sensorCima COLUNADIREITA
-Rule 12    expressao -> COLUNAESQUERDA sensorDireita COLUNADIREITA
-Rule 13    expressao -> COLUNAESQUERDA sensorEsquerda COLUNADIREITA
-Rule 14    expressao -> COLUNAESQUERDA sensorBaixo COLUNADIREITA
-Rule 15    sensorCima -> SENSORCIMA
-Rule 16    sensorCima -> NEGACAO SENSORCIMA
-Rule 17    sensorEsquerda -> SENSORESQUERDA
-Rule 18    sensorEsquerda -> NEGACAO SENSORESQUERDA
-Rule 19    sensorDireita -> SENSORDIREITA
-Rule 20    sensorDireita -> NEGACAO SENSORDIREITA
-Rule 21    sensorBaixo -> SENSORBAIXO
-Rule 22    sensorBaixo -> NEGACAO SENSORBAIXO
-Rule 23    blocoExecutar -> DIREITA
-Rule 24    blocoExecutar -> CIMA
-Rule 25    blocoExecutar -> ESQUERDA
-Rule 26    blocoExecutar -> BAIXO
+Rule 1     assign -> expression
+Rule 2     expression -> terminal_expression
+Rule 3     expression -> non_terminal_expression
+Rule 4     sub_expression -> expression
+Rule 5     sub_expression -> expression sub_expression
+Rule 6     terminal_expression -> DIREITA
+Rule 7     terminal_expression -> CIMA
+Rule 8     terminal_expression -> ESQUERDA
+Rule 9     terminal_expression -> BAIXO
+Rule 10    non_terminal_expression -> se_stmt
+Rule 11    non_terminal_expression -> se_senao_stmt
+Rule 12    non_terminal_expression -> enquanto_stmt
+Rule 13    non_terminal_expression -> repita_stmt
+Rule 14    se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA
+Rule 15    se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA
+Rule 16    enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA
+Rule 17    repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA
+Rule 18    blocoLogico -> COLUNAESQUERDA logico COLUNADIREITA
+Rule 19    booleanos -> VERDADEIRO
+Rule 20    booleanos -> FALSO
+Rule 21    booleanos -> sensorCima
+Rule 22    booleanos -> sensorDireita
+Rule 23    booleanos -> sensorEsquerda
+Rule 24    booleanos -> sensorBaixo
+Rule 25    booleanos -> NEGACAO VERDADEIRO
+Rule 26    booleanos -> NEGACAO FALSO
+Rule 27    booleanos -> NEGACAO sensorCima
+Rule 28    booleanos -> NEGACAO sensorDireita
+Rule 29    booleanos -> NEGACAO sensorEsquerda
+Rule 30    booleanos -> NEGACAO sensorBaixo
+Rule 31    logico -> booleanos
+Rule 32    logico -> booleanos E logico
+Rule 33    logico -> booleanos OU logico
+Rule 34    sensorCima -> SENSORCIMA
+Rule 35    sensorEsquerda -> SENSORESQUERDA
+Rule 36    sensorDireita -> SENSORDIREITA
+Rule 37    sensorBaixo -> SENSORBAIXO
 
 Terminals, with rules where they appear
 
-BAIXO                : 4 26
-CIMA                 : 1 24
-COLUNADIREITA        : 9 10 11 12 13 14
-COLUNAESQUERDA       : 9 10 11 12 13 14
-DIREITA              : 2 23
-ENQUANTO             : 7
-ESQUERDA             : 3 25
-FACA                 : 7
-FALSO                : 10
-NEGACAO              : 16 18 20 22
-NUMERO               : 8
-REPITA               : 8
-SE                   : 5 6
-SENAO                : 6
-SENSORBAIXO          : 21 22
-SENSORCIMA           : 15 16
-SENSORDIREITA        : 19 20
-SENSORESQUERDA       : 17 18
-VERDADEIRO           : 9
-VEZES                : 8
+BAIXO                : 9
+CHAVESDIREITA        : 14 15 15 16 17
+CHAVESESQUERDA       : 14 15 15 16 17
+CIMA                 : 7
+COLUNADIREITA        : 18
+COLUNAESQUERDA       : 18
+DIREITA              : 6
+E                    : 32
+ENQUANTO             : 16
+ESQUERDA             : 8
+FACA                 : 16
+FALSO                : 20 26
+NEGACAO              : 25 26 27 28 29 30
+NUMERO               : 17
+OU                   : 33
+REPITA               : 17
+SE                   : 14 15
+SENAO                : 15
+SENSORBAIXO          : 37
+SENSORCIMA           : 34
+SENSORDIREITA        : 36
+SENSORESQUERDA       : 35
+VERDADEIRO           : 19 25
+VEZES                : 17
 error                : 
 
 Nonterminals, with rules where they appear
 
 assign               : 0
-blocoExecutar        : 5 6 6 7 8
-expressao            : 5 6 7
-sensorBaixo          : 14
-sensorCima           : 11
-sensorDireita        : 12
-sensorEsquerda       : 13
+blocoLogico          : 14 15 16
+booleanos            : 31 32 33
+enquanto_stmt        : 12
+expression           : 1 4 5
+logico               : 18 32 33
+non_terminal_expression : 3
+repita_stmt          : 13
+se_senao_stmt        : 11
+se_stmt              : 10
+sensorBaixo          : 24 30
+sensorCima           : 21 27
+sensorDireita        : 22 28
+sensorEsquerda       : 23 29
+sub_expression       : 5 14 15 15 16 17
+terminal_expression  : 2
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . assign
-    (1) assign -> . CIMA
-    (2) assign -> . DIREITA
-    (3) assign -> . ESQUERDA
-    (4) assign -> . BAIXO
-    (5) assign -> . SE expressao blocoExecutar
-    (6) assign -> . SE expressao blocoExecutar SENAO blocoExecutar
-    (7) assign -> . ENQUANTO expressao FACA blocoExecutar
-    (8) assign -> . REPITA NUMERO VEZES blocoExecutar
+    (1) assign -> . expression
+    (2) expression -> . terminal_expression
+    (3) expression -> . non_terminal_expression
+    (6) terminal_expression -> . DIREITA
+    (7) terminal_expression -> . CIMA
+    (8) terminal_expression -> . ESQUERDA
+    (9) terminal_expression -> . BAIXO
+    (10) non_terminal_expression -> . se_stmt
+    (11) non_terminal_expression -> . se_senao_stmt
+    (12) non_terminal_expression -> . enquanto_stmt
+    (13) non_terminal_expression -> . repita_stmt
+    (14) se_stmt -> . SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (15) se_senao_stmt -> . SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (16) enquanto_stmt -> . ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (17) repita_stmt -> . REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA
 
-    CIMA            shift and go to state 2
-    DIREITA         shift and go to state 5
-    ESQUERDA        shift and go to state 6
-    BAIXO           shift and go to state 4
-    SE              shift and go to state 8
-    ENQUANTO        shift and go to state 3
-    REPITA          shift and go to state 1
+    DIREITA         shift and go to state 12
+    CIMA            shift and go to state 3
+    ESQUERDA        shift and go to state 1
+    BAIXO           shift and go to state 11
+    SE              shift and go to state 15
+    ENQUANTO        shift and go to state 9
+    REPITA          shift and go to state 8
 
-    assign                         shift and go to state 7
+    repita_stmt                    shift and go to state 5
+    non_terminal_expression        shift and go to state 10
+    assign                         shift and go to state 14
+    se_senao_stmt                  shift and go to state 6
+    se_stmt                        shift and go to state 7
+    expression                     shift and go to state 13
+    terminal_expression            shift and go to state 4
+    enquanto_stmt                  shift and go to state 2
 
 state 1
 
-    (8) assign -> REPITA . NUMERO VEZES blocoExecutar
+    (8) terminal_expression -> ESQUERDA .
 
-    NUMERO          shift and go to state 9
+    DIREITA         reduce using rule 8 (terminal_expression -> ESQUERDA .)
+    CIMA            reduce using rule 8 (terminal_expression -> ESQUERDA .)
+    ESQUERDA        reduce using rule 8 (terminal_expression -> ESQUERDA .)
+    BAIXO           reduce using rule 8 (terminal_expression -> ESQUERDA .)
+    SE              reduce using rule 8 (terminal_expression -> ESQUERDA .)
+    ENQUANTO        reduce using rule 8 (terminal_expression -> ESQUERDA .)
+    REPITA          reduce using rule 8 (terminal_expression -> ESQUERDA .)
+    CHAVESDIREITA   reduce using rule 8 (terminal_expression -> ESQUERDA .)
+    $end            reduce using rule 8 (terminal_expression -> ESQUERDA .)
 
 
 state 2
 
-    (1) assign -> CIMA .
+    (12) non_terminal_expression -> enquanto_stmt .
 
-    $end            reduce using rule 1 (assign -> CIMA .)
+    DIREITA         reduce using rule 12 (non_terminal_expression -> enquanto_stmt .)
+    CIMA            reduce using rule 12 (non_terminal_expression -> enquanto_stmt .)
+    ESQUERDA        reduce using rule 12 (non_terminal_expression -> enquanto_stmt .)
+    BAIXO           reduce using rule 12 (non_terminal_expression -> enquanto_stmt .)
+    SE              reduce using rule 12 (non_terminal_expression -> enquanto_stmt .)
+    ENQUANTO        reduce using rule 12 (non_terminal_expression -> enquanto_stmt .)
+    REPITA          reduce using rule 12 (non_terminal_expression -> enquanto_stmt .)
+    CHAVESDIREITA   reduce using rule 12 (non_terminal_expression -> enquanto_stmt .)
+    $end            reduce using rule 12 (non_terminal_expression -> enquanto_stmt .)
 
 
 state 3
 
-    (7) assign -> ENQUANTO . expressao FACA blocoExecutar
-    (9) expressao -> . COLUNAESQUERDA VERDADEIRO COLUNADIREITA
-    (10) expressao -> . COLUNAESQUERDA FALSO COLUNADIREITA
-    (11) expressao -> . COLUNAESQUERDA sensorCima COLUNADIREITA
-    (12) expressao -> . COLUNAESQUERDA sensorDireita COLUNADIREITA
-    (13) expressao -> . COLUNAESQUERDA sensorEsquerda COLUNADIREITA
-    (14) expressao -> . COLUNAESQUERDA sensorBaixo COLUNADIREITA
+    (7) terminal_expression -> CIMA .
 
-    COLUNAESQUERDA  shift and go to state 11
+    DIREITA         reduce using rule 7 (terminal_expression -> CIMA .)
+    CIMA            reduce using rule 7 (terminal_expression -> CIMA .)
+    ESQUERDA        reduce using rule 7 (terminal_expression -> CIMA .)
+    BAIXO           reduce using rule 7 (terminal_expression -> CIMA .)
+    SE              reduce using rule 7 (terminal_expression -> CIMA .)
+    ENQUANTO        reduce using rule 7 (terminal_expression -> CIMA .)
+    REPITA          reduce using rule 7 (terminal_expression -> CIMA .)
+    CHAVESDIREITA   reduce using rule 7 (terminal_expression -> CIMA .)
+    $end            reduce using rule 7 (terminal_expression -> CIMA .)
 
-    expressao                      shift and go to state 10
 
 state 4
 
-    (4) assign -> BAIXO .
+    (2) expression -> terminal_expression .
 
-    $end            reduce using rule 4 (assign -> BAIXO .)
+    DIREITA         reduce using rule 2 (expression -> terminal_expression .)
+    CIMA            reduce using rule 2 (expression -> terminal_expression .)
+    ESQUERDA        reduce using rule 2 (expression -> terminal_expression .)
+    BAIXO           reduce using rule 2 (expression -> terminal_expression .)
+    SE              reduce using rule 2 (expression -> terminal_expression .)
+    ENQUANTO        reduce using rule 2 (expression -> terminal_expression .)
+    REPITA          reduce using rule 2 (expression -> terminal_expression .)
+    CHAVESDIREITA   reduce using rule 2 (expression -> terminal_expression .)
+    $end            reduce using rule 2 (expression -> terminal_expression .)
 
 
 state 5
 
-    (2) assign -> DIREITA .
+    (13) non_terminal_expression -> repita_stmt .
 
-    $end            reduce using rule 2 (assign -> DIREITA .)
+    DIREITA         reduce using rule 13 (non_terminal_expression -> repita_stmt .)
+    CIMA            reduce using rule 13 (non_terminal_expression -> repita_stmt .)
+    ESQUERDA        reduce using rule 13 (non_terminal_expression -> repita_stmt .)
+    BAIXO           reduce using rule 13 (non_terminal_expression -> repita_stmt .)
+    SE              reduce using rule 13 (non_terminal_expression -> repita_stmt .)
+    ENQUANTO        reduce using rule 13 (non_terminal_expression -> repita_stmt .)
+    REPITA          reduce using rule 13 (non_terminal_expression -> repita_stmt .)
+    CHAVESDIREITA   reduce using rule 13 (non_terminal_expression -> repita_stmt .)
+    $end            reduce using rule 13 (non_terminal_expression -> repita_stmt .)
 
 
 state 6
 
-    (3) assign -> ESQUERDA .
+    (11) non_terminal_expression -> se_senao_stmt .
 
-    $end            reduce using rule 3 (assign -> ESQUERDA .)
+    DIREITA         reduce using rule 11 (non_terminal_expression -> se_senao_stmt .)
+    CIMA            reduce using rule 11 (non_terminal_expression -> se_senao_stmt .)
+    ESQUERDA        reduce using rule 11 (non_terminal_expression -> se_senao_stmt .)
+    BAIXO           reduce using rule 11 (non_terminal_expression -> se_senao_stmt .)
+    SE              reduce using rule 11 (non_terminal_expression -> se_senao_stmt .)
+    ENQUANTO        reduce using rule 11 (non_terminal_expression -> se_senao_stmt .)
+    REPITA          reduce using rule 11 (non_terminal_expression -> se_senao_stmt .)
+    CHAVESDIREITA   reduce using rule 11 (non_terminal_expression -> se_senao_stmt .)
+    $end            reduce using rule 11 (non_terminal_expression -> se_senao_stmt .)
 
 
 state 7
+
+    (10) non_terminal_expression -> se_stmt .
+
+    DIREITA         reduce using rule 10 (non_terminal_expression -> se_stmt .)
+    CIMA            reduce using rule 10 (non_terminal_expression -> se_stmt .)
+    ESQUERDA        reduce using rule 10 (non_terminal_expression -> se_stmt .)
+    BAIXO           reduce using rule 10 (non_terminal_expression -> se_stmt .)
+    SE              reduce using rule 10 (non_terminal_expression -> se_stmt .)
+    ENQUANTO        reduce using rule 10 (non_terminal_expression -> se_stmt .)
+    REPITA          reduce using rule 10 (non_terminal_expression -> se_stmt .)
+    CHAVESDIREITA   reduce using rule 10 (non_terminal_expression -> se_stmt .)
+    $end            reduce using rule 10 (non_terminal_expression -> se_stmt .)
+
+
+state 8
+
+    (17) repita_stmt -> REPITA . NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA
+
+    NUMERO          shift and go to state 16
+
+
+state 9
+
+    (16) enquanto_stmt -> ENQUANTO . blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (18) blocoLogico -> . COLUNAESQUERDA logico COLUNADIREITA
+
+    COLUNAESQUERDA  shift and go to state 17
+
+    blocoLogico                    shift and go to state 18
+
+state 10
+
+    (3) expression -> non_terminal_expression .
+
+    DIREITA         reduce using rule 3 (expression -> non_terminal_expression .)
+    CIMA            reduce using rule 3 (expression -> non_terminal_expression .)
+    ESQUERDA        reduce using rule 3 (expression -> non_terminal_expression .)
+    BAIXO           reduce using rule 3 (expression -> non_terminal_expression .)
+    SE              reduce using rule 3 (expression -> non_terminal_expression .)
+    ENQUANTO        reduce using rule 3 (expression -> non_terminal_expression .)
+    REPITA          reduce using rule 3 (expression -> non_terminal_expression .)
+    CHAVESDIREITA   reduce using rule 3 (expression -> non_terminal_expression .)
+    $end            reduce using rule 3 (expression -> non_terminal_expression .)
+
+
+state 11
+
+    (9) terminal_expression -> BAIXO .
+
+    DIREITA         reduce using rule 9 (terminal_expression -> BAIXO .)
+    CIMA            reduce using rule 9 (terminal_expression -> BAIXO .)
+    ESQUERDA        reduce using rule 9 (terminal_expression -> BAIXO .)
+    BAIXO           reduce using rule 9 (terminal_expression -> BAIXO .)
+    SE              reduce using rule 9 (terminal_expression -> BAIXO .)
+    ENQUANTO        reduce using rule 9 (terminal_expression -> BAIXO .)
+    REPITA          reduce using rule 9 (terminal_expression -> BAIXO .)
+    CHAVESDIREITA   reduce using rule 9 (terminal_expression -> BAIXO .)
+    $end            reduce using rule 9 (terminal_expression -> BAIXO .)
+
+
+state 12
+
+    (6) terminal_expression -> DIREITA .
+
+    DIREITA         reduce using rule 6 (terminal_expression -> DIREITA .)
+    CIMA            reduce using rule 6 (terminal_expression -> DIREITA .)
+    ESQUERDA        reduce using rule 6 (terminal_expression -> DIREITA .)
+    BAIXO           reduce using rule 6 (terminal_expression -> DIREITA .)
+    SE              reduce using rule 6 (terminal_expression -> DIREITA .)
+    ENQUANTO        reduce using rule 6 (terminal_expression -> DIREITA .)
+    REPITA          reduce using rule 6 (terminal_expression -> DIREITA .)
+    CHAVESDIREITA   reduce using rule 6 (terminal_expression -> DIREITA .)
+    $end            reduce using rule 6 (terminal_expression -> DIREITA .)
+
+
+state 13
+
+    (1) assign -> expression .
+
+    $end            reduce using rule 1 (assign -> expression .)
+
+
+state 14
 
     (0) S' -> assign .
 
 
 
-state 8
-
-    (5) assign -> SE . expressao blocoExecutar
-    (6) assign -> SE . expressao blocoExecutar SENAO blocoExecutar
-    (9) expressao -> . COLUNAESQUERDA VERDADEIRO COLUNADIREITA
-    (10) expressao -> . COLUNAESQUERDA FALSO COLUNADIREITA
-    (11) expressao -> . COLUNAESQUERDA sensorCima COLUNADIREITA
-    (12) expressao -> . COLUNAESQUERDA sensorDireita COLUNADIREITA
-    (13) expressao -> . COLUNAESQUERDA sensorEsquerda COLUNADIREITA
-    (14) expressao -> . COLUNAESQUERDA sensorBaixo COLUNADIREITA
-
-    COLUNAESQUERDA  shift and go to state 11
-
-    expressao                      shift and go to state 12
-
-state 9
-
-    (8) assign -> REPITA NUMERO . VEZES blocoExecutar
-
-    VEZES           shift and go to state 13
-
-
-state 10
-
-    (7) assign -> ENQUANTO expressao . FACA blocoExecutar
-
-    FACA            shift and go to state 14
-
-
-state 11
-
-    (9) expressao -> COLUNAESQUERDA . VERDADEIRO COLUNADIREITA
-    (10) expressao -> COLUNAESQUERDA . FALSO COLUNADIREITA
-    (11) expressao -> COLUNAESQUERDA . sensorCima COLUNADIREITA
-    (12) expressao -> COLUNAESQUERDA . sensorDireita COLUNADIREITA
-    (13) expressao -> COLUNAESQUERDA . sensorEsquerda COLUNADIREITA
-    (14) expressao -> COLUNAESQUERDA . sensorBaixo COLUNADIREITA
-    (15) sensorCima -> . SENSORCIMA
-    (16) sensorCima -> . NEGACAO SENSORCIMA
-    (19) sensorDireita -> . SENSORDIREITA
-    (20) sensorDireita -> . NEGACAO SENSORDIREITA
-    (17) sensorEsquerda -> . SENSORESQUERDA
-    (18) sensorEsquerda -> . NEGACAO SENSORESQUERDA
-    (21) sensorBaixo -> . SENSORBAIXO
-    (22) sensorBaixo -> . NEGACAO SENSORBAIXO
-
-    VERDADEIRO      shift and go to state 16
-    FALSO           shift and go to state 19
-    SENSORCIMA      shift and go to state 20
-    NEGACAO         shift and go to state 22
-    SENSORDIREITA   shift and go to state 18
-    SENSORESQUERDA  shift and go to state 17
-    SENSORBAIXO     shift and go to state 24
-
-    sensorDireita                  shift and go to state 15
-    sensorBaixo                    shift and go to state 23
-    sensorEsquerda                 shift and go to state 21
-    sensorCima                     shift and go to state 25
-
-state 12
-
-    (5) assign -> SE expressao . blocoExecutar
-    (6) assign -> SE expressao . blocoExecutar SENAO blocoExecutar
-    (23) blocoExecutar -> . DIREITA
-    (24) blocoExecutar -> . CIMA
-    (25) blocoExecutar -> . ESQUERDA
-    (26) blocoExecutar -> . BAIXO
-
-    DIREITA         shift and go to state 30
-    CIMA            shift and go to state 26
-    ESQUERDA        shift and go to state 29
-    BAIXO           shift and go to state 27
-
-    blocoExecutar                  shift and go to state 28
-
-state 13
-
-    (8) assign -> REPITA NUMERO VEZES . blocoExecutar
-    (23) blocoExecutar -> . DIREITA
-    (24) blocoExecutar -> . CIMA
-    (25) blocoExecutar -> . ESQUERDA
-    (26) blocoExecutar -> . BAIXO
-
-    DIREITA         shift and go to state 30
-    CIMA            shift and go to state 26
-    ESQUERDA        shift and go to state 29
-    BAIXO           shift and go to state 27
-
-    blocoExecutar                  shift and go to state 31
-
-state 14
-
-    (7) assign -> ENQUANTO expressao FACA . blocoExecutar
-    (23) blocoExecutar -> . DIREITA
-    (24) blocoExecutar -> . CIMA
-    (25) blocoExecutar -> . ESQUERDA
-    (26) blocoExecutar -> . BAIXO
-
-    DIREITA         shift and go to state 30
-    CIMA            shift and go to state 26
-    ESQUERDA        shift and go to state 29
-    BAIXO           shift and go to state 27
-
-    blocoExecutar                  shift and go to state 32
-
 state 15
 
-    (12) expressao -> COLUNAESQUERDA sensorDireita . COLUNADIREITA
+    (14) se_stmt -> SE . blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (15) se_senao_stmt -> SE . blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (18) blocoLogico -> . COLUNAESQUERDA logico COLUNADIREITA
 
-    COLUNADIREITA   shift and go to state 33
+    COLUNAESQUERDA  shift and go to state 17
 
+    blocoLogico                    shift and go to state 19
 
 state 16
 
-    (9) expressao -> COLUNAESQUERDA VERDADEIRO . COLUNADIREITA
+    (17) repita_stmt -> REPITA NUMERO . VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA
 
-    COLUNADIREITA   shift and go to state 34
+    VEZES           shift and go to state 20
 
 
 state 17
 
-    (17) sensorEsquerda -> SENSORESQUERDA .
+    (18) blocoLogico -> COLUNAESQUERDA . logico COLUNADIREITA
+    (31) logico -> . booleanos
+    (32) logico -> . booleanos E logico
+    (33) logico -> . booleanos OU logico
+    (19) booleanos -> . VERDADEIRO
+    (20) booleanos -> . FALSO
+    (21) booleanos -> . sensorCima
+    (22) booleanos -> . sensorDireita
+    (23) booleanos -> . sensorEsquerda
+    (24) booleanos -> . sensorBaixo
+    (25) booleanos -> . NEGACAO VERDADEIRO
+    (26) booleanos -> . NEGACAO FALSO
+    (27) booleanos -> . NEGACAO sensorCima
+    (28) booleanos -> . NEGACAO sensorDireita
+    (29) booleanos -> . NEGACAO sensorEsquerda
+    (30) booleanos -> . NEGACAO sensorBaixo
+    (34) sensorCima -> . SENSORCIMA
+    (36) sensorDireita -> . SENSORDIREITA
+    (35) sensorEsquerda -> . SENSORESQUERDA
+    (37) sensorBaixo -> . SENSORBAIXO
 
-    COLUNADIREITA   reduce using rule 17 (sensorEsquerda -> SENSORESQUERDA .)
+    VERDADEIRO      shift and go to state 27
+    FALSO           shift and go to state 26
+    NEGACAO         shift and go to state 30
+    SENSORCIMA      shift and go to state 28
+    SENSORDIREITA   shift and go to state 24
+    SENSORESQUERDA  shift and go to state 23
+    SENSORBAIXO     shift and go to state 25
 
+    sensorDireita                  shift and go to state 21
+    booleanos                      shift and go to state 22
+    sensorEsquerda                 shift and go to state 29
+    sensorBaixo                    shift and go to state 32
+    sensorCima                     shift and go to state 33
+    logico                         shift and go to state 31
 
 state 18
 
-    (19) sensorDireita -> SENSORDIREITA .
+    (16) enquanto_stmt -> ENQUANTO blocoLogico . FACA CHAVESESQUERDA sub_expression CHAVESDIREITA
 
-    COLUNADIREITA   reduce using rule 19 (sensorDireita -> SENSORDIREITA .)
+    FACA            shift and go to state 34
 
 
 state 19
 
-    (10) expressao -> COLUNAESQUERDA FALSO . COLUNADIREITA
+    (14) se_stmt -> SE blocoLogico . CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (15) se_senao_stmt -> SE blocoLogico . CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA
 
-    COLUNADIREITA   shift and go to state 35
+    CHAVESESQUERDA  shift and go to state 35
 
 
 state 20
 
-    (15) sensorCima -> SENSORCIMA .
+    (17) repita_stmt -> REPITA NUMERO VEZES . CHAVESESQUERDA sub_expression CHAVESDIREITA
 
-    COLUNADIREITA   reduce using rule 15 (sensorCima -> SENSORCIMA .)
+    CHAVESESQUERDA  shift and go to state 36
 
 
 state 21
 
-    (13) expressao -> COLUNAESQUERDA sensorEsquerda . COLUNADIREITA
+    (22) booleanos -> sensorDireita .
 
-    COLUNADIREITA   shift and go to state 36
+    E               reduce using rule 22 (booleanos -> sensorDireita .)
+    OU              reduce using rule 22 (booleanos -> sensorDireita .)
+    COLUNADIREITA   reduce using rule 22 (booleanos -> sensorDireita .)
 
 
 state 22
 
-    (16) sensorCima -> NEGACAO . SENSORCIMA
-    (20) sensorDireita -> NEGACAO . SENSORDIREITA
-    (18) sensorEsquerda -> NEGACAO . SENSORESQUERDA
-    (22) sensorBaixo -> NEGACAO . SENSORBAIXO
+    (31) logico -> booleanos .
+    (32) logico -> booleanos . E logico
+    (33) logico -> booleanos . OU logico
 
-    SENSORCIMA      shift and go to state 39
-    SENSORDIREITA   shift and go to state 40
-    SENSORESQUERDA  shift and go to state 38
-    SENSORBAIXO     shift and go to state 37
+    COLUNADIREITA   reduce using rule 31 (logico -> booleanos .)
+    E               shift and go to state 38
+    OU              shift and go to state 37
 
 
 state 23
 
-    (14) expressao -> COLUNAESQUERDA sensorBaixo . COLUNADIREITA
+    (35) sensorEsquerda -> SENSORESQUERDA .
 
-    COLUNADIREITA   shift and go to state 41
+    E               reduce using rule 35 (sensorEsquerda -> SENSORESQUERDA .)
+    OU              reduce using rule 35 (sensorEsquerda -> SENSORESQUERDA .)
+    COLUNADIREITA   reduce using rule 35 (sensorEsquerda -> SENSORESQUERDA .)
 
 
 state 24
 
-    (21) sensorBaixo -> SENSORBAIXO .
+    (36) sensorDireita -> SENSORDIREITA .
 
-    COLUNADIREITA   reduce using rule 21 (sensorBaixo -> SENSORBAIXO .)
+    E               reduce using rule 36 (sensorDireita -> SENSORDIREITA .)
+    OU              reduce using rule 36 (sensorDireita -> SENSORDIREITA .)
+    COLUNADIREITA   reduce using rule 36 (sensorDireita -> SENSORDIREITA .)
 
 
 state 25
 
-    (11) expressao -> COLUNAESQUERDA sensorCima . COLUNADIREITA
+    (37) sensorBaixo -> SENSORBAIXO .
 
-    COLUNADIREITA   shift and go to state 42
+    E               reduce using rule 37 (sensorBaixo -> SENSORBAIXO .)
+    OU              reduce using rule 37 (sensorBaixo -> SENSORBAIXO .)
+    COLUNADIREITA   reduce using rule 37 (sensorBaixo -> SENSORBAIXO .)
 
 
 state 26
 
-    (24) blocoExecutar -> CIMA .
+    (20) booleanos -> FALSO .
 
-    $end            reduce using rule 24 (blocoExecutar -> CIMA .)
-    SENAO           reduce using rule 24 (blocoExecutar -> CIMA .)
+    E               reduce using rule 20 (booleanos -> FALSO .)
+    OU              reduce using rule 20 (booleanos -> FALSO .)
+    COLUNADIREITA   reduce using rule 20 (booleanos -> FALSO .)
 
 
 state 27
 
-    (26) blocoExecutar -> BAIXO .
+    (19) booleanos -> VERDADEIRO .
 
-    $end            reduce using rule 26 (blocoExecutar -> BAIXO .)
-    SENAO           reduce using rule 26 (blocoExecutar -> BAIXO .)
+    E               reduce using rule 19 (booleanos -> VERDADEIRO .)
+    OU              reduce using rule 19 (booleanos -> VERDADEIRO .)
+    COLUNADIREITA   reduce using rule 19 (booleanos -> VERDADEIRO .)
 
 
 state 28
 
-    (5) assign -> SE expressao blocoExecutar .
-    (6) assign -> SE expressao blocoExecutar . SENAO blocoExecutar
+    (34) sensorCima -> SENSORCIMA .
 
-    $end            reduce using rule 5 (assign -> SE expressao blocoExecutar .)
-    SENAO           shift and go to state 43
+    E               reduce using rule 34 (sensorCima -> SENSORCIMA .)
+    OU              reduce using rule 34 (sensorCima -> SENSORCIMA .)
+    COLUNADIREITA   reduce using rule 34 (sensorCima -> SENSORCIMA .)
 
 
 state 29
 
-    (25) blocoExecutar -> ESQUERDA .
+    (23) booleanos -> sensorEsquerda .
 
-    $end            reduce using rule 25 (blocoExecutar -> ESQUERDA .)
-    SENAO           reduce using rule 25 (blocoExecutar -> ESQUERDA .)
+    E               reduce using rule 23 (booleanos -> sensorEsquerda .)
+    OU              reduce using rule 23 (booleanos -> sensorEsquerda .)
+    COLUNADIREITA   reduce using rule 23 (booleanos -> sensorEsquerda .)
 
 
 state 30
 
-    (23) blocoExecutar -> DIREITA .
+    (25) booleanos -> NEGACAO . VERDADEIRO
+    (26) booleanos -> NEGACAO . FALSO
+    (27) booleanos -> NEGACAO . sensorCima
+    (28) booleanos -> NEGACAO . sensorDireita
+    (29) booleanos -> NEGACAO . sensorEsquerda
+    (30) booleanos -> NEGACAO . sensorBaixo
+    (34) sensorCima -> . SENSORCIMA
+    (36) sensorDireita -> . SENSORDIREITA
+    (35) sensorEsquerda -> . SENSORESQUERDA
+    (37) sensorBaixo -> . SENSORBAIXO
 
-    $end            reduce using rule 23 (blocoExecutar -> DIREITA .)
-    SENAO           reduce using rule 23 (blocoExecutar -> DIREITA .)
+    VERDADEIRO      shift and go to state 40
+    FALSO           shift and go to state 41
+    SENSORCIMA      shift and go to state 28
+    SENSORDIREITA   shift and go to state 24
+    SENSORESQUERDA  shift and go to state 23
+    SENSORBAIXO     shift and go to state 25
 
+    sensorDireita                  shift and go to state 39
+    sensorBaixo                    shift and go to state 43
+    sensorEsquerda                 shift and go to state 42
+    sensorCima                     shift and go to state 44
 
 state 31
 
-    (8) assign -> REPITA NUMERO VEZES blocoExecutar .
+    (18) blocoLogico -> COLUNAESQUERDA logico . COLUNADIREITA
 
-    $end            reduce using rule 8 (assign -> REPITA NUMERO VEZES blocoExecutar .)
+    COLUNADIREITA   shift and go to state 45
 
 
 state 32
 
-    (7) assign -> ENQUANTO expressao FACA blocoExecutar .
+    (24) booleanos -> sensorBaixo .
 
-    $end            reduce using rule 7 (assign -> ENQUANTO expressao FACA blocoExecutar .)
+    E               reduce using rule 24 (booleanos -> sensorBaixo .)
+    OU              reduce using rule 24 (booleanos -> sensorBaixo .)
+    COLUNADIREITA   reduce using rule 24 (booleanos -> sensorBaixo .)
 
 
 state 33
 
-    (12) expressao -> COLUNAESQUERDA sensorDireita COLUNADIREITA .
+    (21) booleanos -> sensorCima .
 
-    DIREITA         reduce using rule 12 (expressao -> COLUNAESQUERDA sensorDireita COLUNADIREITA .)
-    CIMA            reduce using rule 12 (expressao -> COLUNAESQUERDA sensorDireita COLUNADIREITA .)
-    ESQUERDA        reduce using rule 12 (expressao -> COLUNAESQUERDA sensorDireita COLUNADIREITA .)
-    BAIXO           reduce using rule 12 (expressao -> COLUNAESQUERDA sensorDireita COLUNADIREITA .)
-    FACA            reduce using rule 12 (expressao -> COLUNAESQUERDA sensorDireita COLUNADIREITA .)
+    E               reduce using rule 21 (booleanos -> sensorCima .)
+    OU              reduce using rule 21 (booleanos -> sensorCima .)
+    COLUNADIREITA   reduce using rule 21 (booleanos -> sensorCima .)
 
 
 state 34
 
-    (9) expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .
+    (16) enquanto_stmt -> ENQUANTO blocoLogico FACA . CHAVESESQUERDA sub_expression CHAVESDIREITA
 
-    DIREITA         reduce using rule 9 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
-    CIMA            reduce using rule 9 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
-    ESQUERDA        reduce using rule 9 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
-    BAIXO           reduce using rule 9 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
-    FACA            reduce using rule 9 (expressao -> COLUNAESQUERDA VERDADEIRO COLUNADIREITA .)
+    CHAVESESQUERDA  shift and go to state 46
 
 
 state 35
 
-    (10) expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .
+    (14) se_stmt -> SE blocoLogico CHAVESESQUERDA . sub_expression CHAVESDIREITA
+    (15) se_senao_stmt -> SE blocoLogico CHAVESESQUERDA . sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (4) sub_expression -> . expression
+    (5) sub_expression -> . expression sub_expression
+    (2) expression -> . terminal_expression
+    (3) expression -> . non_terminal_expression
+    (6) terminal_expression -> . DIREITA
+    (7) terminal_expression -> . CIMA
+    (8) terminal_expression -> . ESQUERDA
+    (9) terminal_expression -> . BAIXO
+    (10) non_terminal_expression -> . se_stmt
+    (11) non_terminal_expression -> . se_senao_stmt
+    (12) non_terminal_expression -> . enquanto_stmt
+    (13) non_terminal_expression -> . repita_stmt
+    (14) se_stmt -> . SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (15) se_senao_stmt -> . SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (16) enquanto_stmt -> . ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (17) repita_stmt -> . REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA
 
-    DIREITA         reduce using rule 10 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
-    CIMA            reduce using rule 10 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
-    ESQUERDA        reduce using rule 10 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
-    BAIXO           reduce using rule 10 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
-    FACA            reduce using rule 10 (expressao -> COLUNAESQUERDA FALSO COLUNADIREITA .)
+    DIREITA         shift and go to state 12
+    CIMA            shift and go to state 3
+    ESQUERDA        shift and go to state 1
+    BAIXO           shift and go to state 11
+    SE              shift and go to state 15
+    ENQUANTO        shift and go to state 9
+    REPITA          shift and go to state 8
 
+    repita_stmt                    shift and go to state 5
+    non_terminal_expression        shift and go to state 10
+    sub_expression                 shift and go to state 47
+    se_senao_stmt                  shift and go to state 6
+    se_stmt                        shift and go to state 7
+    expression                     shift and go to state 48
+    terminal_expression            shift and go to state 4
+    enquanto_stmt                  shift and go to state 2
 
 state 36
 
-    (13) expressao -> COLUNAESQUERDA sensorEsquerda COLUNADIREITA .
+    (17) repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA . sub_expression CHAVESDIREITA
+    (4) sub_expression -> . expression
+    (5) sub_expression -> . expression sub_expression
+    (2) expression -> . terminal_expression
+    (3) expression -> . non_terminal_expression
+    (6) terminal_expression -> . DIREITA
+    (7) terminal_expression -> . CIMA
+    (8) terminal_expression -> . ESQUERDA
+    (9) terminal_expression -> . BAIXO
+    (10) non_terminal_expression -> . se_stmt
+    (11) non_terminal_expression -> . se_senao_stmt
+    (12) non_terminal_expression -> . enquanto_stmt
+    (13) non_terminal_expression -> . repita_stmt
+    (14) se_stmt -> . SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (15) se_senao_stmt -> . SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (16) enquanto_stmt -> . ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (17) repita_stmt -> . REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA
 
-    DIREITA         reduce using rule 13 (expressao -> COLUNAESQUERDA sensorEsquerda COLUNADIREITA .)
-    CIMA            reduce using rule 13 (expressao -> COLUNAESQUERDA sensorEsquerda COLUNADIREITA .)
-    ESQUERDA        reduce using rule 13 (expressao -> COLUNAESQUERDA sensorEsquerda COLUNADIREITA .)
-    BAIXO           reduce using rule 13 (expressao -> COLUNAESQUERDA sensorEsquerda COLUNADIREITA .)
-    FACA            reduce using rule 13 (expressao -> COLUNAESQUERDA sensorEsquerda COLUNADIREITA .)
+    DIREITA         shift and go to state 12
+    CIMA            shift and go to state 3
+    ESQUERDA        shift and go to state 1
+    BAIXO           shift and go to state 11
+    SE              shift and go to state 15
+    ENQUANTO        shift and go to state 9
+    REPITA          shift and go to state 8
 
+    repita_stmt                    shift and go to state 5
+    non_terminal_expression        shift and go to state 10
+    sub_expression                 shift and go to state 49
+    se_senao_stmt                  shift and go to state 6
+    se_stmt                        shift and go to state 7
+    expression                     shift and go to state 48
+    terminal_expression            shift and go to state 4
+    enquanto_stmt                  shift and go to state 2
 
 state 37
 
-    (22) sensorBaixo -> NEGACAO SENSORBAIXO .
+    (33) logico -> booleanos OU . logico
+    (31) logico -> . booleanos
+    (32) logico -> . booleanos E logico
+    (33) logico -> . booleanos OU logico
+    (19) booleanos -> . VERDADEIRO
+    (20) booleanos -> . FALSO
+    (21) booleanos -> . sensorCima
+    (22) booleanos -> . sensorDireita
+    (23) booleanos -> . sensorEsquerda
+    (24) booleanos -> . sensorBaixo
+    (25) booleanos -> . NEGACAO VERDADEIRO
+    (26) booleanos -> . NEGACAO FALSO
+    (27) booleanos -> . NEGACAO sensorCima
+    (28) booleanos -> . NEGACAO sensorDireita
+    (29) booleanos -> . NEGACAO sensorEsquerda
+    (30) booleanos -> . NEGACAO sensorBaixo
+    (34) sensorCima -> . SENSORCIMA
+    (36) sensorDireita -> . SENSORDIREITA
+    (35) sensorEsquerda -> . SENSORESQUERDA
+    (37) sensorBaixo -> . SENSORBAIXO
 
-    COLUNADIREITA   reduce using rule 22 (sensorBaixo -> NEGACAO SENSORBAIXO .)
+    VERDADEIRO      shift and go to state 27
+    FALSO           shift and go to state 26
+    NEGACAO         shift and go to state 30
+    SENSORCIMA      shift and go to state 28
+    SENSORDIREITA   shift and go to state 24
+    SENSORESQUERDA  shift and go to state 23
+    SENSORBAIXO     shift and go to state 25
 
+    sensorDireita                  shift and go to state 21
+    booleanos                      shift and go to state 22
+    sensorEsquerda                 shift and go to state 29
+    sensorBaixo                    shift and go to state 32
+    sensorCima                     shift and go to state 33
+    logico                         shift and go to state 50
 
 state 38
 
-    (18) sensorEsquerda -> NEGACAO SENSORESQUERDA .
+    (32) logico -> booleanos E . logico
+    (31) logico -> . booleanos
+    (32) logico -> . booleanos E logico
+    (33) logico -> . booleanos OU logico
+    (19) booleanos -> . VERDADEIRO
+    (20) booleanos -> . FALSO
+    (21) booleanos -> . sensorCima
+    (22) booleanos -> . sensorDireita
+    (23) booleanos -> . sensorEsquerda
+    (24) booleanos -> . sensorBaixo
+    (25) booleanos -> . NEGACAO VERDADEIRO
+    (26) booleanos -> . NEGACAO FALSO
+    (27) booleanos -> . NEGACAO sensorCima
+    (28) booleanos -> . NEGACAO sensorDireita
+    (29) booleanos -> . NEGACAO sensorEsquerda
+    (30) booleanos -> . NEGACAO sensorBaixo
+    (34) sensorCima -> . SENSORCIMA
+    (36) sensorDireita -> . SENSORDIREITA
+    (35) sensorEsquerda -> . SENSORESQUERDA
+    (37) sensorBaixo -> . SENSORBAIXO
 
-    COLUNADIREITA   reduce using rule 18 (sensorEsquerda -> NEGACAO SENSORESQUERDA .)
+    VERDADEIRO      shift and go to state 27
+    FALSO           shift and go to state 26
+    NEGACAO         shift and go to state 30
+    SENSORCIMA      shift and go to state 28
+    SENSORDIREITA   shift and go to state 24
+    SENSORESQUERDA  shift and go to state 23
+    SENSORBAIXO     shift and go to state 25
 
+    sensorDireita                  shift and go to state 21
+    booleanos                      shift and go to state 22
+    sensorEsquerda                 shift and go to state 29
+    sensorBaixo                    shift and go to state 32
+    sensorCima                     shift and go to state 33
+    logico                         shift and go to state 51
 
 state 39
 
-    (16) sensorCima -> NEGACAO SENSORCIMA .
+    (28) booleanos -> NEGACAO sensorDireita .
 
-    COLUNADIREITA   reduce using rule 16 (sensorCima -> NEGACAO SENSORCIMA .)
+    E               reduce using rule 28 (booleanos -> NEGACAO sensorDireita .)
+    OU              reduce using rule 28 (booleanos -> NEGACAO sensorDireita .)
+    COLUNADIREITA   reduce using rule 28 (booleanos -> NEGACAO sensorDireita .)
 
 
 state 40
 
-    (20) sensorDireita -> NEGACAO SENSORDIREITA .
+    (25) booleanos -> NEGACAO VERDADEIRO .
 
-    COLUNADIREITA   reduce using rule 20 (sensorDireita -> NEGACAO SENSORDIREITA .)
+    E               reduce using rule 25 (booleanos -> NEGACAO VERDADEIRO .)
+    OU              reduce using rule 25 (booleanos -> NEGACAO VERDADEIRO .)
+    COLUNADIREITA   reduce using rule 25 (booleanos -> NEGACAO VERDADEIRO .)
 
 
 state 41
 
-    (14) expressao -> COLUNAESQUERDA sensorBaixo COLUNADIREITA .
+    (26) booleanos -> NEGACAO FALSO .
 
-    DIREITA         reduce using rule 14 (expressao -> COLUNAESQUERDA sensorBaixo COLUNADIREITA .)
-    CIMA            reduce using rule 14 (expressao -> COLUNAESQUERDA sensorBaixo COLUNADIREITA .)
-    ESQUERDA        reduce using rule 14 (expressao -> COLUNAESQUERDA sensorBaixo COLUNADIREITA .)
-    BAIXO           reduce using rule 14 (expressao -> COLUNAESQUERDA sensorBaixo COLUNADIREITA .)
-    FACA            reduce using rule 14 (expressao -> COLUNAESQUERDA sensorBaixo COLUNADIREITA .)
+    E               reduce using rule 26 (booleanos -> NEGACAO FALSO .)
+    OU              reduce using rule 26 (booleanos -> NEGACAO FALSO .)
+    COLUNADIREITA   reduce using rule 26 (booleanos -> NEGACAO FALSO .)
 
 
 state 42
 
-    (11) expressao -> COLUNAESQUERDA sensorCima COLUNADIREITA .
+    (29) booleanos -> NEGACAO sensorEsquerda .
 
-    DIREITA         reduce using rule 11 (expressao -> COLUNAESQUERDA sensorCima COLUNADIREITA .)
-    CIMA            reduce using rule 11 (expressao -> COLUNAESQUERDA sensorCima COLUNADIREITA .)
-    ESQUERDA        reduce using rule 11 (expressao -> COLUNAESQUERDA sensorCima COLUNADIREITA .)
-    BAIXO           reduce using rule 11 (expressao -> COLUNAESQUERDA sensorCima COLUNADIREITA .)
-    FACA            reduce using rule 11 (expressao -> COLUNAESQUERDA sensorCima COLUNADIREITA .)
+    E               reduce using rule 29 (booleanos -> NEGACAO sensorEsquerda .)
+    OU              reduce using rule 29 (booleanos -> NEGACAO sensorEsquerda .)
+    COLUNADIREITA   reduce using rule 29 (booleanos -> NEGACAO sensorEsquerda .)
 
 
 state 43
 
-    (6) assign -> SE expressao blocoExecutar SENAO . blocoExecutar
-    (23) blocoExecutar -> . DIREITA
-    (24) blocoExecutar -> . CIMA
-    (25) blocoExecutar -> . ESQUERDA
-    (26) blocoExecutar -> . BAIXO
+    (30) booleanos -> NEGACAO sensorBaixo .
 
-    DIREITA         shift and go to state 30
-    CIMA            shift and go to state 26
-    ESQUERDA        shift and go to state 29
-    BAIXO           shift and go to state 27
+    E               reduce using rule 30 (booleanos -> NEGACAO sensorBaixo .)
+    OU              reduce using rule 30 (booleanos -> NEGACAO sensorBaixo .)
+    COLUNADIREITA   reduce using rule 30 (booleanos -> NEGACAO sensorBaixo .)
 
-    blocoExecutar                  shift and go to state 44
 
 state 44
 
-    (6) assign -> SE expressao blocoExecutar SENAO blocoExecutar .
+    (27) booleanos -> NEGACAO sensorCima .
 
-    $end            reduce using rule 6 (assign -> SE expressao blocoExecutar SENAO blocoExecutar .)
+    E               reduce using rule 27 (booleanos -> NEGACAO sensorCima .)
+    OU              reduce using rule 27 (booleanos -> NEGACAO sensorCima .)
+    COLUNADIREITA   reduce using rule 27 (booleanos -> NEGACAO sensorCima .)
+
+
+state 45
+
+    (18) blocoLogico -> COLUNAESQUERDA logico COLUNADIREITA .
+
+    CHAVESESQUERDA  reduce using rule 18 (blocoLogico -> COLUNAESQUERDA logico COLUNADIREITA .)
+    FACA            reduce using rule 18 (blocoLogico -> COLUNAESQUERDA logico COLUNADIREITA .)
+
+
+state 46
+
+    (16) enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA . sub_expression CHAVESDIREITA
+    (4) sub_expression -> . expression
+    (5) sub_expression -> . expression sub_expression
+    (2) expression -> . terminal_expression
+    (3) expression -> . non_terminal_expression
+    (6) terminal_expression -> . DIREITA
+    (7) terminal_expression -> . CIMA
+    (8) terminal_expression -> . ESQUERDA
+    (9) terminal_expression -> . BAIXO
+    (10) non_terminal_expression -> . se_stmt
+    (11) non_terminal_expression -> . se_senao_stmt
+    (12) non_terminal_expression -> . enquanto_stmt
+    (13) non_terminal_expression -> . repita_stmt
+    (14) se_stmt -> . SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (15) se_senao_stmt -> . SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (16) enquanto_stmt -> . ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (17) repita_stmt -> . REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA
+
+    DIREITA         shift and go to state 12
+    CIMA            shift and go to state 3
+    ESQUERDA        shift and go to state 1
+    BAIXO           shift and go to state 11
+    SE              shift and go to state 15
+    ENQUANTO        shift and go to state 9
+    REPITA          shift and go to state 8
+
+    repita_stmt                    shift and go to state 5
+    non_terminal_expression        shift and go to state 10
+    sub_expression                 shift and go to state 52
+    se_senao_stmt                  shift and go to state 6
+    se_stmt                        shift and go to state 7
+    expression                     shift and go to state 48
+    terminal_expression            shift and go to state 4
+    enquanto_stmt                  shift and go to state 2
+
+state 47
+
+    (14) se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression . CHAVESDIREITA
+    (15) se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression . CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA
+
+    CHAVESDIREITA   shift and go to state 53
+
+
+state 48
+
+    (4) sub_expression -> expression .
+    (5) sub_expression -> expression . sub_expression
+    (4) sub_expression -> . expression
+    (5) sub_expression -> . expression sub_expression
+    (2) expression -> . terminal_expression
+    (3) expression -> . non_terminal_expression
+    (6) terminal_expression -> . DIREITA
+    (7) terminal_expression -> . CIMA
+    (8) terminal_expression -> . ESQUERDA
+    (9) terminal_expression -> . BAIXO
+    (10) non_terminal_expression -> . se_stmt
+    (11) non_terminal_expression -> . se_senao_stmt
+    (12) non_terminal_expression -> . enquanto_stmt
+    (13) non_terminal_expression -> . repita_stmt
+    (14) se_stmt -> . SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (15) se_senao_stmt -> . SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (16) enquanto_stmt -> . ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (17) repita_stmt -> . REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA
+
+    CHAVESDIREITA   reduce using rule 4 (sub_expression -> expression .)
+    DIREITA         shift and go to state 12
+    CIMA            shift and go to state 3
+    ESQUERDA        shift and go to state 1
+    BAIXO           shift and go to state 11
+    SE              shift and go to state 15
+    ENQUANTO        shift and go to state 9
+    REPITA          shift and go to state 8
+
+    repita_stmt                    shift and go to state 5
+    non_terminal_expression        shift and go to state 10
+    sub_expression                 shift and go to state 54
+    se_senao_stmt                  shift and go to state 6
+    se_stmt                        shift and go to state 7
+    expression                     shift and go to state 48
+    terminal_expression            shift and go to state 4
+    enquanto_stmt                  shift and go to state 2
+
+state 49
+
+    (17) repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression . CHAVESDIREITA
+
+    CHAVESDIREITA   shift and go to state 55
+
+
+state 50
+
+    (33) logico -> booleanos OU logico .
+
+    COLUNADIREITA   reduce using rule 33 (logico -> booleanos OU logico .)
+
+
+state 51
+
+    (32) logico -> booleanos E logico .
+
+    COLUNADIREITA   reduce using rule 32 (logico -> booleanos E logico .)
+
+
+state 52
+
+    (16) enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression . CHAVESDIREITA
+
+    CHAVESDIREITA   shift and go to state 56
+
+
+state 53
+
+    (14) se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA .
+    (15) se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA . SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA
+
+    DIREITA         reduce using rule 14 (se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    CIMA            reduce using rule 14 (se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    ESQUERDA        reduce using rule 14 (se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    BAIXO           reduce using rule 14 (se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    SE              reduce using rule 14 (se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    ENQUANTO        reduce using rule 14 (se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    REPITA          reduce using rule 14 (se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    CHAVESDIREITA   reduce using rule 14 (se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    $end            reduce using rule 14 (se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    SENAO           shift and go to state 57
+
+
+state 54
+
+    (5) sub_expression -> expression sub_expression .
+
+    CHAVESDIREITA   reduce using rule 5 (sub_expression -> expression sub_expression .)
+
+
+state 55
+
+    (17) repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA .
+
+    DIREITA         reduce using rule 17 (repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    CIMA            reduce using rule 17 (repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    ESQUERDA        reduce using rule 17 (repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    BAIXO           reduce using rule 17 (repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    SE              reduce using rule 17 (repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    ENQUANTO        reduce using rule 17 (repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    REPITA          reduce using rule 17 (repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    CHAVESDIREITA   reduce using rule 17 (repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    $end            reduce using rule 17 (repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+
+
+state 56
+
+    (16) enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA .
+
+    DIREITA         reduce using rule 16 (enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    CIMA            reduce using rule 16 (enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    ESQUERDA        reduce using rule 16 (enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    BAIXO           reduce using rule 16 (enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    SE              reduce using rule 16 (enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    ENQUANTO        reduce using rule 16 (enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    REPITA          reduce using rule 16 (enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    CHAVESDIREITA   reduce using rule 16 (enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    $end            reduce using rule 16 (enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+
+
+state 57
+
+    (15) se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO . CHAVESESQUERDA sub_expression CHAVESDIREITA
+
+    CHAVESESQUERDA  shift and go to state 58
+
+
+state 58
+
+    (15) se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA . sub_expression CHAVESDIREITA
+    (4) sub_expression -> . expression
+    (5) sub_expression -> . expression sub_expression
+    (2) expression -> . terminal_expression
+    (3) expression -> . non_terminal_expression
+    (6) terminal_expression -> . DIREITA
+    (7) terminal_expression -> . CIMA
+    (8) terminal_expression -> . ESQUERDA
+    (9) terminal_expression -> . BAIXO
+    (10) non_terminal_expression -> . se_stmt
+    (11) non_terminal_expression -> . se_senao_stmt
+    (12) non_terminal_expression -> . enquanto_stmt
+    (13) non_terminal_expression -> . repita_stmt
+    (14) se_stmt -> . SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (15) se_senao_stmt -> . SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (16) enquanto_stmt -> . ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA
+    (17) repita_stmt -> . REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA
+
+    DIREITA         shift and go to state 12
+    CIMA            shift and go to state 3
+    ESQUERDA        shift and go to state 1
+    BAIXO           shift and go to state 11
+    SE              shift and go to state 15
+    ENQUANTO        shift and go to state 9
+    REPITA          shift and go to state 8
+
+    repita_stmt                    shift and go to state 5
+    non_terminal_expression        shift and go to state 10
+    sub_expression                 shift and go to state 59
+    se_senao_stmt                  shift and go to state 6
+    se_stmt                        shift and go to state 7
+    expression                     shift and go to state 48
+    terminal_expression            shift and go to state 4
+    enquanto_stmt                  shift and go to state 2
+
+state 59
+
+    (15) se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression . CHAVESDIREITA
+
+    CHAVESDIREITA   shift and go to state 60
+
+
+state 60
+
+    (15) se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA .
+
+    DIREITA         reduce using rule 15 (se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    CIMA            reduce using rule 15 (se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    ESQUERDA        reduce using rule 15 (se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    BAIXO           reduce using rule 15 (se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    SE              reduce using rule 15 (se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    ENQUANTO        reduce using rule 15 (se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    REPITA          reduce using rule 15 (se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    CHAVESDIREITA   reduce using rule 15 (se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA .)
+    $end            reduce using rule 15 (se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA .)
 
