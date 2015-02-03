@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '3\x87\xc0\x93\xad\xb1\xdf\x84H\x1a\xf4\x1b\x00\xe6x\t'
+_lr_signature = '}!\xab\xe9\x90\xf0\x9bu\xd8"\x1fn\xb8\x9d\xbeY'
     
-_lr_action_items = {'SENSORDIREITA':([17,30,37,38,],[24,24,24,24,]),'FACA':([18,45,],[34,-18,]),'COLUNAESQUERDA':([9,15,],[17,17,]),'FALSO':([17,30,37,38,],[26,41,26,26,]),'SENSORESQUERDA':([17,30,37,38,],[23,23,23,23,]),'NEGACAO':([17,37,38,],[30,30,30,]),'SENSORBAIXO':([17,30,37,38,],[25,25,25,25,]),'ESQUERDA':([0,1,2,3,4,5,6,7,10,11,12,35,36,46,48,53,55,56,58,60,],[1,-8,-12,-7,-2,-13,-11,-10,-3,-9,-6,1,1,1,1,-14,-17,-16,1,-15,]),'CIMA':([0,1,2,3,4,5,6,7,10,11,12,35,36,46,48,53,55,56,58,60,],[3,-8,-12,-7,-2,-13,-11,-10,-3,-9,-6,3,3,3,3,-14,-17,-16,3,-15,]),'VERDADEIRO':([17,30,37,38,],[27,40,27,27,]),'CHAVESESQUERDA':([19,20,34,45,57,],[35,36,46,-18,58,]),'$end':([1,2,3,4,5,6,7,10,11,12,13,14,53,55,56,60,],[-8,-12,-7,-2,-13,-11,-10,-3,-9,-6,-1,0,-14,-17,-16,-15,]),'E':([21,22,23,24,25,26,27,28,29,32,33,39,40,41,42,43,44,],[-22,38,-35,-36,-37,-20,-19,-34,-23,-24,-21,-28,-25,-26,-29,-30,-27,]),'SENAO':([53,],[57,]),'NUMERO':([8,],[16,]),'BAIXO':([0,1,2,3,4,5,6,7,10,11,12,35,36,46,48,53,55,56,58,60,],[11,-8,-12,-7,-2,-13,-11,-10,-3,-9,-6,11,11,11,11,-14,-17,-16,11,-15,]),'COLUNADIREITA':([21,22,23,24,25,26,27,28,29,31,32,33,39,40,41,42,43,44,50,51,],[-22,-31,-35,-36,-37,-20,-19,-34,-23,45,-24,-21,-28,-25,-26,-29,-30,-27,-33,-32,]),'REPITA':([0,1,2,3,4,5,6,7,10,11,12,35,36,46,48,53,55,56,58,60,],[8,-8,-12,-7,-2,-13,-11,-10,-3,-9,-6,8,8,8,8,-14,-17,-16,8,-15,]),'ENQUANTO':([0,1,2,3,4,5,6,7,10,11,12,35,36,46,48,53,55,56,58,60,],[9,-8,-12,-7,-2,-13,-11,-10,-3,-9,-6,9,9,9,9,-14,-17,-16,9,-15,]),'CHAVESDIREITA':([1,2,3,4,5,6,7,10,11,12,47,48,49,52,53,54,55,56,59,60,],[-8,-12,-7,-2,-13,-11,-10,-3,-9,-6,53,-4,55,56,-14,-5,-17,-16,60,-15,]),'VEZES':([16,],[20,]),'SE':([0,1,2,3,4,5,6,7,10,11,12,35,36,46,48,53,55,56,58,60,],[15,-8,-12,-7,-2,-13,-11,-10,-3,-9,-6,15,15,15,15,-14,-17,-16,15,-15,]),'OU':([21,22,23,24,25,26,27,28,29,32,33,39,40,41,42,43,44,],[-22,37,-35,-36,-37,-20,-19,-34,-23,-24,-21,-28,-25,-26,-29,-30,-27,]),'DIREITA':([0,1,2,3,4,5,6,7,10,11,12,35,36,46,48,53,55,56,58,60,],[12,-8,-12,-7,-2,-13,-11,-10,-3,-9,-6,12,12,12,12,-14,-17,-16,12,-15,]),'SENSORCIMA':([17,30,37,38,],[28,28,28,28,]),}
+_lr_action_items = {'REPITA':([0,],[1,]),'CIMA':([0,12,13,23,26,33,34,35,36,37,38,39,41,],[2,27,27,-9,27,-14,-11,-12,-15,-10,-16,-13,27,]),'VERDADEIRO':([10,21,],[15,15,]),'ENQUANTO':([0,],[3,]),'SENSORDIREITA':([10,21,],[17,17,]),'VEZES':([9,],[13,]),'FALSO':([10,21,],[18,18,]),'FACA':([11,23,33,34,35,36,37,38,39,],[26,-9,-14,-11,-12,-15,-10,-16,-13,]),'NUMERO':([1,],[9,]),'BAIXO':([0,12,13,23,26,33,34,35,36,37,38,39,41,],[4,28,28,-9,28,-14,-11,-12,-15,-10,-16,-13,28,]),'COLUNAESQUERDA':([3,8,],[10,10,]),'SENAO':([27,28,29,30,31,],[-22,-24,41,-23,-21,]),'COLUNADIREITA':([14,15,16,17,18,19,20,22,24,25,],[33,34,-18,-19,35,-17,36,38,-20,39,]),'ESQUERDA':([0,12,13,23,26,33,34,35,36,37,38,39,41,],[6,30,30,-9,30,-14,-11,-12,-15,-10,-16,-13,30,]),'SENSORESQUERDA':([10,21,],[16,16,]),'NEGACAO':([10,],[21,]),'SENSORBAIXO':([10,21,],[24,24,]),'SENSORCIMA':([10,21,],[19,19,]),'DIREITA':([0,12,13,23,26,33,34,35,36,37,38,39,41,],[5,31,31,-9,31,-14,-11,-12,-15,-10,-16,-13,31,]),'SE':([0,],[8,]),'$end':([2,4,5,6,7,27,28,29,30,31,32,40,42,],[-1,-4,-2,-3,0,-22,-24,-5,-23,-21,-8,-7,-6,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'sensorDireita':([17,30,37,38,],[21,39,21,21,]),'repita_stmt':([0,35,36,46,48,58,],[5,5,5,5,5,5,]),'sensorEsquerda':([17,30,37,38,],[29,42,29,29,]),'terminal_expression':([0,35,36,46,48,58,],[4,4,4,4,4,4,]),'sub_expression':([35,36,46,48,58,],[47,49,52,54,59,]),'assign':([0,],[14,]),'se_senao_stmt':([0,35,36,46,48,58,],[6,6,6,6,6,6,]),'se_stmt':([0,35,36,46,48,58,],[7,7,7,7,7,7,]),'booleanos':([17,37,38,],[22,22,22,]),'blocoLogico':([9,15,],[18,19,]),'sensorBaixo':([17,30,37,38,],[32,43,32,32,]),'logico':([17,37,38,],[31,50,51,]),'expression':([0,35,36,46,48,58,],[13,48,48,48,48,48,]),'non_terminal_expression':([0,35,36,46,48,58,],[10,10,10,10,10,10,]),'sensorCima':([17,30,37,38,],[33,44,33,33,]),'enquanto_stmt':([0,35,36,46,48,58,],[2,2,2,2,2,2,]),}
+_lr_goto_items = {'sensorDireita':([10,21,],[14,14,]),'blocoLogico':([3,8,],[11,12,]),'blocoExecutar':([12,13,26,41,],[29,32,40,42,]),'sensorEsquerda':([10,21,],[20,20,]),'sensorBaixo':([10,21,],[22,22,]),'assign':([0,],[7,]),'sensorCima':([10,21,],[25,25,]),'logico':([10,21,],[23,37,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -26,41 +26,28 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> assign","S'",1,None,None,None),
-  ('assign -> expression','assign',1,'p_instrucao','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',20),
-  ('expression -> terminal_expression','expression',1,'p_expression','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',24),
-  ('expression -> non_terminal_expression','expression',1,'p_expression','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',25),
-  ('sub_expression -> expression','sub_expression',1,'p_sub_expression','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',29),
-  ('sub_expression -> expression sub_expression','sub_expression',2,'p_sub_expression','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',30),
-  ('terminal_expression -> DIREITA','terminal_expression',1,'p_terminal_expression','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',37),
-  ('terminal_expression -> CIMA','terminal_expression',1,'p_terminal_expression','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',38),
-  ('terminal_expression -> ESQUERDA','terminal_expression',1,'p_terminal_expression','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',39),
-  ('terminal_expression -> BAIXO','terminal_expression',1,'p_terminal_expression','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',40),
-  ('non_terminal_expression -> se_stmt','non_terminal_expression',1,'p_non_terminal_expression','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',44),
-  ('non_terminal_expression -> se_senao_stmt','non_terminal_expression',1,'p_non_terminal_expression','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',45),
-  ('non_terminal_expression -> enquanto_stmt','non_terminal_expression',1,'p_non_terminal_expression','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',46),
-  ('non_terminal_expression -> repita_stmt','non_terminal_expression',1,'p_non_terminal_expression','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',47),
-  ('se_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA','se_stmt',5,'p_se_stmt','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',51),
-  ('se_senao_stmt -> SE blocoLogico CHAVESESQUERDA sub_expression CHAVESDIREITA SENAO CHAVESESQUERDA sub_expression CHAVESDIREITA','se_senao_stmt',9,'p_se_senao_stmt','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',55),
-  ('enquanto_stmt -> ENQUANTO blocoLogico FACA CHAVESESQUERDA sub_expression CHAVESDIREITA','enquanto_stmt',6,'p_enquanto_stmt','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',59),
-  ('repita_stmt -> REPITA NUMERO VEZES CHAVESESQUERDA sub_expression CHAVESDIREITA','repita_stmt',6,'p_repita_stmt','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',63),
-  ('blocoLogico -> COLUNAESQUERDA logico COLUNADIREITA','blocoLogico',3,'p_blocoLogico','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',67),
-  ('booleanos -> VERDADEIRO','booleanos',1,'p_booleanos','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',72),
-  ('booleanos -> FALSO','booleanos',1,'p_booleanos','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',73),
-  ('booleanos -> sensorCima','booleanos',1,'p_booleanos','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',74),
-  ('booleanos -> sensorDireita','booleanos',1,'p_booleanos','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',75),
-  ('booleanos -> sensorEsquerda','booleanos',1,'p_booleanos','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',76),
-  ('booleanos -> sensorBaixo','booleanos',1,'p_booleanos','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',77),
-  ('booleanos -> NEGACAO VERDADEIRO','booleanos',2,'p_booleanos','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',78),
-  ('booleanos -> NEGACAO FALSO','booleanos',2,'p_booleanos','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',79),
-  ('booleanos -> NEGACAO sensorCima','booleanos',2,'p_booleanos','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',80),
-  ('booleanos -> NEGACAO sensorDireita','booleanos',2,'p_booleanos','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',81),
-  ('booleanos -> NEGACAO sensorEsquerda','booleanos',2,'p_booleanos','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',82),
-  ('booleanos -> NEGACAO sensorBaixo','booleanos',2,'p_booleanos','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',83),
-  ('logico -> booleanos','logico',1,'p_logico','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',97),
-  ('logico -> booleanos E logico','logico',3,'p_logico','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',98),
-  ('logico -> booleanos OU logico','logico',3,'p_logico','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',99),
-  ('sensorCima -> SENSORCIMA','sensorCima',1,'p_sensorCima','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',111),
-  ('sensorEsquerda -> SENSORESQUERDA','sensorEsquerda',1,'p_sensorEsquerda','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',115),
-  ('sensorDireita -> SENSORDIREITA','sensorDireita',1,'p_sensorDireita','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',119),
-  ('sensorBaixo -> SENSORBAIXO','sensorBaixo',1,'p_sensorBaixo','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',123),
+  ('assign -> CIMA','assign',1,'p_assign_mover_frente','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',13),
+  ('assign -> DIREITA','assign',1,'p_assign_mover_direita','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',17),
+  ('assign -> ESQUERDA','assign',1,'p_assign_mover_esquerda','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',21),
+  ('assign -> BAIXO','assign',1,'p_assign_mover_volta','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',25),
+  ('assign -> SE blocoLogico blocoExecutar','assign',3,'p_se_stmt','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',29),
+  ('assign -> SE blocoLogico blocoExecutar SENAO blocoExecutar','assign',5,'p_se_senao_stmt','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',34),
+  ('assign -> ENQUANTO blocoLogico FACA blocoExecutar','assign',4,'p_enquanto_stmt','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',41),
+  ('assign -> REPITA NUMERO VEZES blocoExecutar','assign',4,'p_faca_stmt','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',47),
+  ('blocoLogico -> COLUNAESQUERDA logico','blocoLogico',2,'p_blocoLogico','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',54),
+  ('blocoLogico -> COLUNAESQUERDA NEGACAO logico','blocoLogico',3,'p_blocoLogico','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',55),
+  ('logico -> VERDADEIRO COLUNADIREITA','logico',2,'p_logico','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',63),
+  ('logico -> FALSO COLUNADIREITA','logico',2,'p_logico','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',64),
+  ('logico -> sensorCima COLUNADIREITA','logico',2,'p_logico','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',65),
+  ('logico -> sensorDireita COLUNADIREITA','logico',2,'p_logico','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',66),
+  ('logico -> sensorEsquerda COLUNADIREITA','logico',2,'p_logico','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',67),
+  ('logico -> sensorBaixo COLUNADIREITA','logico',2,'p_logico','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',68),
+  ('sensorCima -> SENSORCIMA','sensorCima',1,'p_sensorCima','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',76),
+  ('sensorEsquerda -> SENSORESQUERDA','sensorEsquerda',1,'p_sensorEsquerda','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',81),
+  ('sensorDireita -> SENSORDIREITA','sensorDireita',1,'p_sensorDireita','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',86),
+  ('sensorBaixo -> SENSORBAIXO','sensorBaixo',1,'p_sensorBaixo','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',91),
+  ('blocoExecutar -> DIREITA','blocoExecutar',1,'p_blocoExecutar','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',97),
+  ('blocoExecutar -> CIMA','blocoExecutar',1,'p_blocoExecutar','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',98),
+  ('blocoExecutar -> ESQUERDA','blocoExecutar',1,'p_blocoExecutar','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',99),
+  ('blocoExecutar -> BAIXO','blocoExecutar',1,'p_blocoExecutar','D:\\Documents\\GitHub\\Raspython\\model\\Interpretador\\AnalisadorSintatico.py',100),
 ]
