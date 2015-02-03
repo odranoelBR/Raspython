@@ -30,10 +30,16 @@ class TelaPrincipal(wx.Frame):
           400,
           300),
          (self.botao,
-          740,
+          680,
           380,
           80,
           40),
+          (self.botaoReset,
+          800,
+          380,
+          80,
+          40),
+
          (self.paineljogo,
           15,
           60,
@@ -49,7 +55,8 @@ class TelaPrincipal(wx.Frame):
         self.mensagem.ForegroundColour = '#FFFFFF'
         self.mensagem.SetFont(font)
         self.botao = wx.Button(self, label='Rodar')
-        self.caixadigitacao = wx.TextCtrl(self, style=wx.TE_MULTILINE, value='se (sensordireita) { cima } senao { cima baixo};')
+        self.botaoReset = wx.Button(self, label='Reiniciar')
+        self.caixadigitacao = wx.TextCtrl(self, style=wx.TE_MULTILINE, value='se (sensoresquerda) { cima }')
         self.caixadigitacao.BackgroundColour = '#FFFFFF'
         self.statusbar = self.CreateStatusBar()
         self.statusbar.SetFieldsCount(2)
@@ -58,8 +65,12 @@ class TelaPrincipal(wx.Frame):
         self.statusbar.Refresh()
 
     def anexarEventos(self):
-        for control, event, handler in [(self.botao, wx.EVT_BUTTON, self.onClick)]:
+        for control, event, handler in [(self.botao, wx.EVT_BUTTON, self.onClick),
+                                        (self.botaoReset, wx.EVT_BUTTON, self.onClickReset)]:
             control.Bind(event, handler)
 
     def onClick(self, event):
         self.eventos.clickRodar(self)
+
+    def onClickReset(self, event):
+        self.eventos.clickReset(self)

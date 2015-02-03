@@ -48,9 +48,6 @@ class Jogo:
         pygame.display.flip()
         time.sleep(0.3)
 
-    def apagarrobo(self):
-        pygame.sprite.RenderClear(self.robo)
-
     def gerarChao(self):
         for x in range(0, 500, 150):
             self.ground.add(Ground(50, x, 50, 50, 'ground'))
