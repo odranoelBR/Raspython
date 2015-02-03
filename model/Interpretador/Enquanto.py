@@ -7,5 +7,5 @@ class Enquanto(IExpressao):
         self.expressao = expressao
 
     def execute(self):
-       while self.condicao:
+       while self.condicao.execute():
            self.expressao.execute()

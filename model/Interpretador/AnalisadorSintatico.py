@@ -1,3 +1,4 @@
+from model.Interpretador.Booleano import Booleano
 from model.Interpretador.Repita import Repita
 from model.Interpretador.Enquanto import Enquanto
 from model.Interpretador.SeSenao import SeSenao
@@ -67,7 +68,6 @@ class AnalisadorSintatico:
             """blocoLogico : COLUNAESQUERDA logico COLUNADIREITA"""
             p[0] = p[2]
 
-
         def p_booleanos(p):
             """booleanos :  VERDADEIRO
             |    FALSO
@@ -81,17 +81,10 @@ class AnalisadorSintatico:
             |    NEGACAO sensorDireita
             |    NEGACAO sensorEsquerda
             |    NEGACAO sensorBaixo """
-
             if len(p) > 2:
-                if p[2] == 'FALSO' or p[2] == False:
-                    p[0] = True
-                else:
-                    p[0] = False
+                p[0] = Booleano(True,p[2],thread,tela)
             else:
-                if p[1] == 'FALSO' or p[1] == False:
-                    p[0] = False
-                else:
-                    p[0] = True
+                p[0] = Booleano(False,p[1],thread,tela)
 
         def p_logico(p):
             """logico : booleanos
@@ -109,19 +102,19 @@ class AnalisadorSintatico:
 
         def p_sensorCima(p):
             """sensorCima : SENSORCIMA"""
-            p[0] = thread.jogo.robo.temColisaoCima(self.tela.paineljogo.jogo.grupowalls)
+            p[0] = 'SENSORCIMA'
 
         def p_sensorEsquerda(p):
             """sensorEsquerda : SENSORESQUERDA"""
-            p[0] = thread.jogo.robo.temColisaoEsquerda(self.tela.paineljogo.jogo.grupowalls)
+            p[0] = 'SENSORESQUERDA'
 
         def p_sensorDireita(p):
             """sensorDireita : SENSORDIREITA"""
-            p[0] = thread.jogo.robo.temColisaoDireita(self.tela.paineljogo.jogo.grupowalls)
+            p[0] = 'SENSORDIREITA'
 
         def p_sensorBaixo(p):
             """sensorBaixo : SENSORBAIXO"""
-            p[0] = thread.jogo.robo.temColisaoBaixo(self.tela.paineljogo.jogo.grupowalls)
+            p[0] = 'SENSORBAIXO'
 
         def p_error(p):
             self.tela.statusbar.SetBackgroundColour('#FF7373')

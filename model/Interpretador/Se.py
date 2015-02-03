@@ -7,5 +7,5 @@ class Se(IExpressao):
         self.expressao = expressao
 
     def execute(self):
-        if self.condicao :
+        if self.condicao.execute() :
             self.expressao.execute()

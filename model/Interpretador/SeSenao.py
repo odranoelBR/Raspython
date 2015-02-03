@@ -8,7 +8,7 @@ class SeSenao(IExpressao):
         self.expressao2 = expressao2
 
     def execute(self):
-        if self.condicao :
-            self.expressao.execute()
+        if self.condicao.execute() :
+            self.expressao1.execute()
         else:
             self.expressao2.execute()

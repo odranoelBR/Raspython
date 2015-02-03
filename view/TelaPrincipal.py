@@ -49,7 +49,7 @@ class TelaPrincipal(wx.Frame):
         self.mensagem.ForegroundColour = '#FFFFFF'
         self.mensagem.SetFont(font)
         self.botao = wx.Button(self, label='Rodar')
-        self.caixadigitacao = wx.TextCtrl(self, style=wx.TE_MULTILINE)
+        self.caixadigitacao = wx.TextCtrl(self, style=wx.TE_MULTILINE, value='se (sensordireita) { cima } senao { cima baixo};')
         self.caixadigitacao.BackgroundColour = '#FFFFFF'
         self.statusbar = self.CreateStatusBar()
         self.statusbar.SetFieldsCount(2)
