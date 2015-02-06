@@ -41,15 +41,15 @@ class TelaPrincipal(wx.Frame):
           40),
 
          (self.paineljogo,
-          15,
-          60,
-          550,
-          500)]:
+          55,
+          75,
+          400,
+          400)]:
             control.SetDimensions(x=x, y=y, width=width, height=height)
 
     def adicionarWidgets(self):
         self.toolbar = ToolBar(self)
-        self.paineljogo = PainelJogo(self, -1, (550, 500))
+        self.paineljogo = PainelJogo(self, -1, (400, 400))
         self.mensagem = wx.StaticText(self, label='O zumbi precisa comer cerebros! Ajude-o a chegar em um.', style=wx.ALIGN_CENTRE)
         font = wx.Font(16, wx.DECORATIVE, wx.ITALIC, wx.NORMAL)
         self.mensagem.ForegroundColour = '#FFFFFF'

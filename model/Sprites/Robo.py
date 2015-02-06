@@ -12,13 +12,13 @@ class Robo(pygame.sprite.Sprite):
         self.screen = pygame.display.get_surface()
         self.area = self.screen.get_rect()
         self.speed = 100
-        self.rect.midright = [550,450];
+        self.rect.midright = [400,50];
         self.movepos = [0,0]
         self.roboControllerApi = RoboControllerApi()
         self.conexaoRobo = os.environ.get('conexaoRobo')
 
     def posicaoinicial(self):
-        self.rect.midright = [550,450];
+        self.rect.midright = [400,50];
 
     def update(self,grupowalls):
 
