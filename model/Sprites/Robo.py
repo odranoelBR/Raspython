@@ -15,7 +15,6 @@ class Robo(pygame.sprite.Sprite):
         self.rect.midright = [400,50];
         self.movepos = [0,0]
         self.roboControllerApi = RoboControllerApi()
-        self.conexaoRobo = os.environ.get('conexaoRobo')
 
     def posicaoinicial(self):
         self.rect.midright = [400,50];
@@ -84,24 +83,24 @@ class Robo(pygame.sprite.Sprite):
         return temColisao
 
     def moveFront(self):
-        if self.conexaoRobo == 'True':
+        if os.environ.get('conexaoRobo') == 'True':
             self.roboControllerApi.moveFront()
         self.movepos[1] = self.movepos[1] - (self.speed) # para cima
 
     def moveBack(self):
-        if self.conexaoRobo == 'True':
+        if os.environ.get('conexaoRobo') == 'True':
             self.roboControllerApi.moveBack()
         self.movepos[1] = self.movepos[1] + (self.speed) # para tras
 
     def moveLeft(self):
-        if self.conexaoRobo == 'True':
+        if os.environ.get('conexaoRobo') == 'True':
             self.roboControllerApi.moveLeft()
             self.roboControllerApi.moveFront()
 
         self.movepos[0] = self.movepos[1] - (self.speed) # para esquerda
 
     def moveRight(self):
-        if self.conexaoRobo == 'True':
+        if os.environ.get('conexaoRobo') == 'True':
             self.roboControllerApi.moveRight()
             self.roboControllerApi.moveFront()
 
