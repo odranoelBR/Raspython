@@ -7,7 +7,7 @@ class HelpWindow(wx.Frame):
 
         toolbar = self.CreateToolBar()
         toolbar.AddLabelTool(1, 'Exit', wx.Bitmap('view/img/close.png'))
-
+        toolbar.Realize()
 
         vbox2 = wx.BoxSizer(wx.VERTICAL)
         hbox = wx.BoxSizer(wx.HORIZONTAL)

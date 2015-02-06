@@ -18,6 +18,7 @@ class ToolBar(wx.ToolBar):
 
     def onQuit(self, e):
         self.parent.Close()
+        self.help.Close()
 
     def iniciandoConexao(self,e):
 
@@ -37,7 +38,7 @@ class ToolBar(wx.ToolBar):
             wx.OK | wx.ICON_INFORMATION)
 
     def onInfo(self, e):
-        HelpWindow(None, -1, 'HelpWindow')
+        self.help  = HelpWindow(None, -1, 'HelpWindow')
 
     def anexarEventos(self):
         self.Bind(wx.EVT_TOOL, self.onInfo, self.info)
